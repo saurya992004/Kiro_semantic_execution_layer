@@ -1,0 +1,11 @@
+User Command: {command}
+
+Convert this command into structured JSON.
+
+Return ONLY JSON in this format:
+
+{
+  "intent": "",
+  "action": "",
+  "parameters": {}
+}
