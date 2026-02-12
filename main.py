@@ -1,5 +1,7 @@
 from llm.gemini_client import GeminiClient
 from utils.prompt_loader import load_prompt
+from utils.json_parser import extract_json
+from router.intent_router import route_intent
 
 
 def build_prompt(user_command: str) -> str:
@@ -31,9 +33,18 @@ def main():
 
         response = gemini.generate(prompt)
 
+        parsed = extract_json(response)
+
+        if not parsed:
+            print("Failed to parse command.\n")
+            continue
+
         print("\nParsed Command:")
-        print(response)
+        print(parsed)
         print()
+
+        # 🔥 Phase 2 Execution Hook
+        route_intent(parsed)
 
 
 if __name__ == "__main__":

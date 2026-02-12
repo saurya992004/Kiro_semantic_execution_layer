@@ -8,7 +8,7 @@ load_dotenv()
 class GeminiClient:
 
     def __init__(self):
-        self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+        self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY1"))
 
     def generate(self, prompt: str) -> str:
         """
