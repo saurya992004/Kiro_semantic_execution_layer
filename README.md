@@ -1,28 +1,28 @@
-# 🤖 Jarvis — AI OS Agent Framework
+# 🤖 AURA — AI OS Agent Framework
 
 **Hackathon Project — Team Build**
 
-Jarvis is a modular AI system assistant that can understand natural language commands and execute real operating system actions.
+AURA is a modular AI system assistant that can understand natural language commands and execute real operating system actions.
 
-Unlike traditional voice assistants, Jarvis is designed as an **extensible OS agent framework** capable of automation, diagnostics, planning, and multi-agent task execution.
+Unlike traditional voice assistants, AURA is designed as an **extensible OS agent framework** capable of automation, diagnostics, planning, and multi-agent task execution — now enhanced with **built-in safety, validation, and rollback mechanisms**.
 
 ---
 
 # 🚀 Vision
 
-> “Control your entire computer like you control ChatGPT.”
+> “Control your entire computer like you control ChatGPT — safely.”
 
-Jarvis converts human commands into structured system actions:
+AURA converts human commands into structured system actions with verification and recovery layers:
 
 ```
-User → AI → Intent → Tool → OS Execution
+User → AI → Intent → Validator → Tool → OS Execution → Fallback Monitor
 ```
 
-Our goal is to evolve Jarvis from a command executor into a **fully autonomous desktop agent**.
+Our goal is to evolve AURA from a command executor into a **fully autonomous yet safety-aware desktop agent**.
 
 ---
 
-# 🧱 System Architecture
+#  System Architecture
 
 ```
 User Command
@@ -31,19 +31,70 @@ Gemini LLM Layer
       ↓
 Structured JSON Intent
       ↓
+Command Validator 🛡️
+      ↓
 Intent Router
       ↓
 Tool Modules
       ↓
 Operating System Actions
+      ↓
+Fallback & Recovery Engine ↩️
 ```
+
+---
+
+## 🛡️ Command Validator Layer (NEW)
+
+Before executing any action, AURA verifies intent safety.
+
+### Responsibilities
+
+* Detect destructive commands
+* Classify risk level
+* Require confirmation for critical actions
+* Block unsafe or ambiguous instructions
+
+### Example
+
+```json
+{
+  "intent": "delete_files",
+  "risk_level": "high",
+  "requires_confirmation": true
+}
+```
+
+### Protection Scenarios
+
+* Mass file deletion
+* Registry edits
+* System32 access
+* Forced process kills
+* Disk formatting commands
+
+**Impact:** Prevents unintended or malicious system damage.
+
+---
+
+## ↩️ Fallback & Revert System (NEW)
+
+AURA includes a rollback engine to restore system state if something goes wrong — or if the user requests reversal.
+
+### Core Capabilities
+
+* Action logging
+* Pre-execution snapshots
+* File restore
+* Process restart
+* Undo automation workflows
 
 ---
 
 # 📁 Project Structure
 
 ```
-jarvis/
+AURA/
 │
 ├── main.py
 ├── llm/
@@ -68,7 +119,7 @@ Each module is independently extensible for future agents.
 
 **Objective**
 
-Enable Jarvis to understand natural language commands.
+Enable AURA to understand natural language commands.
 
 **Built**
 
@@ -79,7 +130,7 @@ Enable Jarvis to understand natural language commands.
 
 **Outcome**
 
-Jarvis can interpret structured intents like:
+AURA can interpret structured intents like:
 
 ```json
 {
@@ -109,7 +160,7 @@ Connect AI understanding to real system actions.
 
 **Outcome**
 
-Jarvis executes commands like:
+AURA executes commands like:
 
 * Open apps
 * Search web
@@ -121,7 +172,7 @@ Jarvis executes commands like:
 
 **Objective**
 
-Give Jarvis deeper OS authority.
+Give AURA deeper OS authority.
 
 **Implemented**
 
@@ -132,7 +183,7 @@ Give Jarvis deeper OS authority.
 
 **Impact**
 
-Jarvis moves from assistant → system controller.
+AURA moves from assistant → system controller.
 
 ---
 
@@ -185,7 +236,7 @@ System monitoring & optimization.
 
 ## 🤖 Phase 7 — Planning Agent (Planned)
 
-Jarvis will decompose goals:
+AURA will decompose goals:
 
 > “Speed up my PC”
 
@@ -241,7 +292,7 @@ Specialized agents:
 
 ```bash
 git clone <repo>
-cd jarvis
+cd AURA
 
 python -m venv venv
 venv\Scripts\activate
@@ -299,7 +350,7 @@ AI controlling OS via modular agent architecture.
 
 # 🔮 Future Scope
 
-Jarvis can evolve into:
+AURA can evolve into:
 
 * Personal desktop co-pilot
 * Developer automation agent
@@ -327,6 +378,6 @@ Inspired by the concept of a modular AI operating layer — bridging LLM intelli
 
 # 🏁 Closing Statement
 
-Jarvis is not just an assistant.
+AURA is not just an assistant.
 
 It’s the foundation of an **AI-driven operating experience** where computers execute intent, not clicks.
