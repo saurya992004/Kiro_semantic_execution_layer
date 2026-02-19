@@ -293,6 +293,95 @@ Architecture Lead
 
 ---
 
+# Phase 11 - THE TROUBLESHOOTER
+
+This phase focuses on building Jarvis’ error detection and auto‑repair capability.
+
+---
+
+# 📁 Folder Structure
+
+```
+jarvis/
+
+├── troubleshooter/
+│   ├── error_detector.py
+│   ├── error_classifier.py
+│   ├── root_cause_engine.py
+│   ├── fix_suggester.py
+│   ├── auto_fix_engine.py
+│   └── explanation_engine.py
+│
+├── knowledge_base/
+│   ├── error_db.json
+│   ├── config_fixes.json
+│   └── command_recipes.json
+```
+
+---
+
+# 🎯 expected outcomes
+
+Team must deliver the following capabilities:
+
+* Detect errors from terminal, runtime, and system logs
+* Classify error type and severity
+* Identify root cause of the error
+* Generate fix suggestions (manual + command based)
+* Execute safe automated fixes
+* Provide human‑readable explanation of the issue
+* Store known errors and fixes in knowledge base
+* Integrate troubleshooting intent into router
+* if possible try to update drivers also
+---
+
+**Completion Criteria:**
+Jarvis can detect an error, diagnose the cause, explain it clearly, and suggest or apply fixes from within the agent.
+
+
+## ⚙️ Phase 12 — Personalisation
+
+This phase focuses on enabling Jarvis to modify and personalize system settings based on user commands.
+
+---
+
+# 📁 Folder Structure
+
+```
+jarvis/
+
+├── personalisation/
+│   ├── settings_controller.py
+│   ├── theme_manager.py
+│   ├── wallpaper_manager.py
+│   ├── app_preferences.py
+│   └── system_preferences.py
+│
+├── knowledge_base/
+│   └── settings_recipes.json
+```
+
+---
+
+# 🎯 Phase 12 — Deliverables
+
+Team must deliver the following capabilities:
+
+* Toggle system dark / light mode
+* Change desktop wallpaper
+* Modify basic OS personalization settings
+* Control app preferences (default apps, startup apps)
+* Adjust display and theme settings
+* Execute personalization via voice/text commands
+* Store reusable settings recipes
+* Integrate commands into intent router
+
+---
+
+**Completion Criteria:**
+Jarvis can receive personalization commands (e.g., dark mode, wallpaper change) and apply system setting changes automatically.
+
+
 # 🛠️ Team Dev Rules
 
 1. Never hardcode prompts inside Python.
