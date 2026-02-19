@@ -1,0 +1,155 @@
+{
+  "timestamp_iso": "2026-02-19T06:17:00",
+  "screen_summary": "A YouTube video is playing in a web browser, and a 'Jarvis - Vision Intelligence' application window is overlaid on the right side, displaying a query input field and an empty JSON output area.",
+  "window_title_or_app": "Jarvis — Vision Intelligence",
+  "detected_buttons": [
+    {
+      "label": "Create",
+      "context": "YouTube top navigation",
+      "action_hint": "To create new content (e.g., upload video, go live)"
+    },
+    {
+      "label": "Open output folder",
+      "context": "Jarvis app",
+      "action_hint": "To open the directory where analysis results are saved"
+    },
+    {
+      "label": "Subscribe",
+      "context": "YouTube video details",
+      "action_hint": "To subscribe to the channel"
+    },
+    {
+      "label": "Share",
+      "context": "YouTube video controls",
+      "action_hint": "To share the current video"
+    },
+    {
+      "label": "Ask",
+      "context": "YouTube video controls",
+      "action_hint": "To ask a question related to the video"
+    },
+    {
+      "label": "Save",
+      "context": "YouTube video controls",
+      "action_hint": "To save the video to a playlist"
+    },
+    {
+      "label": "All",
+      "context": "YouTube video suggestions",
+      "action_hint": "To filter video suggestions"
+    },
+    {
+      "label": "Indian Music",
+      "context": "YouTube video suggestions",
+      "action_hint": "To filter video suggestions"
+    },
+    {
+      "label": "Rapping",
+      "context": "YouTube video suggestions",
+      "action_hint": "To filter video suggestions"
+    },
+    {
+      "label": "Electronic Mus",
+      "context": "YouTube video suggestions",
+      "action_hint": "To filter video suggestions"
+    }
+  ],
+  "detected_options": [
+    {
+      "label": "Premium",
+      "type": "other",
+      "context": "YouTube navigation"
+    },
+    {
+      "label": "dil lagana mana tha",
+      "type": "other",
+      "context": "YouTube search bar"
+    },
+    {
+      "label": "Vision Intelligence",
+      "type": "other",
+      "context": "Jarvis app heading"
+    },
+    {
+      "label": "whats on my screen",
+      "type": "other",
+      "context": "Jarvis app input field content"
+    },
+    {
+      "label": "Output (JSON)",
+      "type": "label",
+      "context": "Jarvis app"
+    }
+  ],
+  "visible_text_regions": [
+    {
+      "text": "YouTube",
+      "role": "label"
+    },
+    {
+      "text": "Jarvis — Vision Intelligence",
+      "role": "heading"
+    },
+    {
+      "text": "Vision Intelligence",
+      "role": "heading"
+    },
+    {
+      "text": "Describe what you want to know about your screen, then capture & analyze.",
+      "role": "body"
+    },
+    {
+      "text": "whats on my screen",
+      "role": "body"
+    },
+    {
+      "text": "Output (JSON)",
+      "role": "label"
+    },
+    {
+      "text": "Enter a query and click Capture & Analyze. Results and JSON will appear here.",
+      "role": "body"
+    },
+    {
+      "text": "Analyzing with Vision API...",
+      "role": "body"
+    },
+    {
+      "text": "Afusic - Pal Pal (Official Music Video) Prod. @AliSoomroMusic",
+      "role": "heading"
+    },
+    {
+      "text": "AFUSIC",
+      "role": "label"
+    },
+    {
+      "text": "AliSoomroMusic",
+      "role": "label"
+    },
+    {
+      "text": "3.7m",
+      "role": "label"
+    },
+    {
+      "text": "Saregama Music",
+      "role": "label"
+    },
+    {
+      "text": "Mix - AUR",
+      "role": "label"
+    },
+    {
+      "text": "6:17 AM",
+      "role": "body"
+    },
+    {
+      "text": "2/19/2026",
+      "role": "body"
+    }
+  ],
+  "possible_errors_or_alerts": [],
+  "accessibility_hints": "The 'Jarvis - Vision Intelligence' application is an active, potentially modal, window on the right side. The input field 'whats on my screen' likely has current focus. The YouTube video is playing in the background.",
+  "screenshot_path": "C:\\Users\\ASUS\\Desktop\\Hackathon\\Jarvis\\vision_output\\screenshots\\screen_20260219_004740.png",
+  "screenshot_filename": "screen_20260219_004740.png",
+  "analyzed_at_iso": "2026-02-19T00:47:53Z"
+}
