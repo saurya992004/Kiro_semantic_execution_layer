@@ -1,0 +1,917 @@
+{
+  "timestamp_iso": "2026-02-19T01:45:13Z",
+  "screen_summary": "© © G YouTube - Nazm Nazm - Lyrical | Bareilly Ki Barfi | Kriti Sanon, Ayushmann Khurrana & Rajkummar Rao | Arko - YouTube - a x O @ 4 Co = ©Premium™ dil lagana mana tha x Q Mix - Dil Lagana Mana Tha (Official... Mixes are playlists that YouTube makes for you OpenMic Studios A nw Ranjheya Ve | Zain ...",
+  "window_title_or_app": "",
+  "detected_buttons": [
+    {
+      "label": "©",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "G",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "YouTube",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "-",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Nazm",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Lyrical",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "|",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Bareilly",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Ki",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Barfi",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Kriti",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Sanon,",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Ayushmann",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Khurrana",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "&",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Rajkummar",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Rao",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Arko",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "a",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "x",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "O",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "@",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "4",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Co",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "=",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "©Premium™",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "dil",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "lagana",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "mana",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "tha",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Q",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Mix",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Dil",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Lagana",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Mana",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Tha",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "(Official...",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Mixes",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "are",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "playlists",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "that",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "makes",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "for",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "you",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "OpenMic",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Studios",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "A",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "nw",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Ranjheya",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Ve",
+      "context": "detected from OCR",
+      "action_hint": ""
+    }
+  ],
+  "detected_options": [
+    {
+      "label": "©",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "G",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "YouTube",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "-",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Nazm",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Lyrical",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "|",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Bareilly",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Ki",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Barfi",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Kriti",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Sanon,",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Ayushmann",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Khurrana",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "&",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Rajkummar",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Rao",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Arko",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "a",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "x",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "O",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "@",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "4",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Co",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "=",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "©Premium™",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "dil",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "lagana",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "mana",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "tha",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Q",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Mix",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Dil",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Lagana",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Mana",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Tha",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "(Official...",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Mixes",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "are",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "playlists",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "that",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "makes",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "for",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "you",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "OpenMic",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Studios",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "A",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "nw",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Ranjheya",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Ve",
+      "type": "other",
+      "context": "detected from OCR"
+    }
+  ],
+  "visible_text_regions": [
+    {
+      "text": "©",
+      "role": "label"
+    },
+    {
+      "text": "©",
+      "role": "label"
+    },
+    {
+      "text": "G",
+      "role": "label"
+    },
+    {
+      "text": "YouTube",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "Nazm",
+      "role": "label"
+    },
+    {
+      "text": "Nazm",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "Lyrical",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Bareilly",
+      "role": "label"
+    },
+    {
+      "text": "Ki",
+      "role": "label"
+    },
+    {
+      "text": "Barfi",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Kriti",
+      "role": "label"
+    },
+    {
+      "text": "Sanon,",
+      "role": "label"
+    },
+    {
+      "text": "Ayushmann",
+      "role": "label"
+    },
+    {
+      "text": "Khurrana",
+      "role": "label"
+    },
+    {
+      "text": "&",
+      "role": "label"
+    },
+    {
+      "text": "Rajkummar",
+      "role": "label"
+    },
+    {
+      "text": "Rao",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Arko",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "YouTube",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "a",
+      "role": "label"
+    },
+    {
+      "text": "x",
+      "role": "label"
+    },
+    {
+      "text": "O",
+      "role": "label"
+    },
+    {
+      "text": "@",
+      "role": "label"
+    },
+    {
+      "text": "4",
+      "role": "label"
+    },
+    {
+      "text": "Co",
+      "role": "label"
+    },
+    {
+      "text": "=",
+      "role": "label"
+    },
+    {
+      "text": "©Premium™",
+      "role": "label"
+    },
+    {
+      "text": "dil",
+      "role": "label"
+    },
+    {
+      "text": "lagana",
+      "role": "label"
+    },
+    {
+      "text": "mana",
+      "role": "label"
+    },
+    {
+      "text": "tha",
+      "role": "label"
+    },
+    {
+      "text": "x",
+      "role": "label"
+    },
+    {
+      "text": "Q",
+      "role": "label"
+    },
+    {
+      "text": "Mix",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "Dil",
+      "role": "label"
+    },
+    {
+      "text": "Lagana",
+      "role": "label"
+    },
+    {
+      "text": "Mana",
+      "role": "label"
+    },
+    {
+      "text": "Tha",
+      "role": "label"
+    },
+    {
+      "text": "(Official...",
+      "role": "label"
+    },
+    {
+      "text": "Mixes",
+      "role": "label"
+    },
+    {
+      "text": "are",
+      "role": "label"
+    },
+    {
+      "text": "playlists",
+      "role": "label"
+    },
+    {
+      "text": "that",
+      "role": "label"
+    },
+    {
+      "text": "YouTube",
+      "role": "label"
+    },
+    {
+      "text": "makes",
+      "role": "label"
+    },
+    {
+      "text": "for",
+      "role": "label"
+    },
+    {
+      "text": "you",
+      "role": "label"
+    },
+    {
+      "text": "OpenMic",
+      "role": "label"
+    },
+    {
+      "text": "Studios",
+      "role": "label"
+    },
+    {
+      "text": "A",
+      "role": "label"
+    },
+    {
+      "text": "nw",
+      "role": "label"
+    },
+    {
+      "text": "Ranjheya",
+      "role": "label"
+    },
+    {
+      "text": "Ve",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Zain",
+      "role": "label"
+    },
+    {
+      "text": "Zohaib",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Yratta",
+      "role": "label"
+    },
+    {
+      "text": "media",
+      "role": "label"
+    },
+    {
+      "text": "Zain",
+      "role": "label"
+    },
+    {
+      "text": "Zohaib",
+      "role": "label"
+    },
+    {
+      "text": "MAST",
+      "role": "label"
+    },
+    {
+      "text": "MAGAN",
+      "role": "label"
+    },
+    {
+      "text": "ea",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Singh",
+      "role": "label"
+    },
+    {
+      "text": "3",
+      "role": "label"
+    },
+    {
+      "text": "SUBHANALLAH",
+      "role": "label"
+    },
+    {
+      "text": "J",
+      "role": "label"
+    },
+    {
+      "text": "‘Sreerama",
+      "role": "label"
+    },
+    {
+      "text": "Chandra",
+      "role": "label"
+    },
+    {
+      "text": "4:10",
+      "role": "label"
+    },
+    {
+      "text": "427",
+      "role": "label"
+    },
+    {
+      "text": "Vismay",
+      "role": "label"
+    },
+    {
+      "text": "Patel",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "Pal",
+      "role": "label"
+    },
+    {
+      "text": "Behta",
+      "role": "label"
+    },
+    {
+      "text": "Jaaye",
+      "role": "label"
+    },
+    {
+      "text": "(Acoustic",
+      "role": "label"
+    },
+    {
+      "text": "Kasoor",
+      "role": "label"
+    },
+    {
+      "text": "(Acoustic)",
+      "role": "label"
+    },
+    {
+      "text": "-",
+      "role": "label"
+    },
+    {
+      "text": "Prateek",
+      "role": "label"
+    },
+    {
+      "text": "Kuhad",
+      "role": "label"
+    },
+    {
+      "text": "|",
+      "role": "label"
+    },
+    {
+      "text": "Official",
+      "role": "label"
+    },
+    {
+      "text": "Valentine",
+      "role": "label"
+    },
+    {
+      "text": "Day",
+      "role": "label"
+    },
+    {
+      "text": "Special",
+      "role": "label"
+    },
+    {
+      "text": "Love",
+      "role": "label"
+    },
+    {
+      "text": "Mashup®",
+      "role": "label"
+    }
+  ],
+  "possible_errors_or_alerts": [],
+  "accessibility_hints": "Local OCR; no semantic labels.",
+  "backend": "ocr",
+  "screenshot_path": "C:\\Users\\ASUS\\Desktop\\Hackathon\\Jarvis\\vision_output\\screenshots\\screen_20260219_014512.png",
+  "screenshot_filename": "screen_20260219_014512.png",
+  "analyzed_at_iso": "2026-02-19T01:45:15Z"
+}

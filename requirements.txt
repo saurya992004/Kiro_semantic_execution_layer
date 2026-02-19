@@ -1,3 +1,9 @@
 google-genai
+groq
 dotenv
 psutil
+mss
+customtkinter
+pytesseract
+Pillow
+easyocr

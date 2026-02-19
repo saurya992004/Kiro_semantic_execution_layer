@@ -1,0 +1,917 @@
+{
+  "timestamp_iso": "2026-02-19T01:43:16Z",
+  "screen_summary": "File Edit Selection View Go Run Terminal Help Jarvis Upgrade to Pro 8 B o.md 'gitignore vision_ocr py run_ocr demopy U X D 23 [ Vision intelligence engine implementation t - X Search Agents_ JARVIS vision run_ocr demopy powershell (308-332) New Agent 'venv So I Tesseract IS Installed In one 0r these...",
+  "window_title_or_app": "",
+  "detected_buttons": [
+    {
+      "label": "File",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Edit",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Selection",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "View",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Go",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Run",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Terminal",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Help",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Jarvis",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Upgrade to Pro",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "8",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "B",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "o.md",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "'gitignore",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "vision_ocr py",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "run_ocr",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "demopy U X",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "D",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "23 [",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "t -",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "X",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Search Agents_",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "JARVIS",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "vision",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "demopy",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "powershell (308-332)",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "New Agent",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "'venv",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Ilm",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Run OCR-only analysis",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "and print/save output",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "So",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "you",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "can inspect before",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "used without",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "configuring anything:",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Agents",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "~pycache",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "integrating:",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "2. EasyOCR fallback",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Vision intelligence engin_",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Sm",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "~gemini_client-py",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Edited requirements txt; vi=.",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "Usage:",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "prompts",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "From",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "project",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "root:",
+      "context": "detected from OCR",
+      "action_hint": ""
+    },
+    {
+      "label": "code",
+      "context": "detected from OCR",
+      "action_hint": ""
+    }
+  ],
+  "detected_options": [
+    {
+      "label": "File",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Edit",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Selection",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "View",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Go",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Run",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Terminal",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Help",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Jarvis",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Upgrade to Pro",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "8",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "B",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "o.md",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "'gitignore",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "vision_ocr py",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "run_ocr",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "demopy U X",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "D",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "23 [",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Vision intelligence engine implementation",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "t -",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "X",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Search Agents_",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "JARVIS",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "vision",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "demopy",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "powershell (308-332)",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "New Agent",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "'venv",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Ilm",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Run OCR-only analysis",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "and print/save output",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "So",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "you",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "can inspect before",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "used without",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "configuring anything:",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Agents",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "~pycache",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "integrating:",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "2. EasyOCR fallback",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Vision intelligence engin_",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Sm",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "~gemini_client-py",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Edited requirements txt; vi=.",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "Usage:",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "prompts",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "From",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "project",
+      "type": "other",
+      "context": "detected from OCR"
+    },
+    {
+      "label": "root:",
+      "type": "other",
+      "context": "detected from OCR"
+    }
+  ],
+  "visible_text_regions": [
+    {
+      "text": "File",
+      "role": "label"
+    },
+    {
+      "text": "Edit",
+      "role": "label"
+    },
+    {
+      "text": "Selection",
+      "role": "label"
+    },
+    {
+      "text": "View",
+      "role": "label"
+    },
+    {
+      "text": "Go",
+      "role": "label"
+    },
+    {
+      "text": "Run",
+      "role": "label"
+    },
+    {
+      "text": "Terminal",
+      "role": "label"
+    },
+    {
+      "text": "Help",
+      "role": "label"
+    },
+    {
+      "text": "Jarvis",
+      "role": "label"
+    },
+    {
+      "text": "Upgrade to Pro",
+      "role": "label"
+    },
+    {
+      "text": "8",
+      "role": "label"
+    },
+    {
+      "text": "B",
+      "role": "label"
+    },
+    {
+      "text": "o.md",
+      "role": "label"
+    },
+    {
+      "text": "'gitignore",
+      "role": "label"
+    },
+    {
+      "text": "vision_ocr py",
+      "role": "label"
+    },
+    {
+      "text": "run_ocr",
+      "role": "label"
+    },
+    {
+      "text": "demopy U X",
+      "role": "label"
+    },
+    {
+      "text": "D",
+      "role": "label"
+    },
+    {
+      "text": "23 [",
+      "role": "label"
+    },
+    {
+      "text": "Vision intelligence engine implementation",
+      "role": "body"
+    },
+    {
+      "text": "t -",
+      "role": "label"
+    },
+    {
+      "text": "X",
+      "role": "label"
+    },
+    {
+      "text": "Search Agents_",
+      "role": "label"
+    },
+    {
+      "text": "JARVIS",
+      "role": "label"
+    },
+    {
+      "text": "vision",
+      "role": "label"
+    },
+    {
+      "text": "run_ocr",
+      "role": "label"
+    },
+    {
+      "text": "demopy",
+      "role": "label"
+    },
+    {
+      "text": "powershell (308-332)",
+      "role": "label"
+    },
+    {
+      "text": "New Agent",
+      "role": "label"
+    },
+    {
+      "text": "'venv",
+      "role": "label"
+    },
+    {
+      "text": "So I Tesseract IS Installed In one 0r these locations; It WilI be",
+      "role": "body"
+    },
+    {
+      "text": "Ilm",
+      "role": "label"
+    },
+    {
+      "text": "Run OCR-only analysis",
+      "role": "label"
+    },
+    {
+      "text": "and print/save output",
+      "role": "label"
+    },
+    {
+      "text": "So",
+      "role": "label"
+    },
+    {
+      "text": "you",
+      "role": "label"
+    },
+    {
+      "text": "can inspect before",
+      "role": "label"
+    },
+    {
+      "text": "used without",
+      "role": "label"
+    },
+    {
+      "text": "configuring anything:",
+      "role": "label"
+    },
+    {
+      "text": "Agents",
+      "role": "label"
+    },
+    {
+      "text": "~pycache",
+      "role": "label"
+    },
+    {
+      "text": "integrating:",
+      "role": "label"
+    },
+    {
+      "text": "2. EasyOCR fallback",
+      "role": "label"
+    },
+    {
+      "text": "Vision intelligence engin_",
+      "role": "label"
+    },
+    {
+      "text": "Sm",
+      "role": "label"
+    },
+    {
+      "text": "~gemini_client-py",
+      "role": "label"
+    },
+    {
+      "text": "Edited requirements txt; vi=.",
+      "role": "label"
+    },
+    {
+      "text": "Usage:",
+      "role": "label"
+    },
+    {
+      "text": "If Tesseract still isn' t found (not installed or not on PATH) the",
+      "role": "body"
+    },
+    {
+      "text": "prompts",
+      "role": "label"
+    },
+    {
+      "text": "From",
+      "role": "label"
+    },
+    {
+      "text": "project",
+      "role": "label"
+    },
+    {
+      "text": "root:",
+      "role": "label"
+    },
+    {
+      "text": "code",
+      "role": "label"
+    },
+    {
+      "text": "automatically uses EasyOCR (pip-only; no separate",
+      "role": "body"
+    },
+    {
+      "text": "Phase",
+      "role": "label"
+    },
+    {
+      "text": "implementation",
+      "role": "label"
+    },
+    {
+      "text": "README_PHASES",
+      "role": "label"
+    },
+    {
+      "text": "python",
+      "role": "label"
+    },
+    {
+      "text": "vision",
+      "role": "label"
+    },
+    {
+      "text": "run",
+      "role": "label"
+    },
+    {
+      "text": "ocr",
+      "role": "label"
+    },
+    {
+      "text": "demo",
+      "role": "label"
+    },
+    {
+      "text": "binary): So the OCR demo can run with only:",
+      "role": "body"
+    },
+    {
+      "text": "Edited contract py; vision_C_",
+      "role": "label"
+    },
+    {
+      "text": "router",
+      "role": "label"
+    },
+    {
+      "text": "python",
+      "role": "label"
+    },
+    {
+      "text": "~m",
+      "role": "label"
+    },
+    {
+      "text": "vision",
+      "role": "label"
+    },
+    {
+      "text": "run_ocr_demo path/to/screenshot.png",
+      "role": "label"
+    },
+    {
+      "text": "test_cleanup",
+      "role": "label"
+    },
+    {
+      "text": "From vision/ folder:",
+      "role": "label"
+    },
+    {
+      "text": "pip",
+      "role": "label"
+    },
+    {
+      "text": "install",
+      "role": "label"
+    },
+    {
+      "text": "easyocr",
+      "role": "label"
+    },
+    {
+      "text": "tests",
+      "role": "label"
+    },
+    {
+      "text": "python",
+      "role": "label"
+    },
+    {
+      "text": "run",
+      "role": "label"
+    },
+    {
+      "text": "ocr_demo.py",
+      "role": "label"
+    },
+    {
+      "text": "easyocr in requirements",
+      "role": "label"
+    },
+    {
+      "text": "tools",
+      "role": "label"
+    },
+    {
+      "text": "10",
+      "role": "label"
+    },
+    {
+      "text": "python",
+      "role": "label"
+    },
+    {
+      "text": "run",
+      "role": "label"
+    },
+    {
+      "text": "ocr_demo.py path/to/screenshot _",
+      "role": "label"
+    },
+    {
+      "text": "utils",
+      "role": "label"
+    },
+    {
+      "text": "12",
+      "role": "label"
+    },
+    {
+      "text": "easyocr is added to",
+      "role": "label"
+    },
+    {
+      "text": "requirements",
+      "role": "label"
+    },
+    {
+      "text": "txt",
+      "role": "label"
+    },
+    {
+      "text": "SO the fallback is",
+      "role": "label"
+    },
+    {
+      "text": "vision",
+      "role": "label"
+    },
+    {
+      "text": "If",
+      "role": "label"
+    },
+    {
+      "text": "no",
+      "role": "label"
+    },
+    {
+      "text": "image path is given, the",
+      "role": "label"
+    },
+    {
+      "text": "screen is captured first (minimize",
+      "role": "label"
+    },
+    {
+      "text": "available",
+      "role": "label"
+    },
+    {
+      "text": "pip",
+      "role": "label"
+    },
+    {
+      "text": "install",
+      "role": "label"
+    },
+    {
+      "text": "requirements",
+      "role": "label"
+    }
+  ],
+  "possible_errors_or_alerts": [],
+  "accessibility_hints": "Local OCR; no semantic labels.",
+  "backend": "ocr",
+  "screenshot_path": "C:\\Users\\ASUS\\Desktop\\Hackathon\\Jarvis\\vision_output\\screenshots\\screen_20260219_014316.png",
+  "screenshot_filename": "screen_20260219_014316.png",
+  "analyzed_at_iso": "2026-02-19T01:43:59Z"
+}
