@@ -42,6 +42,7 @@ from personalisation.personalisation_tools import (
     set_default_app,
     get_current_theme
 )
+from file_manager import FileManager
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -109,6 +110,13 @@ VALID_INTENTS = {
             "save_profile", "load_profile", "manage_startup", "set_default_app"
         ],
         "description": "Customize system appearance and settings"
+    },
+    "file_management": {
+        "actions": [
+            "organize_by_type", "find_duplicates", "remove_duplicates",
+            "find_large_files", "analyze_folder", "get_report"
+        ],
+        "description": "Organize files, find duplicates, and scan for large files"
     }
 }
 
@@ -202,6 +210,9 @@ def route_intent(command: dict):
         
         elif intent == "personalization":
             _handle_personalization(action, params)
+        
+        elif intent == "file_management":
+            _handle_file_management(action, params)
         
         else:
             print(f"❌ Intent '{intent}' handler not implemented")
@@ -788,4 +799,203 @@ def _handle_personalization(action: str, params: dict):
     
     else:
         print(f"❌ Unknown personalization action: {action}")
+
+
+def _handle_file_management(action: str, params: dict):
+    """Handle file management operations."""
+    
+    folder_name = params.get("folder_name", "").strip()
+    if not folder_name:
+        print("❌ Folder name is required")
+        return
+    
+    # Initialize file manager
+    manager = FileManager()
+    
+    # Load the folder
+    print(f"📂 Loading folder '{folder_name}'...")
+    load_result = manager.load_folder(folder_name)
+    
+    if "error" in load_result:
+        print(f"❌ {load_result['error']}")
+        return
+    
+    print(f"✅ {load_result['message']}")
+    folder_info = load_result.get('folder_info', {})
+    print(f"   📊 Total files: {folder_info.get('total_files', 0)}")
+    print(f"   💾 Total size: {folder_info.get('size_mb', 0)} MB\n")
+    
+    if action == "organize_by_type":
+        print("📋 Organizing files...\n")
+        result = manager.organize_by_type(dry_run=False)
+        
+        if "error" in result:
+            print(f"❌ Error: {result['error']}")
+            return
+        
+        print(f"📊 Organization Results:")
+        print(f"   Total files processed: {result.get('total_files_processed', 0)}")
+        print(f"   Files moved: {result.get('files_moved', 0)}")
+        
+        # Show what was organized
+        print(f"\n📁 Files organized into folders:")
+        for category, files in result.get('organization_map', {}).items():
+            print(f"   📂 {category}/ ({len(files)} files)")
+            for filename in files[:3]:  # Show first 3 files
+                print(f"      • {filename}")
+            if len(files) > 3:
+                print(f"      ... and {len(files) - 3} more files")
+        
+        if result.get('files_moved') > 0:
+            print(f"\n✅ Successfully organized {result.get('files_moved', 0)} files!")
+        else:
+            print(f"\n✅ Folder already organized!")
+    
+    elif action == "find_duplicates":
+        print("🔍 Scanning for duplicate files...\n")
+        duplicates = manager.scan_duplicates()
+        
+        if "error" in duplicates:
+            print(f"❌ Error: {duplicates['error']}")
+            return
+        
+        if not duplicates.get('duplicates_found'):
+            print("✅ No duplicates found!")
+            return
+        
+        print(f"⚠️  Found {duplicates.get('total_duplicate_files', 0)} duplicate files:\n")
+        
+        for i, group in enumerate(duplicates.get('duplicate_groups', [])[:5], 1):
+            print(f"   📋 Duplicate group {i} ({group.get('count')} copies):")
+            for file_path in group.get('files', []):
+                print(f"      • {file_path}")
+            
+            # Calculate space savings
+            file_sizes = group.get('file_sizes', [])
+            if file_sizes:
+                space_saved = sum(file_sizes[1:]) / (1024 * 1024)  # All but first copy
+                print(f"      💾 Space savings: {space_saved:.2f} MB\n")
+        
+        if len(duplicates.get('duplicate_groups', [])) > 5:
+            print(f"   ... and {len(duplicates.get('duplicate_groups', [])) - 5} more groups")
+        
+        total_space = duplicates.get('space_savings', 0) / (1024 * 1024)
+        print(f"\n   💾 Total space that could be freed: {total_space:.2f} MB")
+    
+    elif action == "remove_duplicates":
+        print("🔍 Scanning for duplicate files...\n")
+        duplicates = manager.scan_duplicates()
+        
+        if "error" in duplicates:
+            print(f"❌ Error: {duplicates['error']}")
+            return
+        
+        if not duplicates.get('duplicates_found'):
+            print("✅ No duplicates found!")
+            return
+        
+        total_space = duplicates.get('space_savings', 0) / (1024 * 1024)
+        print(f"🔴 Found {duplicates.get('total_duplicate_files', 0)} duplicate files")
+        print(f"   💾 Space to be freed: {total_space:.2f} MB\n")
+        
+        print(f"🚀 Removing duplicates...")
+        result = manager.remove_duplicates(dry_run=False)
+        if "error" in result:
+            print(f"❌ Error: {result['error']}")
+        else:
+            print(f"✅ Successfully deleted {result.get('files_deleted', 0)} duplicate files")
+            freed_space = result.get('space_freed', 0) / (1024 * 1024)
+            print(f"   💾 Space freed: {freed_space:.2f} MB")
+    
+    elif action == "find_large_files":
+        min_size = params.get("min_size_mb", 100)
+        limit = params.get("limit", 20)
+        
+        print(f"🔴 Scanning for files larger than {min_size}MB...\n")
+        large_files = manager.scan_large_files(min_size_mb=min_size, limit=limit)
+        
+        if "error" in large_files:
+            print(f"❌ Error: {large_files['error']}")
+            return
+        
+        if not large_files.get('large_files'):
+            print(f"✅ No files larger than {min_size}MB found!")
+            return
+        
+        print(f"📈 Found {large_files.get('large_files_found', 0)} large files:\n")
+        
+        for i, file_info in enumerate(large_files.get('large_files', []), 1):
+            size_display = f"{file_info['size_gb']}GB" if file_info['size_gb'] >= 1 else f"{file_info['size_mb']}MB"
+            print(f"   {i}. {file_info['name']}")
+            print(f"      📊 Size: {size_display}")
+            print(f"      📍 Path: {file_info['path']}\n")
+    
+    elif action == "analyze_folder":
+        print("📊 Analyzing folder structure...\n")
+        analysis = manager.analyze_folder()
+        
+        if "error" in analysis:
+            print(f"❌ Error: {analysis['error']}")
+            return
+        
+        # Organization stats
+        org_stats = analysis.get('organization_stats', {})
+        print(f"📁 Organization Status:")
+        print(f"   Total files: {org_stats.get('total_files', 0)}")
+        print(f"   Organized: {org_stats.get('organized_files', 0)}")
+        print(f"   Unorganized: {org_stats.get('unorganized_files', 0)}")
+        
+        # Size breakdown
+        size_break = analysis.get('size_breakdown', {})
+        print(f"\n💾 Size by File Type (Top 5):")
+        extensions = list(size_break.get('by_extension', {}).items())[:5]
+        for ext, info in extensions:
+            print(f"   {ext}: {info.get('size_mb', 0):.2f}MB ({info.get('count', 0)} files)")
+    
+    elif action == "get_report":
+        print("📋 Generating comprehensive folder report...\n")
+        report = manager.get_full_report()
+        
+        if "error" in report:
+            print(f"❌ Error: {report['error']}")
+            return
+        
+        # Basic info
+        print(f"📂 Folder: {report.get('folder_name')}")
+        print(f"📍 Path: {report.get('folder_path')}\n")
+        
+        # Analysis
+        analysis = report.get('analysis', {})
+        folder_info = analysis.get('folder_info', {})
+        print(f"📊 Folder Statistics:")
+        print(f"   Total files: {folder_info.get('total_files', 0)}")
+        print(f"   Total size: {folder_info.get('size_mb', 0):.2f} MB\n")
+        
+        # Size by type
+        size_break = analysis.get('size_breakdown', {})
+        if size_break.get('by_extension'):
+            print(f"💾 Size by File Type (Top 5):")
+            extensions = list(size_break.get('by_extension', {}).items())[:5]
+            for ext, info in extensions:
+                print(f"   {ext}: {info.get('size_mb', 0):.2f}MB")
+        
+        # Large files
+        large = report.get('large_files', {})
+        if large.get('large_files'):
+            print(f"\n🔴 Largest Files (Top 5):")
+            for file_info in large.get('large_files', [])[:5]:
+                size_display = f"{file_info['size_gb']}GB" if file_info['size_gb'] >= 1 else f"{file_info['size_mb']}MB"
+                print(f"   • {file_info['name']}: {size_display}")
+        
+        # Duplicates
+        dups = report.get('duplicates', {})
+        if dups.get('duplicates_found'):
+            print(f"\n⚠️  Duplicates Found: {dups.get('total_duplicate_files', 0)} files")
+            freed_space = dups.get('space_savings', 0) / (1024 * 1024)
+            print(f"   💾 Possible space savings: {freed_space:.2f} MB")
+        else:
+            print(f"\n✅ No duplicates found")
+    
+    else:
+        print(f"❌ Unknown file management action: {action}")
 

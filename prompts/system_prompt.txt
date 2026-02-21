@@ -55,9 +55,16 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
    - Parameters: enable (bool), color (hex), brightness (0-100), path (string), preset (dark/light/office/gaming/minimal), name (string), app (string), action (enable/disable), app_type (browser/mail/text_editor/image_viewer), app_name (chrome/firefox/edge/etc)
    - Examples: "dark mode", "light mode", "set brightness to 50", "apply gaming theme", "set accent to blue", "save theme as MyTheme", "load profile MyTheme", "add discord to startup", "make chrome default browser", "set edge as default browser"
 
+11. file_management
+   - Actions: organize_by_type, find_duplicates, remove_duplicates, find_large_files, analyze_folder, get_report
+   - Parameters: folder_name (string - required), confirm (bool - default false), min_size_mb (number), limit (number)
+   - Examples: "organize downloads", "find duplicates in documents", "clean up duplicates in downloads", "find large files", "analyze downloads", "generate report for documents"
+   - Notes: Users only provide folder name (e.g., "Downloads", "Documents", "Desktop"). System auto-searches these locations. Always use confirm: false for preview, true to apply changes.
+
 IMPORTANT RULES:
 - ALWAYS use intent and action values from the list above
 - ONLY output valid JSON
 - Match user intent to the closest available option
 - If user asks about system appearance/theme/settings, use personalization intent
 - If user asks for information, use web_search intent
+- If user wants to organize, find duplicates, scan files, or analyze folders, use file_management intent
