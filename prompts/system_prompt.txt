@@ -9,6 +9,12 @@ Available intents:
 - system_settings
 - web_search
 - file_management
+- system_control
+- diagnostics
+- disk_analysis
+- maintenance
+- health_check
+- troubleshoot_screen
 
 Return ONLY JSON.
 

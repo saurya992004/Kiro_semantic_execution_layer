@@ -62,10 +62,10 @@ LLM / Backend Engineer
 
 ## Implemented
 
-* Gemini client wrapper
-* Prompt template system
-* Command → JSON parsing
-* JSON extractor
+- Gemini client wrapper
+- Prompt template system
+- Command → JSON parsing
+- JSON extractor
 
 ## Files
 
@@ -79,9 +79,9 @@ utils/json_parser.py
 
 ## Future TODOs
 
-* Add JSON schema validation
-* Add retry on malformed output
-* Add streaming responses
+- Add JSON schema validation
+- Add retry on malformed output
+- Add streaming responses
 
 ---
 
@@ -93,11 +93,11 @@ Backend / Systems Engineer
 
 ## Implemented
 
-* Intent router
-* Tool dispatcher
-* App launcher
-* Web search
-* Shutdown control
+- Intent router
+- Tool dispatcher
+- App launcher
+- Web search
+- Shutdown control
 
 ## Files
 
@@ -110,9 +110,9 @@ tools/power_tools.py
 
 ## TODOs
 
-* Add app path auto-detection
-* Add multi-command routing
-* Add error handling logs
+- Add app path auto-detection
+- Add multi-command routing
+- Add error handling logs
 
 ---
 
@@ -124,10 +124,10 @@ OS / Automation Engineer
 
 ## Features
 
-* Shutdown / Restart / Sleep / Lock
-* Process killer
-* Temp cleanup
-* Recycle bin control
+- Shutdown / Restart / Sleep / Lock
+- Process killer
+- Temp cleanup
+- Recycle bin control
 
 ## Files
 
@@ -137,10 +137,10 @@ tools/system_tools.py
 
 ## TODOs
 
-* Add confirmation layer
-* Add startup app manager
-* Add service control
-* Add battery / power profiles
+- Add confirmation layer
+- Add startup app manager
+- Add service control
+- Add battery / power profiles
 
 ---
 
@@ -152,10 +152,10 @@ Productivity Automation Engineer
 
 ## Features
 
-* Organize downloads
-* Duplicate remover
-* Large file detector
-* Project structure generator
+- Organize downloads
+- Duplicate remover
+- Large file detector
+- Project structure generator
 
 ## Files
 
@@ -165,10 +165,10 @@ tools/file_tools.py
 
 ## TODOs
 
-* Add recursive folder scan
-* Add file tagging system
-* Add AI file categorization
-* Add restore duplicates option
+- Add recursive folder scan
+- Add file tagging system
+- Add AI file categorization
+- Add restore duplicates option
 
 ---
 
@@ -180,10 +180,10 @@ DevOps / Automation Engineer
 
 ## Planned Features
 
-* Download software
-* Silent installations
-* Dev environment setup
-* Dependency installers
+- Download software
+- Silent installations
+- Dev environment setup
+- Dependency installers
 
 ## Planned Files
 
@@ -194,9 +194,9 @@ utils/downloader.py
 
 ## TODOs
 
-* Package manager integration
-* Git repo cloning
-* Auto PATH setup
+- Package manager integration
+- Git repo cloning
+- Auto PATH setup
 
 ---
 
@@ -208,10 +208,10 @@ System Monitoring Engineer
 
 ## Planned Features
 
-* CPU / RAM monitoring
-* Disk usage alerts
-* Startup optimization
-* Temp auto-clean
+- CPU / RAM monitoring
+- Disk usage alerts
+- Startup optimization
+- Temp auto-clean
 
 ## Planned Files
 
@@ -230,9 +230,9 @@ AI / Agent Systems Engineer
 
 ## Planned Features
 
-* Multi-step planning
-* Goal decomposition
-* Tool chaining
+- Multi-step planning
+- Goal decomposition
+- Tool chaining
 
 ## Planned Files
 
@@ -251,16 +251,16 @@ Frontend / Interaction Engineer
 
 ## Planned Features
 
-* Wake word
-* Speech-to-text
-* Text-to-speech
-* Floating UI
+- Wake word
+- Speech-to-text
+- Text-to-speech
+- Floating UI
 
 ## Planned Stack
 
-* Whisper / Vosk
-* Coqui / ElevenLabs
-* Electron / PyQt
+- Whisper / Vosk
+- Coqui / ElevenLabs
+- Electron / PyQt
 
 ---
 
@@ -272,9 +272,9 @@ Computer Vision Engineer
 
 ## Planned Features
 
-* Screenshot analysis
-* UI automation
-* Error detection
+- Screenshot analysis
+- UI automation
+- Error detection
 
 ---
 
@@ -286,16 +286,18 @@ Architecture Lead
 
 ## Agents
 
-* File agent
-* Installer agent
-* Diagnostics agent
-* Vision agent
+- File agent
+- Installer agent
+- Diagnostics agent
+- Vision agent
 
 ---
 
-# Phase 11 - THE TROUBLESHOOTER
+# 🛠️ Phase 11 - THE TROUBLESHOOTER ✅
 
-This phase focuses on building Jarvis’ error detection and auto‑repair capability.
+**Owner:** Vision / System Automation Engineer
+
+This phase focuses on an autonomous vision-based troubleshooting pipeline using Groq API.
 
 ---
 
@@ -305,39 +307,27 @@ This phase focuses on building Jarvis’ error detection and auto‑repair capab
 jarvis/
 
 ├── troubleshooter/
-│   ├── error_detector.py
-│   ├── error_classifier.py
-│   ├── root_cause_engine.py
-│   ├── fix_suggester.py
-│   ├── auto_fix_engine.py
-│   └── explanation_engine.py
-│
-├── knowledge_base/
-│   ├── error_db.json
-│   ├── config_fixes.json
-│   └── command_recipes.json
+│   ├── screenshot_tool.py
+│   ├── vision_analyzer.py
+│   ├── solution_parser.py
+│   └── auto_fix_engine.py
 ```
 
 ---
 
-# 🎯 expected outcomes
+# 🎯 Expected Outcomes (Delivered)
 
-Team must deliver the following capabilities:
+- ✅ **Screenshot Capture**: Takes a screenshot of the user's screen using `Pillow`.
+- ✅ **Groq Vision Analysis**: Sends screenshot to `llama-3.2-90b-vision-preview` to identify errors.
+- ✅ **Solution Parser**: Extracts executable JSON commands from the model's response.
+- ✅ **Autonomous Execution Engine**: Runs commands automatically to fix the issue.
+- ✅ **Admin Escalation**: Uses native Windows UAC to prompt the user if an automated command requires admin privileges.
+- ✅ **Router Integration**: Integrated into `intent_router.py` under the `troubleshoot_screen` intent.
 
-* Detect errors from terminal, runtime, and system logs
-* Classify error type and severity
-* Identify root cause of the error
-* Generate fix suggestions (manual + command based)
-* Execute safe automated fixes
-* Provide human‑readable explanation of the issue
-* Store known errors and fixes in knowledge base
-* Integrate troubleshooting intent into router
-* if possible try to update drivers also
 ---
 
 **Completion Criteria:**
-Jarvis can detect an error, diagnose the cause, explain it clearly, and suggest or apply fixes from within the agent.
-
+Jarvis can detect a visual error on screen, diagnose it via Groq Vision API, explain it clearly, and apply automated fixes (requesting UAC if necessary). ✅ Completed.
 
 ## ⚙️ Phase 12 — Personalisation
 
@@ -367,20 +357,19 @@ jarvis/
 
 Team must deliver the following capabilities:
 
-* Toggle system dark / light mode
-* Change desktop wallpaper
-* Modify basic OS personalization settings
-* Control app preferences (default apps, startup apps)
-* Adjust display and theme settings
-* Execute personalization via voice/text commands
-* Store reusable settings recipes
-* Integrate commands into intent router
+- Toggle system dark / light mode
+- Change desktop wallpaper
+- Modify basic OS personalization settings
+- Control app preferences (default apps, startup apps)
+- Adjust display and theme settings
+- Execute personalization via voice/text commands
+- Store reusable settings recipes
+- Integrate commands into intent router
 
 ---
 
 **Completion Criteria:**
 Jarvis can receive personalization commands (e.g., dark mode, wallpaper change) and apply system setting changes automatically.
-
 
 # 🛠️ Team Dev Rules
 
