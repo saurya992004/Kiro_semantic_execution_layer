@@ -29,6 +29,7 @@ from troubleshooter.screenshot_tool import capture_screen_base64
 from troubleshooter.vision_analyzer import VisionAnalyzer
 from troubleshooter.solution_parser import parse_solution
 from troubleshooter.auto_fix_engine import execute_fixes
+from vision.vision_engine import run_vision_pipeline
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -393,26 +394,124 @@ def _handle_troubleshoot_screen():
 
 
 def _handle_vision_analysis(action: str, params: dict):
-    """Handle vision analysis operations."""
-    print("\n📸 Capturing screenshot...")
-    base64_image = _safe_execute(capture_screen_base64)
-    if not base64_image or isinstance(base64_image, dict):
-        print("❌ Failed to capture screen.")
-        return
-    
+    """Handle vision analysis operations using Gemini Vision."""
     if action == "analyze_screen":
-        query = params.get("query", "Describe what you see on screen")
-        print(f"🧠 Analyzing screen: {query}")
-        # This would require implementing vision analysis logic
-        print("⚠️  Vision analysis not yet fully implemented")
+        query = params.get("query", "Describe what you see on screen. List all visible buttons, text, options, and UI elements.")
+        print(f"🧠 Analyzing screen with Gemini Vision (this may take a few seconds)...")
+        
+        result = _safe_execute(run_vision_pipeline, user_query=query)
+        
+        if isinstance(result, dict) and result.get("error"):
+            print(f"❌ Vision analysis failed: {result.get('error')}")
+            return
+        
+        if not result.get("success"):
+            print(f"❌ Vision analysis failed: {result.get('error', 'Unknown error')}")
+            return
+        
+        analysis = result.get("analysis", {})
+        
+        # Display results
+        print("\n📋 SCREEN ANALYSIS:")
+        print(f"  Summary: {analysis.get('screen_summary', 'N/A')}")
+        print(f"  App/Window: {analysis.get('window_title_or_app', 'N/A')}")
+        
+        buttons = analysis.get("detected_buttons", [])
+        if buttons:
+            print("\n  🔘 Buttons detected:")
+            for btn in buttons:
+                print(f"     • {btn.get('label')} ({btn.get('context', 'N/A')})")
+                if btn.get('action_hint'):
+                    print(f"       → {btn.get('action_hint')}")
+        
+        options = analysis.get("detected_options", [])
+        if options:
+            print("\n  ⚙️  Options/UI Elements detected:")
+            for opt in options:
+                print(f"     • {opt.get('label')} [{opt.get('type', 'unknown')}]")
+        
+        text_regions = analysis.get("visible_text_regions", [])
+        if text_regions:
+            print("\n  📝 Text detected:")
+            for text in text_regions:
+                print(f"     • {text.get('text', 'N/A')} ({text.get('role', 'body')})")
+        
+        errors = analysis.get("possible_errors_or_alerts", [])
+        if errors:
+            print("\n  ⚠️  Alerts/Errors detected:")
+            for err in errors:
+                severity = err.get('severity', 'unknown')
+                icon = "🔴" if severity == "error" else "🟡" if severity == "warning" else "ℹ️"
+                print(f"     {icon} {err.get('text', 'N/A')} [{severity}]")
+        
+        access_hints = analysis.get("accessibility_hints", "")
+        if access_hints:
+            print(f"\n  ♿ Accessibility hints: {access_hints}")
+        
+        json_path = result.get("json_path")
+        screenshot_path = result.get("screenshot_path")
+        print(f"\n  ✅ Analysis saved to: {json_path}")
+        print(f"  📸 Screenshot saved to: {screenshot_path}")
     
     elif action == "detect_ui":
         print("🎯 Detecting UI elements...")
-        print("⚠️  UI detection not yet fully implemented")
+        query = "List all clickable UI elements, buttons, text fields, checkboxes, radio buttons, menus, and interactive controls."
+        
+        result = _safe_execute(run_vision_pipeline, user_query=query)
+        
+        if isinstance(result, dict) and result.get("error"):
+            print(f"❌ UI detection failed: {result.get('error')}")
+            return
+        
+        if not result.get("success"):
+            print(f"❌ UI detection failed")
+            return
+        
+        analysis = result.get("analysis", {})
+        
+        print("\n🎯 DETECTED UI ELEMENTS:")
+        
+        buttons = analysis.get("detected_buttons", [])
+        if buttons:
+            print(f"\n  Buttons ({len(buttons)}):")
+            for btn in buttons:
+                print(f"    • {btn.get('label')}")
+        
+        options = analysis.get("detected_options", [])
+        if options:
+            print(f"\n  Interactive Elements ({len(options)}):")
+            for opt in options:
+                print(f"    • {opt.get('label')} ({opt.get('type')})")
+        
+        access = analysis.get("accessibility_hints", "")
+        if access:
+            print(f"\n  Accessibility: {access}")
     
     elif action == "read_text":
         print("📝 Reading text from screen...")
-        print("⚠️  Text reading not yet fully implemented")
+        query = "Extract and list all readable text visible on the screen, organized by context (headings, body text, labels, buttons, etc.)"
+        
+        result = _safe_execute(run_vision_pipeline, user_query=query)
+        
+        if isinstance(result, dict) and result.get("error"):
+            print(f"❌ Text reading failed: {result.get('error')}")
+            return
+        
+        if not result.get("success"):
+            print(f"❌ Text reading failed")
+            return
+        
+        analysis = result.get("analysis", {})
+        
+        print("\n📝 TEXT DETECTED:")
+        
+        text_regions = analysis.get("visible_text_regions", [])
+        if text_regions:
+            for text in text_regions:
+                role = text.get('role', 'body')
+                print(f"  [{role.upper()}] {text.get('text')}")
+        else:
+            print("  No text detected")
     
     else:
         print(f"❌ Unknown vision analysis action: {action}")
