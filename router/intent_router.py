@@ -23,6 +23,10 @@ from tools.diagnostics_tools import (
     clean_temp_files,
     clean_old_files,
 )
+from troubleshooter.screenshot_tool import capture_screen_base64
+from troubleshooter.vision_analyzer import VisionAnalyzer
+from troubleshooter.solution_parser import parse_solution
+from troubleshooter.auto_fix_engine import execute_fixes
 
 
 def route_intent(command: dict):
@@ -176,5 +180,35 @@ def route_intent(command: dict):
         else:
             print("  ✅ System is healthy")
 
+    elif intent == "troubleshoot_screen":
+        print("\n📸 Capturing screenshot...")
+        base64_image = capture_screen_base64()
+        if not base64_image:
+            print("❌ Failed to capture screen.")
+            return
+
+        print("🧠 Analyzing error with Groq Vision (this may take a few seconds)...")
+        analyzer = VisionAnalyzer()
+        raw_response = analyzer.analyze_error(base64_image)
+        
+        if not raw_response:
+             print("❌ Failed to get response from Groq API.")
+             return
+             
+        solution = parse_solution(raw_response)
+        if not solution:
+             print("❌ Failed to parse solution.")
+             return
+             
+        print("\n💡 Explanation:")
+        print(solution.get("explanation", "No explanation provided."))
+        
+        commands = solution.get("commands", [])
+        if commands:
+             execute_fixes(commands)
+        else:
+             print("\n✅ No automated commands needed to fix this issue.")
+
     else:
         print("Intent not recognized.")
+
