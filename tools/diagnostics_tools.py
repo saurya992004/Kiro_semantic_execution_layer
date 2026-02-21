@@ -691,3 +691,119 @@ def check_health_alerts() -> dict:
         "alerts": alerts,
         "overall_status": overall_status
     }
+
+
+# ============================================================================
+# COMPLETE SYSTEM HEALTH - COMPREHENSIVE DIAGNOSTIC
+# ============================================================================
+
+def get_complete_system_health() -> dict:
+    """
+    Get comprehensive system health information.
+    Runs complete diagnostic and returns detailed report.
+    
+    Returns:
+        dict: {
+            "timestamp": str,
+            "overall_status": str,  # healthy, warning, critical
+            "cpu": {...},
+            "ram": {...},
+            "disk": {...},
+            "alerts": [...],
+            "health_summary": str
+        }
+    """
+    try:
+        timestamp = datetime.now().isoformat()
+        
+        # Collect all metrics
+        cpu = get_cpu_usage()
+        ram = get_ram_usage()
+        disk = get_disk_usage("C:")
+        health_alerts = check_health_alerts()
+        
+        # Format summary
+        status = health_alerts.get("overall_status", "healthy")
+        icons = {
+            "healthy": "✅",
+            "warning": "⚠️",
+            "critical": "🔴"
+        }
+        
+        summary_lines = [
+            f"{'='*60}",
+            f"🏥 COMPLETE SYSTEM HEALTH REPORT",
+            f"{'='*60}",
+            f"Timestamp: {timestamp}",
+            f"Overall Status: {icons.get(status)} {status.upper()}",
+            f"{'='*60}",
+            "",
+            f"📊 CPU STATUS",
+            f"  └─ Usage: {cpu.get('cpu_percent', 0)}%",
+            f"  └─ Cores: {cpu.get('cpu_count', 0)}",
+            f"  └─ Per-Core: {[f'{p}%' for p in cpu.get('per_cpu', [])[:4]]}",
+            "",
+            f"💾 RAM STATUS",
+            f"  └─ Usage: {ram.get('percent', 0)}%",
+            f"  └─ Used: {ram.get('used_gb', 0):.1f}GB / {ram.get('total_gb', 0):.1f}GB",
+            f"  └─ Available: {ram.get('available_gb', 0):.1f}GB",
+            "",
+            f"💿 DISK STATUS (C:)",
+            f"  └─ Usage: {disk.get('percent', 0)}%",
+            f"  └─ Used: {disk.get('used_gb', 0):.1f}GB / {disk.get('total_gb', 0):.1f}GB",
+            f"  └─ Free: {disk.get('free_gb', 0):.1f}GB",
+            "",
+        ]
+        
+        # Add alerts if any
+        if health_alerts.get("alerts"):
+            summary_lines.append("⚠️ ALERTS & ISSUES:")
+            for alert in health_alerts["alerts"]:
+                severity = alert.get("severity", "info")
+                msg = alert.get("message", "Unknown alert")
+                alert_icon = "🔴" if severity == "critical" else "🟡" if severity == "warning" else "ℹ️"
+                summary_lines.append(f"  {alert_icon} [{severity.upper()}] {msg}")
+        else:
+            summary_lines.append("✅ No alerts - System is running smoothly!")
+        
+        summary_lines.extend([
+            "",
+            f"{'='*60}",
+            "🎯 RECOMMENDATIONS",
+            f"{'='*60}",
+        ])
+        
+        # Add recommendations based on status
+        if cpu.get("cpu_percent", 0) > 80:
+            summary_lines.append("• Close unnecessary applications to reduce CPU usage")
+        if ram.get("percent", 0) > 80:
+            summary_lines.append("• Free up RAM by closing memory-intensive programs")
+        if disk.get("percent", 0) > 80:
+            summary_lines.append("• Consider cleaning up or deleting unnecessary files")
+        if not summary_lines[-1].startswith("•"):
+            summary_lines.append("• System is performing well! No immediate action needed.")
+        
+        summary_lines.append(f"{'='*60}")
+        
+        health_summary = "\n".join(summary_lines)
+        
+        # Print to console for visibility
+        print(health_summary)
+        
+        return {
+            "timestamp": timestamp,
+            "overall_status": status,
+            "cpu": cpu,
+            "ram": ram,
+            "disk": disk,
+            "alerts": health_alerts.get("alerts", []),
+            "health_summary": health_summary
+        }
+        
+    except Exception as e:
+        return {
+            "error": str(e),
+            "timestamp": datetime.now().isoformat(),
+            "overall_status": "error",
+            "health_summary": f"Error getting system health: {str(e)}"
+        }

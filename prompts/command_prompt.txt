@@ -2,10 +2,31 @@ User Command: {command}
 
 Convert this command into structured JSON.
 
-Return ONLY JSON in this format:
+RULES:
+1. Intent and action MUST match the predefined lists exactly
+2. Use lowercase for intent and action values
+3. Extract parameters from command if needed
+4. Always return ONLY JSON - no explanation, no markdown
 
+RESPONSE FORMAT:
 {
-  "intent": "",
-  "action": "",
-  "parameters": {}
+  "intent": "<exact intent from list>",
+  "action": "<exact action or empty string>",
+  "parameters": {
+    "key": "value"
+  }
 }
+
+EXAMPLES:
+- "open chrome" → {"intent": "open_app", "action": "", "parameters": {"app_name": "chrome"}}
+- "search python" → {"intent": "web_search", "action": "", "parameters": {"query": "python"}}
+- "check cpu" → {"intent": "diagnostics", "action": "check_cpu", "parameters": {}}
+- "complete system health" → {"intent": "diagnostics", "action": "complete_system_health", "parameters": {}}
+- "shutdown" → {"intent": "system_control", "action": "shutdown", "parameters": {}}
+- "restart" → {"intent": "system_control", "action": "restart", "parameters": {}}
+- "troubleshoot screen" → {"intent": "troubleshoot_screen", "action": "", "parameters": {}}
+- "analyze disk usage" → {"intent": "disk_analysis", "action": "analyze_usage", "parameters": {"path": "C:\\"}}
+- "kill chrome" → {"intent": "system_control", "action": "kill_process", "parameters": {"process_name": "chrome"}}
+- "help" → {"intent": "diagnostics", "action": "complete_system_health", "parameters": {}}
+
+OUTPUT ONLY VALID JSON. NO TEXT BEFORE OR AFTER.

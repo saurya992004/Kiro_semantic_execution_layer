@@ -5,7 +5,7 @@ Change the LLM_PROVIDER below to switch between providers:
   - "groq" for Groq only generates text
 """
 
-LLM_PROVIDER = "gemini"  # <-- CHANGE THIS LINE TO SWITCH BETWEEN "gemini" or "groq"
+LLM_PROVIDER = "groq"  # <-- CHANGE THIS LINE TO SWITCH BETWEEN "gemini" or "groq"
 
 if LLM_PROVIDER == "groq":
     from llm.groq_client import GeminiClient
