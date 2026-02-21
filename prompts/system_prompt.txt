@@ -12,7 +12,8 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
 2. web_search
    - No sub-actions
    - Parameters: query (string)
-   - Examples: "search python programming", "search python"
+   - Examples: "search python programming", "search how to code"
+   - NOTE: Only use for information searches, NOT for system settings!
 
 3. system_control
    - Actions: shutdown, restart, sleep, lock, kill_process, clean_temp, empty_recycle_bin
@@ -47,19 +48,16 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
 9. vision_analysis
    - Actions: analyze_screen, detect_ui, read_text
    - Parameters: query (for analyze_screen)
-   - Examples: "analyze screen", "detect ui elements", "read text from screen"
+   - Examples: "analyze screen", "detect ui elements", "read text from screen", "what's on my screen"
+
+10. personalization
+   - Actions: toggle_dark_mode, set_accent_color, set_brightness, set_wallpaper, set_resolution, apply_preset, save_profile, load_profile, manage_startup, set_default_app
+   - Parameters: enable (bool), color (hex), brightness (0-100), path (string), preset (dark/light/office/gaming/minimal), name (string), app (string), action (enable/disable), app_type (browser/mail/text_editor/image_viewer), app_name (chrome/firefox/edge/etc)
+   - Examples: "dark mode", "light mode", "set brightness to 50", "apply gaming theme", "set accent to blue", "save theme as MyTheme", "load profile MyTheme", "add discord to startup", "make chrome default browser", "set edge as default browser"
 
 IMPORTANT RULES:
 - ALWAYS use intent and action values from the list above
 - ONLY output valid JSON
 - Match user intent to the closest available option
-- If user asks for "system health", use intent="diagnostics" with action="complete_system_health"
-- Never invent intent or action names
-
-Format:
-
-{
-  "intent": "",
-  "action": "",
-  "parameters": {}
-}
+- If user asks about system appearance/theme/settings, use personalization intent
+- If user asks for information, use web_search intent

@@ -329,47 +329,36 @@ jarvis/
 **Completion Criteria:**
 Jarvis can detect a visual error on screen, diagnose it via Groq Vision API, explain it clearly, and apply automated fixes (requesting UAC if necessary). ✅ Completed.
 
-## ⚙️ Phase 12 — Personalisation
+## ⚙️ Phase 12 — Personalisation ✅
 
 This phase focuses on enabling Jarvis to modify and personalize system settings based on user commands.
 
----
+# 🎯 Phase 12 — Deliverables (✅ COMPLETED)
 
-# 📁 Folder Structure
+Team has delivered the following capabilities:
 
-```
-jarvis/
+- ✅ Toggle system dark / light mode
+- ✅ Change desktop wallpaper
+- ✅ Modify basic OS personalization settings
+- ✅ Control app preferences (default apps, startup apps)
+- ✅ Adjust display and theme settings
+- ✅ Execute personalization via voice/text commands
+- ✅ Store reusable settings recipes (profiles)
+- ✅ Integrate commands into intent router
+- ✅ Create theme presets (Dark, Light, Office, Gaming, Minimal)
+- ✅ Comprehensive demo suite for testing
 
-├── personalisation/
-│   ├── settings_controller.py
-│   ├── theme_manager.py
-│   ├── wallpaper_manager.py
-│   ├── app_preferences.py
-│   └── system_preferences.py
-│
-├── knowledge_base/
-│   └── settings_recipes.json
-```
+**Status:** ✅ COMPLETE
 
----
-
-# 🎯 Phase 12 — Deliverables
-
-Team must deliver the following capabilities:
-
-- Toggle system dark / light mode
-- Change desktop wallpaper
-- Modify basic OS personalization settings
-- Control app preferences (default apps, startup apps)
-- Adjust display and theme settings
-- Execute personalization via voice/text commands
-- Store reusable settings recipes
-- Integrate commands into intent router
-
----
+**Built:** 
+- `personalisation/` module with full implementation
+- Theme presets system
+- Profile save/load functionality
+- Intent router integration
+- Standalone demo for testing
 
 **Completion Criteria:**
-Jarvis can receive personalization commands (e.g., dark mode, wallpaper change) and apply system setting changes automatically.
+✅ Jarvis can receive personalization commands (e.g., dark mode, wallpaper change) and apply system setting changes automatically.
 
 # 🛠️ Team Dev Rules
 
@@ -384,8 +373,10 @@ Jarvis can receive personalization commands (e.g., dark mode, wallpaper change) 
 # 🚀 Current Active Phases
 
 ```
-Phase 3 → System Control (partial)
+Phase 3 → System Control (partial) ✅
 Phase 4 → File Intelligence (building)
+Phase 11 → THE TROUBLESHOOTER (Vision-based) ✅ COMPLETE
+Phase 12 → Personalisation ✅ COMPLETE
 ```
 
 ---

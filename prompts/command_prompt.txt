@@ -7,6 +7,8 @@ RULES:
 2. Use lowercase for intent and action values
 3. Extract parameters from command if needed
 4. Always return ONLY JSON - no explanation, no markdown
+5. For theme/appearance commands, use "personalization" intent - NOT web_search
+6. For information searches, use "web_search"
 
 RESPONSE FORMAT:
 {
@@ -20,6 +22,19 @@ RESPONSE FORMAT:
 EXAMPLES:
 - "open chrome" → {"intent": "open_app", "action": "", "parameters": {"app_name": "chrome"}}
 - "search python" → {"intent": "web_search", "action": "", "parameters": {"query": "python"}}
+- "dark mode" → {"intent": "personalization", "action": "toggle_dark_mode", "parameters": {"enable": true}}
+- "light mode" → {"intent": "personalization", "action": "toggle_dark_mode", "parameters": {"enable": false}}
+- "set theme to light" → {"intent": "personalization", "action": "toggle_dark_mode", "parameters": {"enable": false}}
+- "set brightness to 50" → {"intent": "personalization", "action": "set_brightness", "parameters": {"brightness": 50}}
+- "apply gaming theme" → {"intent": "personalization", "action": "apply_preset", "parameters": {"preset": "gaming"}}
+- "set accent to blue" → {"intent": "personalization", "action": "set_accent_color", "parameters": {"color": "0066CC"}}
+- "save settings as MyTheme" → {"intent": "personalization", "action": "save_profile", "parameters": {"name": "MyTheme"}}
+- "load profile MyTheme" → {"intent": "personalization", "action": "load_profile", "parameters": {"name": "MyTheme"}}
+- "add discord to startup" → {"intent": "personalization", "action": "manage_startup", "parameters": {"app": "discord", "action": "enable"}}
+- "make chrome default browser" → {"intent": "personalization", "action": "set_default_app", "parameters": {"app_type": "browser", "app_name": "chrome"}}
+- "set firefox as default browser" → {"intent": "personalization", "action": "set_default_app", "parameters": {"app_type": "browser", "app_name": "firefox"}}
+- "set edge as default browser" → {"intent": "personalization", "action": "set_default_app", "parameters": {"app_type": "browser", "app_name": "edge"}}
+- "make outlook default mail" → {"intent": "personalization", "action": "set_default_app", "parameters": {"app_type": "mail", "app_name": "outlook"}}
 - "check cpu" → {"intent": "diagnostics", "action": "check_cpu", "parameters": {}}
 - "complete system health" → {"intent": "diagnostics", "action": "complete_system_health", "parameters": {}}
 - "shutdown" → {"intent": "system_control", "action": "shutdown", "parameters": {}}
@@ -27,6 +42,3 @@ EXAMPLES:
 - "troubleshoot screen" → {"intent": "troubleshoot_screen", "action": "", "parameters": {}}
 - "analyze disk usage" → {"intent": "disk_analysis", "action": "analyze_usage", "parameters": {"path": "C:\\"}}
 - "kill chrome" → {"intent": "system_control", "action": "kill_process", "parameters": {"process_name": "chrome"}}
-- "help" → {"intent": "diagnostics", "action": "complete_system_health", "parameters": {}}
-
-OUTPUT ONLY VALID JSON. NO TEXT BEFORE OR AFTER.

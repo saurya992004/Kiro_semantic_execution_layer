@@ -1,4 +1,4 @@
-from llm.gemini_client import GeminiClient
+from llm.groq_client import GroqClient
 from utils.prompt_loader import load_prompt
 from utils.json_parser import extract_json
 from router.intent_router import route_intent
@@ -20,7 +20,7 @@ def build_prompt(user_command: str) -> str:
 
 def main():
 
-    gemini = GeminiClient()
+    groq = GroqClient()
 
     while True:
 
@@ -31,7 +31,7 @@ def main():
 
         prompt = build_prompt(user_command)
 
-        response = gemini.generate(prompt)
+        response = groq.generate(prompt)
 
         parsed = extract_json(response)
 

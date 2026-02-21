@@ -30,6 +30,18 @@ from troubleshooter.vision_analyzer import VisionAnalyzer
 from troubleshooter.solution_parser import parse_solution
 from troubleshooter.auto_fix_engine import execute_fixes
 from vision.vision_engine import run_vision_pipeline
+from personalisation.personalisation_tools import (
+    toggle_dark_mode,
+    set_accent_color,
+    set_display_brightness,
+    set_wallpaper,
+    apply_theme_preset,
+    save_personalization_profile,
+    load_personalization_profile,
+    manage_startup_apps,
+    set_default_app,
+    get_current_theme
+)
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -89,6 +101,14 @@ VALID_INTENTS = {
     "vision_analysis": {
         "actions": ["analyze_screen", "detect_ui", "read_text"],
         "description": "Analyze screen content with vision"
+    },
+    "personalization": {
+        "actions": [
+            "toggle_dark_mode", "set_accent_color", "set_brightness",
+            "set_wallpaper", "set_resolution", "apply_preset",
+            "save_profile", "load_profile", "manage_startup", "set_default_app"
+        ],
+        "description": "Customize system appearance and settings"
     }
 }
 
@@ -179,6 +199,9 @@ def route_intent(command: dict):
         
         elif intent == "vision_analysis":
             _handle_vision_analysis(action, params)
+        
+        elif intent == "personalization":
+            _handle_personalization(action, params)
         
         else:
             print(f"❌ Intent '{intent}' handler not implemented")
@@ -565,3 +588,204 @@ def _show_help():
 ═══════════════════════════════════════════════════════════════
 """
     print(help_text)
+
+
+def _handle_personalization(action: str, params: dict):
+    """Handle system personalization operations."""
+    
+    if action == "toggle_dark_mode":
+        enable = params.get("enable", True)
+        print(f"🌙 Toggling dark mode...")
+        result = _safe_execute(toggle_dark_mode, enable)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "set_accent_color":
+        color = params.get("color", "").strip()
+        if not color:
+            print("❌ Color code is required (e.g., 0066CC)")
+            return
+        print(f"🎨 Setting accent color to {color}...")
+        result = _safe_execute(set_accent_color, color)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "set_brightness":
+        brightness = params.get("brightness")
+        if brightness is None:
+            print("❌ Brightness value is required (0-100)")
+            return
+        try:
+            brightness = int(brightness)
+            if not (0 <= brightness <= 100):
+                print("❌ Brightness must be between 0 and 100")
+                return
+        except (ValueError, TypeError):
+            print("❌ Invalid brightness value")
+            return
+        
+        print(f"☀️  Setting brightness to {brightness}%...")
+        result = _safe_execute(set_display_brightness, brightness)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "set_wallpaper":
+        path = params.get("path", "").strip()
+        if not path:
+            print("❌ Image path is required")
+            return
+        print(f"🖼️  Setting wallpaper to {path}...")
+        result = _safe_execute(set_wallpaper, path)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "set_resolution":
+        width = params.get("width")
+        height = params.get("height")
+        if not width or not height:
+            print("❌ Width and height are required")
+            return
+        try:
+            width, height = int(width), int(height)
+        except (ValueError, TypeError):
+            print("❌ Invalid resolution values")
+            return
+        
+        print(f"📺 Setting resolution to {width}x{height}...")
+        result = _safe_execute(set_display_brightness, width, height)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "apply_preset":
+        preset = params.get("preset", "").strip().lower()
+        if not preset:
+            print("❌ Preset name is required (dark, light, office, gaming, minimal)")
+            return
+        
+        print(f"✨ Applying '{preset}' theme preset...")
+        result = _safe_execute(apply_theme_preset, preset)
+        
+        if result.get("success"):
+            print(f"   {result['message']}")
+            print(f"   Description: {result.get('description')}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "save_profile":
+        name = params.get("name", "").strip()
+        if not name:
+            print("❌ Profile name is required")
+            return
+        
+        profile_settings = {
+            "name": name,
+            "dark_mode": params.get("dark_mode", True),
+            "accent_color": params.get("accent_color", "0066CC"),
+            "brightness": params.get("brightness", 50),
+            "description": params.get("description", "Custom profile")
+        }
+        
+        print(f"💾 Saving profile '{name}'...")
+        result = _safe_execute(save_personalization_profile, name, profile_settings)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "load_profile":
+        name = params.get("name", "").strip()
+        if not name:
+            print("❌ Profile name is required")
+            return
+        
+        print(f"📂 Loading profile '{name}'...")
+        result = _safe_execute(load_personalization_profile, name)
+        
+        if result.get("success"):
+            print(f"   {result['message']}")
+            settings = result.get("settings", {})
+            print(f"   Loaded settings: {settings}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "manage_startup":
+        app = params.get("app", "").strip()
+        startup_action = params.get("action", "").strip().lower()
+        
+        if not app or startup_action not in ["enable", "disable"]:
+            print("❌ App name and action (enable/disable) are required")
+            return
+        
+        print(f"⚙️  {startup_action.capitalize()}ing {app} in startup...")
+        result = _safe_execute(manage_startup_apps, app, startup_action)
+        if result.get("success"):
+            print(f"   {result['message']}")
+        else:
+            print(f"   {result['message']}")
+    
+    elif action == "set_default_app":
+        app_type = params.get("app_type", "").strip().lower()
+        app_name = params.get("app_name", "").strip().lower()
+        
+        if not app_type or not app_name:
+            print("❌ App type and app name are required")
+            return
+        
+        # Map app names to common paths
+        app_paths = {
+            "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "firefox": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+            "edge": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+            "brave": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+            "opera": "C:\\Program Files\\Opera\\opera.exe",
+            "vivaldi": "C:\\Program Files\\Vivaldi\\Application\\vivaldi.exe",
+            "outlook": "C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE",
+            "thunderbird": "C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe",
+            "vs code": "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+            "notepad": "C:\\Windows\\System32\\notepad.exe",
+            "notepad++": "C:\\Program Files\\Notepad++\\notepad++.exe",
+        }
+        
+        app_path = app_paths.get(app_name)
+        if not app_path:
+            print(f"❌ Application '{app_name}' path not found. Supported apps: {list(app_paths.keys())}")
+            return
+        
+        print(f"🔗 Setting {app_name} as default {app_type}...")
+        result = _safe_execute(set_default_app, app_type, app_path)
+        if result.get("success"):
+            print(f"   {result['message']}")
+            if result.get("elevated"):
+                print(f"   ℹ️  Admin privileges were automatically requested and granted.")
+        else:
+            print(f"   {result['message']}")
+            
+            # Show helpful details for different error types
+            if result.get("error") in ["NO_ADMIN", "ELEVATION_FAILED", "ELEVATION_ERROR"]:
+                print(f"\n   📌 Solution:")
+                if result.get("workaround"):
+                    print(f"      1. {result.get('workaround')}")
+                if result.get("manual_option"):
+                    print(f"      2. {result.get('manual_option')}")
+                if result.get("details"):
+                    print(f"\n   Details: {result.get('details')}")
+            elif result.get("error") == "PERMISSION_DENIED":
+                print(f"\n   📌 Solution:")
+                print(f"      • {result.get('workaround')}")
+                print(f"      • {result.get('manual_option')}")
+            elif result.get("details"):
+                print(f"   Details: {result.get('details')}")
+    
+    else:
+        print(f"❌ Unknown personalization action: {action}")
+

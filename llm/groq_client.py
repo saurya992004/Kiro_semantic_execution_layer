@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class GeminiClient:
-    """Groq-based LLM client with GeminiClient interface for compatibility."""
+class GroqClient:
+    """Groq-based LLM client."""
 
     def __init__(self):
         self.client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
