@@ -83,6 +83,15 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
    - Examples: "show system config", "tell me the config of my system", "system information", "what are my laptop specs", "system details", "about this computer"
    - Description: Displays comprehensive system configuration including OS, CPU, RAM, storage, network, GPU, and display information.
 
+14. installer
+   - Actions: download_wallpaper, download_software, download_resource, cache_info, clear_cache
+   - Parameters: query (string - required), folder (optional), resource_type (for download_resource), auto_set (bool - for wallpapers)
+   - Examples: "download sunset wallpaper", "download vlc media player", "find and download python 3.12", "download a mountain landscape and set as wallpaper", "show cache info", "clear my cache"
+   - IMPORTANT for download_wallpaper with auto_set:
+     * "download sunset wallpaper and set it as my background" → auto_set: true
+     * System will automatically set wallpaper as desktop background
+   - Notes: Downloads are cached to avoid re-downloading. Wallpapers auto-save to Pictures/Wallpapers. Software installers save to Downloads/Installers.
+
 IMPORTANT RULES:
 - ALWAYS use intent and action values from the list above
 - ONLY output valid JSON
@@ -90,6 +99,7 @@ IMPORTANT RULES:
 - If user asks about system appearance/theme/settings, use personalization intent
 - If user asks for information, use web_search intent
 - If user wants to organize, find duplicates, scan files, or analyze folders, use file_management intent
+- If user wants to download/install resources, use installer intent
 - For any help/command list request, return intent: "help" with no action
 
 JSON OUTPUT FORMAT:

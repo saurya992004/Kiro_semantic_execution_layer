@@ -44,6 +44,7 @@ from personalisation.personalisation_tools import (
 )
 from file_manager import FileManager
 from tools.system_config import get_system_config, print_system_config
+from installer.installer import InstallerAgent
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -122,6 +123,13 @@ VALID_INTENTS = {
     "system_config": {
         "actions": [],
         "description": "Get system configuration and hardware information"
+    },
+    "installer": {
+        "actions": [
+            "download_wallpaper", "download_software", "download_resource",
+            "cache_info", "clear_cache"
+        ],
+        "description": "Download and install resources from the internet"
     }
 }
 
@@ -221,6 +229,9 @@ def route_intent(command: dict):
         
         elif intent == "system_config":
             _handle_system_config()
+        
+        elif intent == "installer":
+            _handle_installer(action, params)
         
         else:
             print(f"❌ Intent '{intent}' handler not implemented")
@@ -968,3 +979,89 @@ def _handle_system_config():
     """Handle system configuration information request."""
     print("💻 Retrieving system configuration information...\n")
     print_system_config()
+
+
+def _handle_installer(action: str, params: dict):
+    """Handle installer operations (download wallpapers, software, resources)."""
+    agent = InstallerAgent()
+    
+    if action == "download_wallpaper":
+        query = params.get("query", "").strip()
+        if not query:
+            print("❌ Wallpaper query is required")
+            return
+        
+        auto_set = params.get("auto_set", False)
+        folder = params.get("folder")
+        
+        result = agent.install_wallpaper(query, folder, auto_set)
+        
+        if result["status"] == "success":
+            print(f"✅ {result['message']}")
+            if result.get("from_cache"):
+                print(f"   📦 (from cache)")
+            if result.get("auto_set"):
+                print(f"   🖼️  Set as desktop background")
+        else:
+            print(f"❌ {result['message']}")
+    
+    elif action == "download_software":
+        query = params.get("query", "").strip()
+        if not query:
+            print("❌ Software query is required")
+            return
+        
+        folder = params.get("folder")
+        result = agent.install_software(query, folder)
+        
+        if result["status"] == "success":
+            print(f"✅ {result['message']}")
+            if result.get("from_cache"):
+                print(f"   📦 (from cache)")
+            print(f"\n   {result.get('next_step', '')}")
+        else:
+            print(f"❌ {result['message']}")
+    
+    elif action == "download_resource":
+        query = params.get("query", "").strip()
+        resource_type = params.get("resource_type", "").strip().lower()
+        
+        if not query:
+            print("❌ Query is required")
+            return
+        
+        if not resource_type:
+            print("❌ Resource type is required (wallpaper, software, image, document)")
+            return
+        
+        folder = params.get("folder")
+        result = agent.download_resource(query, resource_type, folder)
+        
+        if result["status"] == "success":
+            print(f"✅ {result['message']}")
+            if result.get("from_cache"):
+                print(f"   📦 (from cache)")
+        else:
+            print(f"❌ {result['message']}")
+    
+    elif action == "cache_info":
+        info = agent.get_cache_info()
+        print(f"📦 Cache Information:")
+        print(f"   Total items: {info['total_items']}")
+        print(f"   Total size: {info['total_size_mb']}MB")
+        if info.get("oldest_item"):
+            print(f"   Oldest: {info['oldest_item']}")
+        if info.get("newest_item"):
+            print(f"   Newest: {info['newest_item']}")
+    
+    elif action == "clear_cache":
+        query = params.get("query")
+        result = agent.clear_cache(query)
+        
+        if result["status"] == "success":
+            print(f"✅ {result['message']}")
+        else:
+            print(f"❌ {result['message']}")
+    
+    else:
+        print(f"❌ Unknown installer action: {action}")

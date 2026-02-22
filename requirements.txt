@@ -7,3 +7,4 @@ customtkinter
 pytesseract
 Pillow
 easyocr
+requests
