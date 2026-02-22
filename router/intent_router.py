@@ -43,6 +43,7 @@ from personalisation.personalisation_tools import (
     get_current_theme
 )
 from file_manager import FileManager
+from tools.system_config import get_system_config, print_system_config
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -117,6 +118,10 @@ VALID_INTENTS = {
             "find_large_files", "analyze_folder", "get_report"
         ],
         "description": "Organize files, find duplicates, and scan for large files"
+    },
+    "system_config": {
+        "actions": [],
+        "description": "Get system configuration and hardware information"
     }
 }
 
@@ -213,6 +218,9 @@ def route_intent(command: dict):
         
         elif intent == "file_management":
             _handle_file_management(action, params)
+        
+        elif intent == "system_config":
+            _handle_system_config()
         
         else:
             print(f"❌ Intent '{intent}' handler not implemented")
@@ -955,3 +963,8 @@ def _handle_file_management(action: str, params: dict):
     else:
         print(f"❌ Unknown file management action: {action}")
 
+
+def _handle_system_config():
+    """Handle system configuration information request."""
+    print("💻 Retrieving system configuration information...\n")
+    print_system_config()

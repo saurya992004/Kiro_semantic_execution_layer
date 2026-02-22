@@ -337,6 +337,36 @@ HELP_COMMANDS = {
                 "example": "set chrome as default browser, make outlook default mail"
             }
         ]
+    },
+    "SYSTEM INFORMATION": {
+        "intent": "system_config",
+        "commands": [
+            {
+                "command": "system config",
+                "description": "Display complete system configuration details",
+                "example": "system config, show config, tell me the config"
+            },
+            {
+                "command": "about this computer",
+                "description": "Display system information and specifications",
+                "example": "about this computer, about my system, computer info"
+            },
+            {
+                "command": "system information",
+                "description": "Show detailed system and hardware information",
+                "example": "system information, system specs, hardware specs"
+            },
+            {
+                "command": "laptop specs",
+                "description": "Display laptop specifications",
+                "example": "what are my laptop specs, show laptop specs, laptop specifications"
+            },
+            {
+                "command": "system details",
+                "description": "Show comprehensive system details",
+                "example": "system details, give me system details, show details"
+            }
+        ]
     }
 }
 

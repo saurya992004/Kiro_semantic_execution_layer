@@ -46,4 +46,8 @@ EXAMPLES:
 - "analyze disk usage" → {"intent": "disk_analysis", "action": "analyze_usage", "parameters": {"path": "C:\\"}}
 - "kill chrome" → {"intent": "system_control", "action": "kill_process", "parameters": {"process_name": "chrome"}}
 - "find duplicates in downloads" → {"intent": "file_management", "action": "find_duplicates", "parameters": {"folder_name": "downloads", "confirm": false}}
-- "organize documents" → {"intent": "file_management", "action": "organize_by_type", "parameters": {"folder_name": "documents"}}
+- "organize documents" → {"intent": "file_management", "action": "organize_by_type", "parameters": {"folder_name": "documents"}}- "tell me the config of my system" → {"intent": "system_config", "action": "", "parameters": {}}
+- "show system config" → {"intent": "system_config", "action": "", "parameters": {}}
+- "system information" → {"intent": "system_config", "action": "", "parameters": {}}
+- "what are my laptop specs" → {"intent": "system_config", "action": "", "parameters": {}}
+- "about this computer" → {"intent": "system_config", "action": "", "parameters": {}}

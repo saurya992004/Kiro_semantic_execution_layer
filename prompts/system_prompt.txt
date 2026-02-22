@@ -71,6 +71,12 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
    - Examples: "organize downloads", "find duplicates in documents", "clean up duplicates in downloads", "find large files", "analyze downloads", "generate report for documents"
    - Notes: Users only provide folder name (e.g., "Downloads", "Documents", "Desktop"). System auto-searches these locations. Always use confirm: false for preview, true to apply changes.
 
+13. system_config
+   - No sub-actions
+   - Parameters: none
+   - Examples: "show system config", "tell me the config of my system", "system information", "what are my laptop specs", "system details", "about this computer"
+   - Description: Displays comprehensive system configuration including OS, CPU, RAM, storage, network, GPU, and display information.
+
 IMPORTANT RULES:
 - ALWAYS use intent and action values from the list above
 - ONLY output valid JSON
