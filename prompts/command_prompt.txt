@@ -2,6 +2,8 @@ User Command: {command}
 
 Convert this command into structured JSON.
 
+IMPORTANT: The user can type "help" to see all available commands directly!
+
 RULES:
 1. Intent and action MUST match the predefined lists exactly
 2. Use lowercase for intent and action values
@@ -20,6 +22,7 @@ RESPONSE FORMAT:
 }
 
 EXAMPLES:
+- "help" → {"intent": "help", "action": "", "parameters": {}}
 - "open chrome" → {"intent": "open_app", "action": "", "parameters": {"app_name": "chrome"}}
 - "search python" → {"intent": "web_search", "action": "", "parameters": {"query": "python"}}
 - "dark mode" → {"intent": "personalization", "action": "toggle_dark_mode", "parameters": {"enable": true}}
@@ -42,3 +45,5 @@ EXAMPLES:
 - "troubleshoot screen" → {"intent": "troubleshoot_screen", "action": "", "parameters": {}}
 - "analyze disk usage" → {"intent": "disk_analysis", "action": "analyze_usage", "parameters": {"path": "C:\\"}}
 - "kill chrome" → {"intent": "system_control", "action": "kill_process", "parameters": {"process_name": "chrome"}}
+- "find duplicates in downloads" → {"intent": "file_management", "action": "find_duplicates", "parameters": {"folder_name": "downloads", "confirm": false}}
+- "organize documents" → {"intent": "file_management", "action": "organize_by_type", "parameters": {"folder_name": "documents"}}

@@ -2,6 +2,7 @@ from llm.groq_client import GroqClient
 from utils.prompt_loader import load_prompt
 from utils.json_parser import extract_json
 from router.intent_router import route_intent
+from tools.help_commands import print_help
 
 
 def build_prompt(user_command: str) -> str:
@@ -28,6 +29,11 @@ def main():
 
         if user_command.lower() == "exit":
             break
+        
+        # Handle help command directly
+        if user_command.lower() in ["help", "help map", "?", "commands"]:
+            print_help()
+            continue
 
         prompt = build_prompt(user_command)
 

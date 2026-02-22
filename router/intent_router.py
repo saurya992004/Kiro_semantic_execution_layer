@@ -552,53 +552,9 @@ def _handle_vision_analysis(action: str, params: dict):
 
 
 def _show_help():
-    """Display help information."""
-    help_text = """
-╔═══════════════════════════════════════════════════════════════╗
-║                    🤖 JARVIS COMMAND HELP                    ║
-╚═══════════════════════════════════════════════════════════════╝
-
-📱 APPLICATION COMMANDS:
-  • open chrome, open notepad, open vscode, launch ms word
-  • search python, search how to code, search tutorial
-
-🖥️  SYSTEM CONTROL:
-  • shutdown, restart, sleep, lock system
-  • kill chrome (close a process)
-  • clean temp files, empty recycle bin
-
-🏥 DIAGNOSTICS & HEALTH:
-  • check cpu, check ram, check disk
-  • complete system health (comprehensive report)
-  • system health (same as above)
-  • health check (show alerts and warnings)
-
-💾 DISK MANAGEMENT:
-  • analyze disk usage
-  • find large folders
-  • check disk alerts
-
-🧹 MAINTENANCE & CLEANUP:
-  • scan temp files
-  • scan old files
-  • scan cleanup folder
-
-🔍 TROUBLESHOOTING:
-  • troubleshoot screen (capture and analyze errors)
-  • fix errors (automated error detection)
-
-👁️  SCREEN ANALYSIS:
-  • analyze screen
-  • detect ui elements
-  • read text from screen
-
-ℹ️  OTHER:
-  • help (show this message)
-  • Type any of the above commands or variations
-
-═══════════════════════════════════════════════════════════════
-"""
-    print(help_text)
+    """Display help information using consolidated help commands."""
+    from tools.help_commands import print_help
+    print_help()
 
 
 def _handle_personalization(action: str, params: dict):
