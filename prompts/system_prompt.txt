@@ -62,8 +62,14 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
 
 11. personalization
    - Actions: toggle_dark_mode, set_accent_color, set_brightness, set_wallpaper, set_resolution, apply_preset, save_profile, load_profile, manage_startup, set_default_app
-   - Parameters: enable (bool), color (hex), brightness (0-100), path (string), preset (dark/light/office/gaming/minimal), name (string), app (string), action (enable/disable), app_type (browser/mail/text_editor/image_viewer), app_name (chrome/firefox/edge/etc)
+   - Parameters: enable (bool), color (hex), brightness (0-100), path (string), preset (dark/light/office/gaming/minimal), name (string), app_type (browser/mail/text_editor/image_viewer), app_name (chrome/firefox/edge/outlook/thunderbird/vs_code/notepad/notepad++)
    - Examples: "dark mode", "light mode", "set brightness to 50", "apply gaming theme", "set accent to blue", "save theme as MyTheme", "load profile MyTheme", "add discord to startup", "make chrome default browser", "set edge as default browser"
+   - IMPORTANT for set_default_app: ALWAYS provide both app_type AND app_name parameters!
+     * If user says "default browser", set app_type="browser" (infer from context)
+     * If user says "default email", set app_type="mail" (infer from context)
+     * If user says "default editor", set app_type="text_editor" (infer from context)
+     * Extract the actual app name (chrome, firefox, edge, etc.) as app_name
+     * Example mapping: "make chrome my default browser" → app_type: "browser", app_name: "chrome"
 
 12. file_management
    - Actions: organize_by_type, find_duplicates, remove_duplicates, find_large_files, analyze_folder, get_report

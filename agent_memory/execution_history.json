@@ -1,0 +1,1133 @@
+[
+  {
+    "timestamp": "2026-02-22T23:40:26.966549",
+    "plan_id": "5db6fb6d",
+    "user_input": "speed up my pc",
+    "goal": "improve PC performance",
+    "summary": {
+      "plan_id": "5db6fb6d",
+      "user_input": "speed up my pc",
+      "goal": "improve PC performance",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "404a9345-b07",
+          "intent": "diagnostics",
+          "action": "check_cpu",
+          "parameters": {},
+          "description": "Fallback task for: improve PC performance",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:40:24.960627",
+          "started_at": "2026-02-22T23:40:24.962304",
+          "completed_at": "2026-02-22T23:40:26.965467"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:45:44.785434",
+    "plan_id": "2bb80a4c",
+    "user_input": "speed up my pc",
+    "goal": "improve computer performance",
+    "summary": {
+      "plan_id": "2bb80a4c",
+      "user_input": "speed up my pc",
+      "goal": "improve computer performance",
+      "total_tasks": 6,
+      "completed": 3,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "f5cfbfcb-d1f",
+          "intent": "disk_analysis",
+          "action": "scan_disk",
+          "parameters": {
+            "disk": "C:",
+            "scan_type": "quick"
+          },
+          "description": "Quickly scan the primary disk for errors",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321571",
+          "started_at": "2026-02-22T23:44:35.324813",
+          "completed_at": "2026-02-22T23:44:35.325097"
+        },
+        {
+          "id": "1caea208-d9d",
+          "intent": "disk_analysis",
+          "action": "check_disk_space",
+          "parameters": {
+            "disk": "C:",
+            "threshold": "10%"
+          },
+          "description": "Check available disk space",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [
+            "f5cfbfcb-d1f"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321610",
+          "started_at": "2026-02-22T23:44:35.325260",
+          "completed_at": "2026-02-22T23:44:35.325615"
+        },
+        {
+          "id": "30fede62-ed1",
+          "intent": "maintenance",
+          "action": "clean_temp_files",
+          "parameters": {
+            "folder": "Temp",
+            "file_types": [
+              "tmp",
+              "log"
+            ]
+          },
+          "description": "Remove temporary files",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "1caea208-d9d"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321630",
+          "started_at": "2026-02-22T23:44:35.325813",
+          "completed_at": "2026-02-22T23:44:35.325872"
+        },
+        {
+          "id": "0b10932d-4ce",
+          "intent": "system_control",
+          "action": "disable_startup_programs",
+          "parameters": {
+            "programs": [
+              "unnecessary_program1",
+              "unnecessary_program2"
+            ]
+          },
+          "description": "Disable unnecessary startup programs",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "30fede62-ed1"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321643",
+          "started_at": null,
+          "completed_at": "2026-02-22T23:45:44.784429"
+        },
+        {
+          "id": "df003179-e92",
+          "intent": "system_config",
+          "action": "adjust_power_settings",
+          "parameters": {
+            "plan": "high_performance"
+          },
+          "description": "Adjust power settings for optimal performance",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "0b10932d-4ce"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321655",
+          "started_at": null,
+          "completed_at": "2026-02-22T23:45:44.784703"
+        },
+        {
+          "id": "5cf905f1-20d",
+          "intent": "health_check",
+          "action": "run_system_health_check",
+          "parameters": {
+            "check_type": "comprehensive"
+          },
+          "description": "Run a comprehensive system health check",
+          "status": "skipped",
+          "priority": 2,
+          "dependencies": [
+            "df003179-e92"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:44:35.321665",
+          "started_at": null,
+          "completed_at": "2026-02-22T23:45:44.784943"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:48:15.620877",
+    "plan_id": "36de4224",
+    "user_input": "set brightness to 100",
+    "goal": "set screen brightness to 100",
+    "summary": {
+      "plan_id": "36de4224",
+      "user_input": "set brightness to 100",
+      "goal": "set screen brightness to 100",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "74597650-7c6",
+          "intent": "system_control",
+          "action": "set_screen_brightness",
+          "parameters": {
+            "brightness_level": 100
+          },
+          "description": "Set the screen brightness to the specified level",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:48:15.618266",
+          "started_at": "2026-02-22T23:48:15.620101",
+          "completed_at": "2026-02-22T23:48:15.620399"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:56:01.496733",
+    "plan_id": "76d04ab1",
+    "user_input": "set brightness to 100",
+    "goal": "adjust screen brightness to 100",
+    "summary": {
+      "plan_id": "76d04ab1",
+      "user_input": "set brightness to 100",
+      "goal": "adjust screen brightness to 100",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "68aeaf94-441",
+          "intent": "system_control",
+          "action": "adjust_screen_brightness",
+          "parameters": {
+            "brightness_level": "100"
+          },
+          "description": "Adjusts the screen brightness to the specified level",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:55:55.872187",
+          "started_at": "2026-02-22T23:56:01.495728",
+          "completed_at": "2026-02-22T23:56:01.496183"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:58:46.644116",
+    "plan_id": "de2c6efc",
+    "user_input": "python test_brightness_flow.py",
+    "goal": "execute python script",
+    "summary": {
+      "plan_id": "de2c6efc",
+      "user_input": "python test_brightness_flow.py",
+      "goal": "execute python script",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "2e66c13a-765",
+          "intent": "diagnostics",
+          "action": "check_cpu",
+          "parameters": {},
+          "description": "\u26a0\ufe0f FALLBACK: Basic health check (failed to decompose: execute python script)",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:58:44.639183",
+          "started_at": "2026-02-22T23:58:44.641482",
+          "completed_at": "2026-02-22T23:58:46.643212"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-22T23:59:20.756133",
+    "plan_id": "27419ea6",
+    "user_input": "increase brightness to 75",
+    "goal": "adjust screen brightness to 75",
+    "summary": {
+      "plan_id": "27419ea6",
+      "user_input": "increase brightness to 75",
+      "goal": "adjust screen brightness to 75",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "bdbb0a5e-880",
+          "intent": "personalization",
+          "action": "set_brightness",
+          "parameters": {
+            "brightness": 75
+          },
+          "description": "Adjust screen brightness to 75",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-22T23:59:20.416698",
+          "started_at": "2026-02-22T23:59:20.418436",
+          "completed_at": "2026-02-22T23:59:20.755593"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:00:44.010802",
+    "plan_id": "0f4b532a",
+    "user_input": "search python",
+    "goal": "find information about Python",
+    "summary": {
+      "plan_id": "0f4b532a",
+      "user_input": "search python",
+      "goal": "find information about Python",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "8a1a16a0-b51",
+          "intent": "diagnostics",
+          "action": "check_cpu",
+          "parameters": {},
+          "description": "\u26a0\ufe0f FALLBACK: Basic health check (failed to decompose: find information about Python)",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:00:42.005083",
+          "started_at": "2026-02-23T00:00:42.007266",
+          "completed_at": "2026-02-23T00:00:44.009724"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:02:29.447582",
+    "plan_id": "0287e8fb",
+    "user_input": "search python programming",
+    "goal": "find information about python programming",
+    "summary": {
+      "plan_id": "0287e8fb",
+      "user_input": "search python programming",
+      "goal": "find information about python programming",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "35c31d8f-5de",
+          "intent": "web_search",
+          "action": "",
+          "parameters": {
+            "query": "python programming"
+          },
+          "description": "Search the web for information about python programming",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:02:29.346712",
+          "started_at": "2026-02-23T00:02:29.348971",
+          "completed_at": "2026-02-23T00:02:29.446968"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:02:52.809277",
+    "plan_id": "295a1d81",
+    "user_input": "open notepad",
+    "goal": "open notepad application",
+    "summary": {
+      "plan_id": "295a1d81",
+      "user_input": "open notepad",
+      "goal": "open notepad application",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "7e340670-9aa",
+          "intent": "open_app",
+          "action": "",
+          "parameters": {
+            "app_name": "notepad"
+          },
+          "description": "Open the notepad application",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:02:52.702156",
+          "started_at": "2026-02-23T00:02:52.704015",
+          "completed_at": "2026-02-23T00:02:52.808694"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:04:54.269905",
+    "plan_id": "3b05eb3e",
+    "user_input": "troubleshoot my screen",
+    "goal": "fix screen issue",
+    "summary": {
+      "plan_id": "3b05eb3e",
+      "user_input": "troubleshoot my screen",
+      "goal": "fix screen issue",
+      "total_tasks": 4,
+      "completed": 3,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "a9d2ec73-c11",
+          "intent": "troubleshoot_screen",
+          "action": "",
+          "parameters": {},
+          "description": "Initial screen troubleshooting",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:03:50.332371",
+          "started_at": "2026-02-23T00:03:50.334860",
+          "completed_at": "2026-02-23T00:03:59.039366"
+        },
+        {
+          "id": "46923f75-072",
+          "intent": "vision_analysis",
+          "action": "analyze_screen",
+          "parameters": {},
+          "description": "Analyze the screen for errors or issues",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [
+            "a9d2ec73-c11"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:03:50.332390",
+          "started_at": "2026-02-23T00:03:59.039742",
+          "completed_at": "2026-02-23T00:03:59.072665"
+        },
+        {
+          "id": "87e04a89-426",
+          "intent": "system_control",
+          "action": "restart",
+          "parameters": {},
+          "description": "Restart the system to resolve potential software issues",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "46923f75-072"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:03:50.332400",
+          "started_at": null,
+          "completed_at": "2026-02-23T00:04:50.262185"
+        },
+        {
+          "id": "08a54b2c-919",
+          "intent": "diagnostics",
+          "action": "complete_system_health",
+          "parameters": {},
+          "description": "Run a complete system health check",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "87e04a89-426"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:03:50.332412",
+          "started_at": "2026-02-23T00:04:50.262354",
+          "completed_at": "2026-02-23T00:04:54.269149"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:05:38.979872",
+    "plan_id": "03301560",
+    "user_input": "make chrome my default browser",
+    "goal": "set Chrome as default browser",
+    "summary": {
+      "plan_id": "03301560",
+      "user_input": "make chrome my default browser",
+      "goal": "set Chrome as default browser",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "74898884-d7e",
+          "intent": "personalization",
+          "action": "set_default_app",
+          "parameters": {
+            "app": "chrome",
+            "app_type": "browser"
+          },
+          "description": "Set Chrome as the default browser",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:05:35.620193",
+          "started_at": "2026-02-23T00:05:38.979036",
+          "completed_at": "2026-02-23T00:05:38.979220"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:08:02.388414",
+    "plan_id": "757b3b80",
+    "user_input": "make chrome my default browser",
+    "goal": "set Chrome as default browser",
+    "summary": {
+      "plan_id": "757b3b80",
+      "user_input": "make chrome my default browser",
+      "goal": "set Chrome as default browser",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "6a9ba8a8-75b",
+          "intent": "personalization",
+          "action": "set_default_app",
+          "parameters": {
+            "app_type": "browser",
+            "app_name": "chrome"
+          },
+          "description": "Set Chrome as the default browser",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:08:01.995870",
+          "started_at": "2026-02-23T00:08:01.998128",
+          "completed_at": "2026-02-23T00:08:02.387888"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:11:11.256450",
+    "plan_id": "aa695452",
+    "user_input": "make chrome my default browser",
+    "goal": "set chrome as default browser",
+    "summary": {
+      "plan_id": "aa695452",
+      "user_input": "make chrome my default browser",
+      "goal": "set chrome as default browser",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "12f6624f-385",
+          "intent": "personalization",
+          "action": "set_default_app",
+          "parameters": {
+            "app_type": "browser",
+            "app_name": "chrome"
+          },
+          "description": "Set Chrome as the default browser",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:11:07.127173",
+          "started_at": "2026-02-23T00:11:10.572509",
+          "completed_at": "2026-02-23T00:11:11.255843"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:11:27.705296",
+    "plan_id": "3d6c7df8",
+    "user_input": "change theme to light mode",
+    "goal": "switch to light theme",
+    "summary": {
+      "plan_id": "3d6c7df8",
+      "user_input": "change theme to light mode",
+      "goal": "switch to light theme",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "50867290-a08",
+          "intent": "personalization",
+          "action": "toggle_dark_mode",
+          "parameters": {
+            "enable": false
+          },
+          "description": "Switch to light theme by disabling dark mode",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:11:27.700500",
+          "started_at": "2026-02-23T00:11:27.702669",
+          "completed_at": "2026-02-23T00:11:27.703875"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:11:38.750166",
+    "plan_id": "9e6c4d41",
+    "user_input": "change theme to dark mode",
+    "goal": "switch to dark mode",
+    "summary": {
+      "plan_id": "9e6c4d41",
+      "user_input": "change theme to dark mode",
+      "goal": "switch to dark mode",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "c017e9a5-cba",
+          "intent": "personalization",
+          "action": "toggle_dark_mode",
+          "parameters": {
+            "enable": true
+          },
+          "description": "Switch to dark mode",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:11:38.746719",
+          "started_at": "2026-02-23T00:11:38.748654",
+          "completed_at": "2026-02-23T00:11:38.749306"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:12:19.454534",
+    "plan_id": "1183d8dd",
+    "user_input": "lock my pc",
+    "goal": "lock the computer",
+    "summary": {
+      "plan_id": "1183d8dd",
+      "user_input": "lock my pc",
+      "goal": "lock the computer",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "90512735-5ea",
+          "intent": "system_control",
+          "action": "lock",
+          "parameters": {},
+          "description": "Lock the computer",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:12:19.399564",
+          "started_at": "2026-02-23T00:12:19.401679",
+          "completed_at": "2026-02-23T00:12:19.453996"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:13:00.478743",
+    "plan_id": "942ded53",
+    "user_input": "tell me my system config",
+    "goal": "retrieve system configuration",
+    "summary": {
+      "plan_id": "942ded53",
+      "user_input": "tell me my system config",
+      "goal": "retrieve system configuration",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "06cd9817-d65",
+          "intent": "system_config",
+          "action": "",
+          "parameters": {},
+          "description": "Retrieve system configuration",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:12:58.211010",
+          "started_at": "2026-02-23T00:12:58.213133",
+          "completed_at": "2026-02-23T00:13:00.478473"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:15:00.722608",
+    "plan_id": "28c8919c",
+    "user_input": "organise my folder test1 in desktop",
+    "goal": "organize folder test1 on desktop",
+    "summary": {
+      "plan_id": "28c8919c",
+      "user_input": "organise my folder test1 in desktop",
+      "goal": "organize folder test1 on desktop",
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "8795b751-ad0",
+          "intent": "file_management",
+          "action": "analyze_folder",
+          "parameters": {
+            "folder_name": "test1",
+            "confirm": false
+          },
+          "description": "Analyze the test1 folder on the desktop",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:14:48.146823",
+          "started_at": "2026-02-23T00:14:48.149272",
+          "completed_at": "2026-02-23T00:14:48.161508"
+        },
+        {
+          "id": "9a8d9b12-b71",
+          "intent": "file_management",
+          "action": "organize_by_type",
+          "parameters": {
+            "folder_name": "test1",
+            "confirm": true
+          },
+          "description": "Organize the test1 folder by file type",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [
+            "8795b751-ad0"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:14:48.146848",
+          "started_at": "2026-02-23T00:15:00.712319",
+          "completed_at": "2026-02-23T00:15:00.722206"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:19:11.622907",
+    "plan_id": "0b122311",
+    "user_input": "analyze desktop",
+    "goal": "examine desktop contents",
+    "summary": {
+      "plan_id": "0b122311",
+      "user_input": "analyze desktop",
+      "goal": "examine desktop contents",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "5aad449b-35c",
+          "intent": "file_management",
+          "action": "analyze_folder",
+          "parameters": {
+            "folder_name": "Desktop"
+          },
+          "description": "Analyze the contents of the desktop",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:18:01.709087",
+          "started_at": "2026-02-23T00:18:01.711198",
+          "completed_at": "2026-02-23T00:19:11.622397"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T00:19:43.699318",
+    "plan_id": "1141d28b",
+    "user_input": "download python notes from internet",
+    "goal": "download python notes",
+    "summary": {
+      "plan_id": "1141d28b",
+      "user_input": "download python notes from internet",
+      "goal": "download python notes",
+      "total_tasks": 3,
+      "completed": 3,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "e751b383-db1",
+          "intent": "web_search",
+          "action": "",
+          "parameters": {
+            "query": "download python notes"
+          },
+          "description": "Find a reliable source to download Python notes",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:19:43.466709",
+          "started_at": "2026-02-23T00:19:43.469086",
+          "completed_at": "2026-02-23T00:19:43.561947"
+        },
+        {
+          "id": "621b300b-43c",
+          "intent": "open_app",
+          "action": "",
+          "parameters": {
+            "app_name": "web browser"
+          },
+          "description": "Open a web browser to access the download link",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [
+            "e751b383-db1"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:19:43.466728",
+          "started_at": "2026-02-23T00:19:43.562419",
+          "completed_at": "2026-02-23T00:19:43.562618"
+        },
+        {
+          "id": "495f4f2a-6a1",
+          "intent": "file_management",
+          "action": "analyze_folder",
+          "parameters": {
+            "folder_name": "Downloads",
+            "confirm": false
+          },
+          "description": "Verify the downloaded file is saved in the Downloads folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "621b300b-43c"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:19:43.466740",
+          "started_at": "2026-02-23T00:19:43.563149",
+          "completed_at": "2026-02-23T00:19:43.698659"
+        }
+      ]
+    }
+  }
+]
