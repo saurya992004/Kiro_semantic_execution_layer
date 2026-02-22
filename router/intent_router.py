@@ -127,7 +127,7 @@ VALID_INTENTS = {
     "installer": {
         "actions": [
             "download_wallpaper", "download_software", "download_resource",
-            "cache_info", "clear_cache"
+            "execute_installer", "cache_info", "clear_cache"
         ],
         "description": "Download and install resources from the internet"
     }
@@ -1019,8 +1019,45 @@ def _handle_installer(action: str, params: dict):
             if result.get("from_cache"):
                 print(f"   📦 (from cache)")
             print(f"\n   {result.get('next_step', '')}")
+            
+            # Offer to execute if installer is ready
+            if result.get("can_execute"):
+                print(f"\n🤖 Would you like me to install this now? (y/n): ", end="")
+                response = input().strip().lower()
+                
+                if response in ['y', 'yes']:
+                    exec_result = agent.execute_installer(result["installer_path"])
+                    print(f"\n{exec_result['message']}")
+                    if exec_result.get("instructions"):
+                        print(f"   📋 {exec_result['instructions']}")
+                    if exec_result.get("extracted_to"):
+                        print(f"   📂 Extracted to: {exec_result['extracted_to']}")
+                else:
+                    print(f"   Installer saved to: {result['installer_path']}")
         else:
             print(f"❌ {result['message']}")
+    
+    elif action == "execute_installer":
+        installer_path = params.get("installer_path", "").strip()
+        if not installer_path:
+            print("❌ Installer path is required")
+            return
+        
+        result = agent.execute_installer(installer_path)
+        
+        if result["status"] == "success":
+            print(f"✅ {result['message']}")
+            if result.get("instructions"):
+                print(f"   📋 {result['instructions']}")
+        elif result["status"] == "extract":
+            print(f"✅ {result['message']}")
+            print(f"   📂 Extracted to: {result['extracted_to']}")
+            if result.get("instructions"):
+                print(f"   📋 {result['instructions']}")
+        else:
+            print(f"❌ {result['message']}")
+            if result.get("manual_instruction"):
+                print(f"   📋 {result['manual_instruction']}")
     
     elif action == "download_resource":
         query = params.get("query", "").strip()

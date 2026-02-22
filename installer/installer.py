@@ -6,6 +6,8 @@ Orchestrates downloading and installing resources via the Master Agent system.
 
 import os
 import logging
+import subprocess
+import zipfile
 from pathlib import Path
 from typing import Dict, Callable, Optional
 import uuid
@@ -242,8 +244,215 @@ class InstallerAgent:
             "installer_path": filepath,
             "from_cache": False,
             "message": result.get("message"),
-            "next_step": f"⚠️  Please run the installer manually: {filename}"
+            "can_execute": True,
+            "next_step": f"⚠️  Ready to install: {filename}"
         }
+    
+    def execute_installer(self, installer_path: str) -> Dict:
+        """
+        Execute downloaded installer with elevation if needed.
+        
+        Supports:
+        - .exe files (Windows executables)
+        - .msi files (Windows installer packages)
+        - .zip files (Extract to folder)
+        
+        Args:
+            installer_path: Path to the installer file
+            
+        Returns:
+            {
+                "status": "success|failed|extract",
+                "message": "...",
+                "extracted_to": "/path/to/extraction" (if .zip)
+            }
+        """
+        logger.info(f"Executing installer: {installer_path}")
+        
+        if not os.path.exists(installer_path):
+            logger.error(f"Installer not found: {installer_path}")
+            return {
+                "status": "failed",
+                "message": f"Installer file not found: {installer_path}"
+            }
+        
+        filename = os.path.basename(installer_path)
+        file_ext = os.path.splitext(installer_path)[1].lower()
+        
+        try:
+            if file_ext == ".exe":
+                return self._execute_exe(installer_path, filename)
+            
+            elif file_ext == ".msi":
+                return self._execute_msi(installer_path, filename)
+            
+            elif file_ext == ".zip":
+                return self._extract_zip(installer_path)
+            
+            else:
+                logger.warning(f"Unknown file type: {file_ext}")
+                return {
+                    "status": "failed",
+                    "message": f"Unsupported file type: {file_ext}"
+                }
+        
+        except Exception as e:
+            logger.error(f"Installation failed: {e}")
+            return {
+                "status": "failed",
+                "message": f"Installation error: {str(e)}"
+            }
+    
+    def _execute_exe(self, filepath: str, filename: str) -> Dict:
+        """
+        Execute .exe installer with elevation.
+        
+        Uses 'runas' on Windows to request admin privileges.
+        """
+        logger.info(f"Executing .exe installer: {filepath}")
+        
+        try:
+            # Try to execute with admin privileges
+            print(f"🚀 Starting installation of {filename}...")
+            print(f"   ℹ️  Admin privileges may be requested")
+            
+            # Use runas verb to elevate privileges (Windows)
+            import ctypes
+            
+            # Try creating a process with elevation
+            try:
+                subprocess.Popen([filepath], shell=True)
+                logger.info("Installer launched successfully")
+                
+                return {
+                    "status": "success",
+                    "message": f"✅ Installation started: {filename}",
+                    "instructions": "Please follow the installer prompts to complete installation"
+                }
+            
+            except Exception as e:
+                logger.warning(f"Standard launch failed, trying alternate method: {e}")
+                
+                # Fallback: use os.startfile (Windows only)
+                os.startfile(filepath)
+                
+                return {
+                    "status": "success",
+                    "message": f"✅ Installer opened: {filename}",
+                    "instructions": "Please follow the installer prompts to complete installation"
+                }
+        
+        except Exception as e:
+            logger.error(f"Failed to execute .exe: {e}")
+            return {
+                "status": "failed",
+                "message": f"Failed to start installer: {str(e)}",
+                "manual_instruction": f"Please manually run: {filepath}"
+            }
+    
+    def _execute_msi(self, filepath: str, filename: str) -> Dict:
+        """
+        Execute .msi installer.
+        
+        Uses msiexec.exe on Windows to install MSI packages.
+        """
+        logger.info(f"Executing .msi installer: {filepath}")
+        
+        try:
+            print(f"🚀 Starting installation of {filename}...")
+            
+            # Use msiexec to install MSI package
+            command = f'msiexec /i "{filepath}" /quiet /norestart'
+            
+            # For interactive install:
+            # command = f'msiexec /i "{filepath}"'
+            
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            
+            stdout, stderr = process.communicate(timeout=300)  # 5 min timeout
+            
+            logger.info("MSI installation completed")
+            
+            if process.returncode == 0:
+                return {
+                    "status": "success",
+                    "message": f"✅ Installation completed: {filename}",
+                    "return_code": process.returncode
+                }
+            else:
+                logger.warning(f"MSI installer returned code {process.returncode}")
+                return {
+                    "status": "failed",
+                    "message": f"Installation may have failed (exit code: {process.returncode})",
+                    "return_code": process.returncode
+                }
+        
+        except subprocess.TimeoutExpired:
+            logger.error("MSI installer timeout")
+            return {
+                "status": "failed",
+                "message": "Installation timeout (>5 minutes). Please check if installer is still running."
+            }
+        
+        except Exception as e:
+            logger.error(f"Failed to execute .msi: {e}")
+            return {
+                "status": "failed",
+                "message": f"Failed to start installer: {str(e)}",
+                "manual_instruction": f"Please manually run: msiexec /i \"{filepath}\""
+            }
+    
+    def _extract_zip(self, filepath: str) -> Dict:
+        """
+        Extract .zip file to a folder.
+        
+        Args:
+            filepath: Path to .zip file
+            
+        Returns:
+            {
+                "status": "extract|failed",
+                "extracted_to": "/path/to/extraction",
+                "message": "..."
+            }
+        """
+        logger.info(f"Extracting .zip: {filepath}")
+        
+        try:
+            # Create extraction folder
+            extract_folder = os.path.splitext(filepath)[0]
+            os.makedirs(extract_folder, exist_ok=True)
+            
+            print(f"📦 Extracting {os.path.basename(filepath)}...")
+            
+            # Extract zip file
+            with zipfile.ZipFile(filepath, 'r') as zip_ref:
+                zip_ref.extractall(extract_folder)
+            
+            logger.info(f"Extracted to: {extract_folder}")
+            
+            # Count extracted files
+            file_count = sum(len(files) for _, _, files in os.walk(extract_folder))
+            
+            return {
+                "status": "extract",
+                "extracted_to": extract_folder,
+                "file_count": file_count,
+                "message": f"✅ Extracted {file_count} files to: {extract_folder}",
+                "instructions": "Please check the extracted folder for executable files or documentation"
+            }
+        
+        except Exception as e:
+            logger.error(f"Failed to extract .zip: {e}")
+            return {
+                "status": "failed",
+                "message": f"Failed to extract: {str(e)}"
+            }
     
     def download_resource(
         self,

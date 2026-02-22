@@ -84,9 +84,13 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
    - Description: Displays comprehensive system configuration including OS, CPU, RAM, storage, network, GPU, and display information.
 
 14. installer
-   - Actions: download_wallpaper, download_software, download_resource, cache_info, clear_cache
-   - Parameters: query (string - required), folder (optional), resource_type (for download_resource), auto_set (bool - for wallpapers)
-   - Examples: "download sunset wallpaper", "download vlc media player", "find and download python 3.12", "download a mountain landscape and set as wallpaper", "show cache info", "clear my cache"
+   - Actions: download_wallpaper, download_software, download_resource, execute_installer, cache_info, clear_cache
+   - Parameters: query (string - required), folder (optional), resource_type (for download_resource), auto_set (bool - for wallpapers), installer_path (for execute_installer)
+   - Examples: "download sunset wallpaper", "download vlc media player and install it", "find and download python 3.12", "download a mountain landscape and set as wallpaper", "install software from path", "show cache info", "clear my cache"
+   - IMPORTANT for download_software with installation:
+     * "download vlc media player and install it" → System will download AND execute installer with user confirmation
+     * "download python 3.12" → System will download only, ask for confirmation before executing
+     * Supports: .exe (Windows executables), .msi (MSI packages), .zip (archives)
    - IMPORTANT for download_wallpaper with auto_set:
      * "download sunset wallpaper and set it as my background" → auto_set: true
      * System will automatically set wallpaper as desktop background

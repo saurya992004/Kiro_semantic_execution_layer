@@ -1424,5 +1424,75 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-23T00:43:20.983354",
+    "plan_id": "531a4a53",
+    "user_input": "download coremen book of algorithms",
+    "goal": "download a book about algorithms",
+    "summary": {
+      "plan_id": "531a4a53",
+      "user_input": "download coremen book of algorithms",
+      "goal": "download a book about algorithms",
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "6f1d21f5-ddc",
+          "intent": "web_search",
+          "action": "",
+          "parameters": {
+            "query": "download algorithms book"
+          },
+          "description": "Search for a book about algorithms online",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:43:04.197656",
+          "started_at": "2026-02-23T00:43:04.199747",
+          "completed_at": "2026-02-23T00:43:04.276805"
+        },
+        {
+          "id": "f47ba36b-24c",
+          "intent": "installer",
+          "action": "download_resource",
+          "parameters": {
+            "query": "algorithms book pdf",
+            "resource_type": "ebook"
+          },
+          "description": "Download the algorithms book",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [
+            "6f1d21f5-ddc"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T00:43:04.197677",
+          "started_at": "2026-02-23T00:43:19.753851",
+          "completed_at": "2026-02-23T00:43:20.982754"
+        }
+      ]
+    }
   }
 ]
