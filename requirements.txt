@@ -8,3 +8,6 @@ pytesseract
 Pillow
 easyocr
 requests
+sounddevice
+numpy
+scipy
