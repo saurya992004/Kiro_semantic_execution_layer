@@ -1,383 +1,456 @@
-# 🤖 AURA — AI OS Agent Framework
+# 🤖 JARVIS — Intelligent OS Automation Agent
 
-**Hackathon Project — Team Build**
+> **Control your entire desktop intelligently, safely, and naturally.**
 
-AURA is a modular AI system assistant that can understand natural language commands and execute real operating system actions.
+JARVIS is an advanced AI-powered operating system automation framework designed to understand natural language commands and execute complex system tasks with intelligent planning, safety validation, and automatic recovery mechanisms.
 
-Unlike traditional voice assistants, AURA is designed as an **extensible OS agent framework** capable of automation, diagnostics, planning, and multi-agent task execution — now enhanced with **built-in safety, validation, and rollback mechanisms**.
-
----
-
-# 🚀 Vision
-
-> “Control your entire computer like you control ChatGPT — safely.”
-
-AURA converts human commands into structured system actions with verification and recovery layers:
-
-```
-User → AI → Intent → Validator → Tool → OS Execution → Fallback Monitor
-```
-
-Our goal is to evolve AURA from a command executor into a **fully autonomous yet safety-aware desktop agent**.
+Built as a modular, extensible agent system, JARVIS combines the power of large language models with local system integration to provide truly autonomous desktop assistance.
 
 ---
 
-#  System Architecture
+## ✨ Key Features
+
+### 🎯 **Intelligent Task Planning**
+- Breaks down complex user requests into executable subtasks
+- Learns from execution history and past patterns
+- Adaptive planning based on system context
+
+### 🛡️ **Safety-First Architecture**
+- Command validation before execution
+- Risk assessment and confirmation for critical actions
+- Automatic rollback on failures
+- Comprehensive action logging
+
+### 💾 **Smart File Management**
+- Intelligent file organization by type and category
+- Duplicate file detection and removal
+- Large file identification and analysis
+- Folder structure optimization
+
+### 🔍 **System Diagnostics & Maintenance**
+- Real-time CPU, RAM, and disk monitoring
+- System health checks and alerts
+- Cleanup scanning for old and temporary files
+- Performance analysis and recommendations
+
+### 👁️ **Vision & OCR Integration**
+- Screenshot analysis using Google Gemini
+- Optical Character Recognition (OCR)
+- Visual problem detection and troubleshooting
+- Screenshot-based task automation
+
+### 🎤 **Natural Language Interface**
+- Conversational command understanding
+- Multi-turn conversation support
+- Context-aware request interpretation
+- User preference learning
+
+### 📚 **Memory & Learning**
+- Persistent execution history
+- Context storage and retrieval
+- Preference management
+- Task outcome tracking
+
+---
+
+## 🏗️ System Architecture
 
 ```
-User Command
-      ↓
-Gemini LLM Layer
-      ↓
-Structured JSON Intent
-      ↓
-Command Validator 🛡️
-      ↓
-Intent Router
-      ↓
-Tool Modules
-      ↓
-Operating System Actions
-      ↓
-Fallback & Recovery Engine ↩️
+┌─────────────────────────────────────────────────────────┐
+│         User Input (Natural Language) text/voice        │
+└────────────────────┬────────────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────────────┐
+│    Master Agent - Central Orchestrator                  │
+│    - Intent Extraction & Goal Definition                │
+│    - Multi-agent coordination                           │
+└────────────────────┬────────────────────────────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+┌───────▼────────┐      ┌────────▼──────────┐
+│ Intent Router  │      │ Task Planner       │
+│ - Intent       │      │ - Breakdown tasks  │
+│   detection    │      │ - Prioritization   │
+│ - Action       │      │ - Optimization     │
+│   mapping      │      └────────┬──────────┘
+└───────┬────────┘               │
+        │                        │
+        └────────────┬───────────┘
+                     │
+        ┌────────────▼────────────┐
+        │  Execution Engine       │
+        │  - Safe execution       │
+        │  - Error handling       │
+        │  - Logging              │
+        └────────────┬────────────┘
+                     │
+      ┌──────────────┴──────────────┐
+      │                             │
+┌─────▼────────┐          ┌────────▼──────┐
+│ Tool Modules │          │ LLM Services  │
+│ - File Mgmt  │          │ - Gemini      │
+│ - System     │          │ - Groq        │
+│ - Diagnosis  │          └───────────────┘
+│ - Web        │
+└──────────────┘
 ```
 
 ---
 
-## 🛡️ Command Validator Layer (NEW)
+## 🤖 Core Agents
 
-Before executing any action, AURA verifies intent safety.
+### **Master Agent**
+Central orchestrator that coordinates all system operations:
+- Receives and interprets user requests
+- Manages task planning and execution flow
+- Maintains memory and context
+- Provides feedback and reporting
+- **Location:** `agent/master_agent.py`
 
-### Responsibilities
+### **Task Planner**
+Intelligent task decomposition and planning:
+- Converts goals into executable task sequences
+- Handles dependencies between tasks
+- Estimates execution time and resource requirements
+- Adapts plans based on execution feedback
+- **Location:** `agent/task_planner.py`
 
-* Detect destructive commands
-* Classify risk level
-* Require confirmation for critical actions
-* Block unsafe or ambiguous instructions
+### **Execution Engine**
+Manages safe task execution:
+- Pre-execution validation and safety checks
+- Handles task execution with error recovery
+- Logs all operations for audit trails
+- Implements automatic rollback on failures
+- **Location:** `agent/execution_engine.py`
 
-### Example
-
-```json
-{
-  "intent": "delete_files",
-  "risk_level": "high",
-  "requires_confirmation": true
-}
-```
-
-### Protection Scenarios
-
-* Mass file deletion
-* Registry edits
-* System32 access
-* Forced process kills
-* Disk formatting commands
-
-**Impact:** Prevents unintended or malicious system damage.
-
----
-
-## ↩️ Fallback & Revert System (NEW)
-
-AURA includes a rollback engine to restore system state if something goes wrong — or if the user requests reversal.
-
-### Core Capabilities
-
-* Action logging
-* Pre-execution snapshots
-* File restore
-* Process restart
-* Undo automation workflows
+### **Memory Manager**
+Maintains system state and learning:
+- Execution history tracking
+- Context and preference storage
+- Performance metrics recording
+- Learning from past executions
+- **Location:** `agent/memory_manager.py`
 
 ---
 
-# 📁 Project Structure
+## 📦 Module Overview
+
+### **LLM Services** (`llm/`)
+Multi-LLM support for flexible AI backend:
+- **Gemini Client:** Google's advanced language model for vision and text
+- **Groq Client:** High-speed inference for real-time responses
+
+### **File Manager** (`file_manager/`)
+Comprehensive file and folder management:
+- `manager.py` - Main orchestrator
+- `file_organizer.py` - Auto-organize files by type
+- `duplicate_detector.py` - Find and remove duplicates
+- `large_file_scanner.py` - Identify large files
+- `folder_finder.py` - Smart folder discovery
+- `llm_organizer.py` - AI-powered categorization
+
+### **Tools** (`tools/`)
+System integration and action execution:
+- `file_tools.py` - File operations
+- `system_tools.py` - System control (shutdown, restart, etc.)
+- `system_config.py` - System configuration management
+- `diagnostics_tools.py` - Health checks and monitoring
+- `app_tools.py` - Application launching
+- `web_tools.py` - Web searching and browsing
+- `help_commands.py` - User guidance
+
+### **Troubleshooting** (`troubleshooter/`)
+Advanced problem diagnosis and resolution:
+- `vision_analyzer.py` - Visual problem analysis
+- `screenshot_tool.py` - Screenshot capture and analysis
+- `solution_parser.py` - Parse and format solutions
+- `auto_fix_engine.py` - Automated fixing mechanisms
+
+### **Vision** (`vision/`)
+Computer vision capabilities:
+- `vision_engine.py` - Image analysis and OCR
+- Screenshot-based automation support
+
+### **Personalization** (`personalisation/`)
+User preference and behavior learning:
+- `personalisation_tools.py` - Customization features
+- User profile management
+
+### **Router** (`router/`)
+Intent-based command routing:
+- `intent_router.py` - Maps intents to actions
+- Multi-intent support for complex requests
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Python 3.8+**
+- **Windows 10/11** (or Linux/macOS with adaptation)
+- **API Keys:** Google Gemini, Groq (optional but recommended)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/jarvis.git
+   cd jarvis
+   ```
+
+2. **Create a Python virtual environment**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate  # Windows
+   source venv/bin/activate  # Linux/macOS
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set up environment variables**
+   ```bash
+   # Create .env file in root directory
+   GOOGLE_API_KEY=your_gemini_api_key
+   GROQ_API_KEY=your_groq_api_key
+   ```
+
+5. **Run JARVIS**
+   ```bash
+   python main.py
+   ```
+
+---
+
+## 💻 Usage Examples
+
+### Basic Commands
 
 ```
-AURA/
+> organize my downloads
+✅ Analyzed 245 files
+✅ Created 8 category folders
+✅ Moved 187 files successfully
+
+> find large files on my desktop
+📊 Scanning: C:\Users\YourName\Desktop
+✅ Found 12 files over 100MB
+  • video_backup.mp4 (2.3GB)
+  • old_project.zip (890MB)
+
+> what's my system health
+🏥 System Health Check
+  CPU Usage: 34%
+  RAM Usage: 62% (8.9GB/16GB)
+  Disk Usage: 71% (425GB/600GB)
+  Status: ✅ HEALTHY
+
+> scan for old files
+🗑️  OLD FILES SCAN
+Files older than 7 days: 23
+Total recoverable space: 2.4GB
+Use 'confirm cleanup' to delete
+
+> take a screenshot and analyze it
+📸 Captured screenshot
+🤖 Analysis:
+  - Browser window detected
+  - Showing error message
+  - Recommended: Check browser console logs
+```
+
+### Special Commands
+
+```
+help              - Show available commands
+history           - View recent executions
+stats             - Display execution statistics
+status            - Agent system status
+clear history     - Reset execution memory
+exit              - Shutdown JARVIS
+```
+
+---
+
+## ⚙️ Configuration
+
+### System Configuration (`tools/system_config.py`)
+Manage system-wide settings:
+- LLM model selection
+- Execution timeouts
+- Safety levels
+- Logging verbosity
+
+### Memory Configuration (`agent_memory/`)
+- `execution_history.json` - Past execution logs
+- `context.json` - Current system context
+- `preferences.json` - User preferences
+- `plans.json` - Saved task plans
+
+---
+
+## 🛡️ Safety & Security
+
+JARVIS implements multiple layers of protection:
+
+### **Pre-Execution Validation**
+- Intent risk assessment
+- Command whitelisting/blacklisting
+- User confirmation for critical actions
+
+### **Protected Zones**
+- System32 directory
+- Registry operations  
+- Forced process termination
+- Mass file deletion
+
+### **Execution Monitoring**
+- Real-time operation logging
+- Resource usage tracking
+- Error detection and handling
+
+### **Rollback Capabilities**
+- Pre-execution snapshots
+- File restoration on failures
+- Process restart mechanisms
+- State rollback on user request
+
+---
+
+## 📊 Project Structure
+
+```
+jarvis/
+├── main.py                      # Entry point
+├── requirements.txt             # Dependencies
+├── README.md                    # This file
 │
-├── main.py
-├── llm/
-├── prompts/
-├── router/
-├── tools/
-├── utils/
-├── config/
-├── README_PHASES/
-└── requirements.txt
-```
-
-Each module is independently extensible for future agents.
-
----
-
-# 🧭 Hackathon Build Roadmap
-
----
-
-## 🥇 Phase 1 — LLM Command Core ✅
-
-**Objective**
-
-Enable AURA to understand natural language commands.
-
-**Built**
-
-* Gemini API integration
-* Prompt template system
-* Command → JSON parsing
-* Response validation
-
-**Outcome**
-
-AURA can interpret structured intents like:
-
-```json
-{
-  "intent": "open_app",
-  "action": "open",
-  "parameters": {
-    "app_name": "Chrome"
-  }
-}
-```
-
----
-
-## 🥈 Phase 2 — Intent Routing & Execution ✅
-
-**Objective**
-
-Connect AI understanding to real system actions.
-
-**Built**
-
-* Intent router
-* Tool dispatcher
-* App launcher
-* Web search
-* Power commands
-
-**Outcome**
-
-AURA executes commands like:
-
-* Open apps
-* Search web
-* Shutdown system
-
----
-
-## 🥉 Phase 3 — System Control Layer ⚙️
-
-**Objective**
-
-Give AURA deeper OS authority.
-
-**Implemented**
-
-* Shutdown / Restart / Sleep / Lock
-* Process termination
-* Temp cleanup
-* Recycle bin control
-
-**Impact**
-
-AURA moves from assistant → system controller.
-
----
-
-## 🏅 Phase 4 — File Intelligence Engine 📂
-
-**Objective**
-
-Automate file management workflows.
-
-**Features**
-
-* Organize Downloads
-* Duplicate remover
-* Large file detector
-* Project structure generator
-
-**Impact**
-
-Real productivity automation.
-
----
-
-## 🌐 Phase 5 — Internet & Installer Agent (Planned)
-
-**Goal**
-
-Automate system setup.
-
-**Planned**
-
-* Software downloads
-* Silent installations
-* Dev environment setup
-
----
-
-## 🧠 Phase 6 — Diagnostics & Self-Healing (Planned)
-
-**Goal**
-
-System monitoring & optimization.
-
-**Planned**
-
-* CPU / RAM tracking
-* Disk alerts
-* Startup optimization
-
----
-
-## 🤖 Phase 7 — Planning Agent (Planned)
-
-AURA will decompose goals:
-
-> “Speed up my PC”
-
-Into:
-
-1. Clean temp files
-2. Disable startup apps
-3. Kill heavy processes
-
----
-
-## 🖥️ Phase 8 — Voice + Overlay UI (Planned)
-
-* Wake word
-* Speech recognition
-* Floating assistant
-
----
-
-## 👁️ Phase 9 — Vision Intelligence (Planned)
-
-* Screenshot analysis
-* Error detection
-* UI automation
-
----
-
-## 🧩 Phase 10 — Multi-Agent Ecosystem (Vision)
-
-Specialized agents:
-
-* File agent
-* Installer agent
-* Diagnostics agent
-* Vision agent
-
----
-
-# 🛠️ Tech Stack
-
-| Layer            | Tech               |
-| ---------------- | ------------------ |
-| LLM              | Gemini Flash       |
-| Backend          | Python             |
-| OS Control       | PowerShell, psutil |
-| Automation       | shutil, subprocess |
-| Vision (planned) | OpenCV             |
-| Voice (planned)  | Whisper / Vosk     |
-
----
-
-# ⚙️ Setup Instructions
-
-```bash
-git clone <repo>
-cd AURA
-
-python -m venv venv
-venv\Scripts\activate
-
-pip install -r requirements.txt
-```
-
-Add API key in `.env`:
-
-```
-GEMINI_API_KEY=your_key_here
-```
-
-Run:
-
-```bash
-python main.py
+├── agent/                       # Core agent system
+│   ├── master_agent.py         # Central orchestrator
+│   ├── task_planner.py         # Task decomposition
+│   ├── execution_engine.py     # Safe execution
+│   ├── memory_manager.py       # State management
+│   └── task.py                 # Task definition
+│
+├── llm/                         # LLM integrations
+│   ├── gemini_client.py        # Google Gemini
+│   └── groq_client.py          # Groq API
+│
+├── file_manager/               # File management suite
+│   ├── manager.py              # Main orchestrator
+│   ├── file_organizer.py       # Auto-organization
+│   ├── duplicate_detector.py   # Deduplication
+│   ├── large_file_scanner.py   # Size analysis
+│   └── folder_finder.py        # Folder discovery
+│
+├── tools/                       # System tools
+│   ├── file_tools.py           # File operations
+│   ├── system_tools.py         # System control
+│   ├── diagnostics_tools.py    # Health & monitoring
+│   ├── app_tools.py            # App launching
+│   ├── web_tools.py            # Web integration
+│   └── help_commands.py        # User guidance
+│
+├── troubleshooter/             # Problem diagnosis
+│   ├── vision_analyzer.py      # Image analysis
+│   ├── screenshot_tool.py      # Screenshot capture
+│   ├── solution_parser.py      # Solution parsing
+│   └── auto_fix_engine.py      # Auto-fixing
+│
+├── vision/                      # Computer vision
+│   └── vision_engine.py        # Vision processing
+│
+├── router/                      # Intent routing
+│   └── intent_router.py        # Command routing
+│
+├── personalisation/             # User customization
+│   └── personalisation_tools.py
+│
+├── agent_memory/               # Persistent storage
+│   ├── execution_history.json
+│   ├── context.json
+│   ├── preferences.json
+│   └── plans.json
+│
+└── utils/                       # Utility functions
+    ├── prompt_loader.py        # Prompt management
+    ├── json_parser.py          # JSON utilities
+    ├── system_monitor.py       # Monitoring
+    └── prompt_loader.py        # Prompt loading
 ```
 
 ---
 
-# 🧪 Demo Commands
+## 🔧 Technology Stack
 
-```
-Open Chrome
-Search AI news
-Shutdown my PC
-Organize my downloads
-Kill Chrome
-Clean temp files
-```
-
----
-
-# 🏆 Hackathon Value Proposition
-
-### Innovation
-
-AI controlling OS via modular agent architecture.
-
-### Technical Depth
-
-* Prompt engineering
-* Tool routing
-* System automation
-* Agent planning roadmap
-
-### Real-World Use
-
-* Productivity automation
-* System optimization
-* Developer environment setup
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| **LLM** | Google Gemini, Groq | Natural language understanding & generation |
+| **Vision** | EasyOCR, Pillow | Image analysis and OCR |
+| **System Monitoring** | psutil | CPU, RAM, Disk metrics |
+| **Screenshots** | mss | Screen capture |
+| **GUI** | CustomTkinter | Desktop interface (optional) |
+| **HTTP** | requests | Web operations |
+| **Config** | python-dotenv | Environment management |
 
 ---
 
-# 🔮 Future Scope
+## 📈 Performance Metrics
 
-AURA can evolve into:
+Monitor JARVIS performance:
 
-* Personal desktop co-pilot
-* Developer automation agent
-* IT support AI
-* Accessibility assistant
+```python
+# Execution statistics
+stats = agent.get_execution_stats()
+print(f"Success Rate: {stats['success_rate']:.1f}%")
+print(f"Avg Task Time: {stats['avg_execution_time']}s")
+print(f"Total Executions: {stats['total_executions']}")
 
----
-
-# 📌 Project Status
-
-```
-Phase 1 → Complete
-Phase 2 → Complete
-Phase 3 → Implemented
-Phase 4 → In Progress
+# Agent status
+status = agent.get_agent_status()
+print(f"Memory Entries: {status['memory_entries']}")
+print(f"History Count: {status['execution_history_count']}")
 ```
 
 ---
 
-# 🧠 Inspiration
+## 🎨 Enhancement Areas
 
-Inspired by the concept of a modular AI operating layer — bridging LLM intelligence with real system control.
+Potential improvements and future phases:
+
+- [ ] Multi-language support
+- [ ] Real-time collaboration features
+- [ ] Custom automation workflow builder
+- [ ] Advanced scheduling capabilities
+- [ ] Database integration for complex queries
+- [ ] Mobile app companion
+- [ ] Cloud sync for cross-device support
+- [ ] Advanced ML-based pattern recognition
+- [ ] Plugin system for third-party integrations
 
 ---
 
-# 🏁 Closing Statement
+## 📝 License
 
-AURA is not just an assistant.
+This project is provided as-is for educational and personal use. Ensure compliance with your operating system's terms of service when using automation features.
 
-It’s the foundation of an **AI-driven operating experience** where computers execute intent, not clicks.
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit issues, feature requests, and pull requests.
+
+---
+
+## 📞 Support
+
+For issues, questions, or feature requests, please open an issue on the project repository.
+
+---
+
+**Built with ❤️ as an advanced AI desktop automation framework.**
+
+Last Updated: February 2026
