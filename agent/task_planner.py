@@ -40,21 +40,45 @@ You are a task decomposition expert for an AI OS agent. Your job is to break dow
 
 CRITICAL RULES FOR PARAMETER EXTRACTION:
 1. Each task must have ALL required parameters for its action
-2. For set_default_app, ALWAYS include BOTH: app_type (infer from context like "browser", "mail", "text_editor") AND app_name (chrome, firefox, outlook, etc.)
+2. For set_default_app, ALWAYS include BOTH: app_type AND app_name
 3. For file operations, ALWAYS include folder_name as parameter
 4. For brightness, ALWAYS include brightness value (0-100)
-5. If a parameter is missing, the task WILL FAIL - include intelligent defaults based on user context
+5. For installer tasks, ALWAYS include app_name as parameter
+6. If a parameter is missing, the task WILL FAIL - include intelligent defaults based on user context
+7. CRITICAL: For installing software, use ONE task with intent:installer, action:install_software.
+   NEVER use separate "download" + "execute_installer" tasks — install_software handles EVERYTHING internally via winget.
+   execute_installer is ONLY for when you already know an exact local file path.
+
+INTENT → ACTION REFERENCE (use EXACTLY these names):
+
+intent: open_app          → no sub-action needed; params: app_name
+intent: web_search        → no sub-action needed; params: query
+intent: system_control    → actions: sleep, lock, kill_process, clean_temp, empty_recycle_bin
+intent: diagnostics       → actions: check_cpu, check_ram, check_disk, full_health_check
+intent: disk_analysis     → actions: analyze_usage, find_large_folders, check_alerts
+intent: maintenance       → actions: scan_temp, scan_old_files, scan_cleanup, clean_temp_files, clean_old_files
+intent: health_check      → no sub-action needed
+intent: troubleshoot_screen → no sub-action needed
+intent: vision_analysis   → actions: analyze_screen, detect_ui, read_text
+intent: personalization   → actions: toggle_dark_mode, set_accent_color, set_brightness, set_wallpaper, apply_preset, save_profile, load_profile, manage_startup, set_default_app
+intent: file_management   → actions: organize_by_type, find_duplicates, remove_duplicates, find_large_files, analyze_folder, get_report
+intent: system_config     → no sub-action needed
+intent: installer         → actions: install_software, download_wallpaper, download_software, execute_installer, cache_info, clear_cache
+  examples:
+    "install discord"  → intent:installer, action:install_software, params:{{"app_name":"Discord"}}
+    "download vlc"     → intent:installer, action:install_software, params:{{"app_name":"VLC"}}
+    "install python"   → intent:installer, action:install_software, params:{{"app_name":"Python"}}
+    "get me a wallpaper" → intent:installer, action:download_wallpaper, params:{{"query":"landscape"}}
 
 IMPORTANT RULES:
-1. Each task must have a single, clear action from the AVAILABLE INTENTS AND ACTIONS above
+1. Each task must have a single, clear action from the list above
 2. Tasks should be in logical order with dependencies marked
-3. Include realistic parameters for each task - DO NOT omit required parameters!
-4. Mark which tasks need user confirmation (especially for delete/destructive operations)
-5. Return ONLY valid JSON, no explanations
+3. Mark which tasks need user confirmation (especially for install/delete/destructive operations)
+4. Return ONLY valid JSON, no explanations
 
 User Goal: {goal}
 
-Return a JSON array of tasks with this structure:
+Return a JSON array of tasks:
 [
   {{
     "order": 1,
@@ -68,10 +92,6 @@ Return a JSON array of tasks with this structure:
     "dry_run": false
   }}
 ]
-
-Valid intents: open_app, web_search, system_control, diagnostics, disk_analysis, maintenance, health_check, troubleshoot_screen, vision_analysis, personalization, file_management, system_config
-
-Focus on being practical and efficient. If a task is too complex, break it into smaller tasks.
 """
     
     def plan_goal(self, user_input: str, goal: str) -> TaskPlan:

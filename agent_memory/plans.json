@@ -1,0 +1,82 @@
+{
+  "59d847c0": {
+    "id": "59d847c0",
+    "user_input": "install discord",
+    "goal": "install Discord application",
+    "tasks": [
+      {
+        "id": "267bbdbd-61b",
+        "intent": "installer",
+        "action": "install_software",
+        "parameters": {
+          "app_name": "Discord"
+        },
+        "description": "Installs the Discord application",
+        "status": "completed",
+        "priority": 2,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": {
+          "status": "executed",
+          "message": "Command executed successfully"
+        },
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-24T03:09:38.141662",
+        "started_at": "2026-02-24T03:09:39.935854",
+        "completed_at": "2026-02-24T03:10:02.360049"
+      }
+    ],
+    "created_at": "2026-02-24T03:09:37.360992"
+  },
+  "12555d7d": {
+    "id": "12555d7d",
+    "user_input": "exit",
+    "goal": "exit the current application or system",
+    "tasks": [
+      {
+        "id": "f4cebb5b-e24",
+        "intent": "system_control",
+        "action": "lock",
+        "parameters": {},
+        "description": "Lock the system before exiting",
+        "status": "pending",
+        "priority": 2,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-24T03:10:29.162701",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "21324650-187",
+        "intent": "system_control",
+        "action": "sleep",
+        "parameters": {},
+        "description": "Put the system to sleep",
+        "status": "pending",
+        "priority": 2,
+        "dependencies": [
+          "f4cebb5b-e24"
+        ],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-24T03:10:29.162726",
+        "started_at": null,
+        "completed_at": null
+      }
+    ],
+    "created_at": "2026-02-24T03:10:28.635720"
+  }
+}

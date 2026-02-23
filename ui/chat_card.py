@@ -528,7 +528,17 @@ class ChatCard(QDialog):
             self.log_activity("⚠️  Empty command")
             return
         
+        # ── Intercept exit/quit — close the app, don't send to the agent ──
+        EXIT_WORDS = {"exit", "quit", "bye", "close", "goodbye"}
+        if command.strip().lower() in EXIT_WORDS:
+            self.output_text.append("\n👋 Closing JARVIS...")
+            self.input_box.clear()
+            from PyQt5.QtWidgets import QApplication
+            QApplication.instance().quit()
+            return
+        
         # Check if command needs confirmation
+
         if self.needs_confirmation(command):
             if not self.show_confirmation_dialog(
                 "⚠️  Destructive Operation", 
