@@ -40,8 +40,7 @@ EXAMPLES:
 - "make outlook default mail" → {"intent": "personalization", "action": "set_default_app", "parameters": {"app_type": "mail", "app_name": "outlook"}}
 - "check cpu" → {"intent": "diagnostics", "action": "check_cpu", "parameters": {}}
 - "complete system health" → {"intent": "diagnostics", "action": "complete_system_health", "parameters": {}}
-- "shutdown" → {"intent": "system_control", "action": "shutdown", "parameters": {}}
-- "restart" → {"intent": "system_control", "action": "restart", "parameters": {}}
+# ⚠️  Shutdown and restart functionality disabled for user safety
 - "troubleshoot screen" → {"intent": "troubleshoot_screen", "action": "", "parameters": {}}
 - "analyze disk usage" → {"intent": "disk_analysis", "action": "analyze_usage", "parameters": {"path": "C:\\"}}
 - "kill chrome" → {"intent": "system_control", "action": "kill_process", "parameters": {"process_name": "chrome"}}

@@ -3,8 +3,6 @@ import os
 from tools.app_tools import open_app
 from tools.web_tools import search_web
 from tools.system_tools import (
-    shutdown_pc,
-    restart_pc,
     sleep_pc,
     lock_pc,
     kill_process,
@@ -69,7 +67,7 @@ VALID_INTENTS = {
     },
     "system_control": {
         "actions": [
-            "shutdown", "restart", "sleep", "lock",
+            "sleep", "lock",
             "kill_process", "clean_temp", "empty_recycle_bin"
         ],
         "description": "Control system operations"
@@ -244,15 +242,7 @@ def route_intent(command: dict):
 
 def _handle_system_control(action: str, params: dict):
     """Handle system control operations."""
-    if action == "shutdown":
-        print("⏹️  Shutting down system...")
-        _safe_execute(shutdown_pc)
-    
-    elif action == "restart":
-        print("🔄 Restarting system...")
-        _safe_execute(restart_pc)
-    
-    elif action == "sleep":
+    if action == "sleep":
         print("😴 Putting system to sleep...")
         _safe_execute(sleep_pc)
     
