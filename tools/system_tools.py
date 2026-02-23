@@ -5,14 +5,8 @@ import shutil
 
 
 # ---------------- POWER ---------------- #
-
-def shutdown_pc():
-    os.system("shutdown /s /t 1")
-
-
-def restart_pc():
-    os.system("shutdown /r /t 1")
-
+# ⚠️  SHUTDOWN AND RESTART FUNCTIONALITY PERMANENTLY DISABLED FOR SAFETY
+# These functions have been removed to prevent accidental system restarts
 
 def sleep_pc():
     os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")

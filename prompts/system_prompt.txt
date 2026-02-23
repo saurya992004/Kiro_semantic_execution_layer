@@ -26,9 +26,9 @@ AVAILABLE INTENTS AND ACTIONS (MUST USE THESE EXACTLY):
    - NOTE: Only use for information searches, NOT for system settings!
 
 4. system_control
-   - Actions: shutdown, restart, sleep, lock, kill_process, clean_temp, empty_recycle_bin
+   - Actions: sleep, lock, kill_process, clean_temp, empty_recycle_bin
    - Parameters: process_name (for kill_process action)
-   - Examples: "shutdown system", "restart pc", "sleep", "kill chrome", "clean temp files"
+   - Examples: "sleep", "lock", "kill chrome", "clean temp files"
 
 5. diagnostics
    - Actions: check_cpu, check_ram, check_disk, complete_system_health, full_health_check
