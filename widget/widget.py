@@ -412,32 +412,31 @@ class FloatingBotWidget(QWidget):
         painter.drawEllipse(int(cx - w/2), int(cy - h/2), int(w), int(h))
             
     def mousePressEvent(self, event):
-        """Handle mouse press - start drag"""
+        """Handle mouse press - start drag or click"""
         if event.button() == Qt.LeftButton:
             self.drag_position = event.globalPos() - self.frameGeometry().topLeft()
-            self.is_dragging = True
+            self._press_global_pos = event.globalPos()
+            self.is_dragging = False
             self.setCursor(Qt.ClosedHandCursor)
     
     def mouseDoubleClickEvent(self, event):
-        """Handle double-click - open chat interface"""
-        print("🎯 Widget double-clicked!")
-        if event.button() == Qt.LeftButton:
-            self.clicked.emit()
-            print("📢 Emitted clicked signal")
-            if self.on_click_callback:
-                self.on_click_callback()
+        """Double-click is treated the same as single-click (handled in mouseReleaseEvent)"""
+        pass
 
     def mouseMoveEvent(self, event):
         """Handle mouse move - drag the widget"""
-        if self.is_dragging and self.drag_position:
-            self.move(event.globalPos() - self.drag_position)
-        else:
-            # update cursor-following behavior
-            try:
-                self.last_cursor_pos = event.pos()
-                self.update()
-            except Exception:
-                pass
+        if self.drag_position:
+            delta = event.globalPos() - self._press_global_pos
+            if not self.is_dragging and (abs(delta.x()) > 5 or abs(delta.y()) > 5):
+                self.is_dragging = True
+            if self.is_dragging:
+                self.move(event.globalPos() - self.drag_position)
+        # update cursor-following behavior regardless
+        try:
+            self.last_cursor_pos = event.pos()
+            self.update()
+        except Exception:
+            pass
             
     def enterEvent(self, event):
         """Hover start - make bot smile"""
@@ -451,9 +450,16 @@ class FloatingBotWidget(QWidget):
     
             
     def mouseReleaseEvent(self, event):
-        """Handle mouse release"""
+        """Handle mouse release - fire click if we didn't drag"""
         if event.button() == Qt.LeftButton:
+            if not self.is_dragging:
+                # It was a real click (not a drag) — open the chat card
+                print("🎯 Widget clicked!")
+                self.clicked.emit()
+                if self.on_click_callback:
+                    self.on_click_callback()
             self.is_dragging = False
+            self.drag_position = None
             self.setCursor(Qt.OpenHandCursor)
                     
     def closeEvent(self, event):

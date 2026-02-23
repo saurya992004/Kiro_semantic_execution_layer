@@ -12,6 +12,8 @@ import logging
 from agent.master_agent import MasterAgent
 from tools.help_commands import print_help
 
+logger = logging.getLogger(__name__)
+
 
 def display_welcome(voice_mode: bool = False):
     """Display welcome message."""
@@ -202,7 +204,6 @@ def main():
 
 
 if __name__ == "__main__":
-    import logging
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -211,6 +212,5 @@ if __name__ == "__main__":
             logging.StreamHandler()
         ]
     )
-    logger = logging.getLogger(__name__)
 
     main()

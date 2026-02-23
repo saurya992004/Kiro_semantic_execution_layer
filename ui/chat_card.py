@@ -7,6 +7,8 @@ Displays conversation with command output, history, and logging.
 import sys
 import json
 import logging
+import builtins
+import threading
 from datetime import datetime
 from typing import Optional, Callable
 from io import StringIO
@@ -77,38 +79,106 @@ class VoiceListenerThread(QThread):
             self.listening_stopped.emit()
 
 
+class RealTimeWriter:
+    """
+    Replaces sys.stdout during command execution.
+    Every write() immediately emits the text as a signal so the GUI
+    can display it before the command finishes (real-time streaming).
+    Also maintains a rolling list of recent lines for confirmation context.
+    """
+    def __init__(self, signal, original_stdout, line_tracker=None):
+        self.signal = signal
+        self.original_stdout = original_stdout
+        self._buffer = ""
+        self._line_tracker = line_tracker  # shared list owned by the thread
+
+    def write(self, text: str):
+        if text:
+            self.original_stdout.write(text)   # keep terminal output too
+            self._buffer += text
+            while '\n' in self._buffer:
+                line, self._buffer = self._buffer.split('\n', 1)
+                if line:
+                    # Track for confirmation context
+                    if self._line_tracker is not None:
+                        self._line_tracker.append(line)
+                        if len(self._line_tracker) > 50:
+                            self._line_tracker.pop(0)
+                    self.signal.emit(line)
+
+    def flush(self):
+        # Flush any remaining partial line
+        if self._buffer.strip():
+            self.signal.emit(self._buffer)
+            self._buffer = ""
+        self.original_stdout.flush()
+
+    def isatty(self):
+        return False
+
+
 class CommandExecutionThread(QThread):
-    """Background thread for command execution with stdout capture"""
-    output_received = pyqtSignal(str)
+    """Background thread for command execution with real-time output and GUI confirmation"""
+    output_received = pyqtSignal(str)      # emitted per-line in real time
     execution_completed = pyqtSignal(dict)
     execution_failed = pyqtSignal(str)
-    
+    # Emitted when execution_engine needs a y/n confirmation.
+    # Carries the FULL context prompt so the dialog is informative.
+    confirmation_requested = pyqtSignal(str)
+
     def __init__(self, agent, command: str):
         super().__init__()
         self.agent = agent
         self.command = command
-    
+        # Threading primitives for main-thread confirmation round-trip
+        self._confirm_event = threading.Event()
+        self._confirm_result = False
+        self._last_output_lines = []   # collect recent lines for context
+
+    def _gui_input(self, prompt: str = "") -> str:
+        """
+        Replacement for builtins.input() that runs inside the worker thread.
+        Emits a signal (with recent output context) so the main thread can
+        show a dialog, then blocks until the main thread sets _confirm_event.
+        """
+        self._confirm_event.clear()
+        self._confirm_result = False
+        # Build a rich context message: last few output lines + the prompt
+        context_lines = self._last_output_lines[-8:]  # last 8 lines of output
+        context = '\n'.join(context_lines)
+        full_prompt = f"{context}\n\n{prompt}".strip() if context else str(prompt)
+        self.confirmation_requested.emit(full_prompt)
+        # Block the worker thread until the main thread answers
+        self._confirm_event.wait(timeout=120)  # 2-minute safety timeout
+        return 'y' if self._confirm_result else 'n'
+
     def run(self):
+        old_stdout = sys.stdout
+        old_input = builtins.input
+
+        # Walk the stdout chain to find the real console stdout.
+        # sys.stdout may be a StdoutRedirector (GUI wrapper) — calling its
+        # write() from a background thread would crash Qt. We must only use
+        # the underlying real file object for terminal echo.
+        console_stdout = old_stdout
+        while hasattr(console_stdout, 'original_stdout'):
+            console_stdout = console_stdout.original_stdout
+
+        # RealTimeWriter emits signals (thread-safe) for GUI and echoes to
+        # the real console stdout only (no GUI calls from this thread).
+        writer = RealTimeWriter(self.output_received, console_stdout,
+                                line_tracker=self._last_output_lines)
+        sys.stdout = writer
+        builtins.input = self._gui_input
         try:
-            # Capture stdout during execution
-            old_stdout = sys.stdout
-            sys.stdout = StringIO()
-            
-            try:
-                # Execute command with auto_confirm=True
-                result = self.agent.process_command(self.command, auto_confirm=True)
-                
-                # Get captured output
-                output = sys.stdout.getvalue()
-                if output:
-                    self.output_received.emit(output)
-                
-                self.execution_completed.emit(result)
-            finally:
-                # Restore stdout
-                sys.stdout = old_stdout
+            result = self.agent.process_command(self.command, auto_confirm=False)
+            writer.flush()  # flush any trailing partial line
+            self.execution_completed.emit(result)
         except Exception as e:
             self.execution_failed.emit(str(e))
+        finally:
+            sys.stdout = old_stdout
+            builtins.input = old_input
 
 
 class ChatCard(QDialog):
@@ -213,8 +283,9 @@ class ChatCard(QDialog):
             }
         """)
         
-        result = msg_box.exec_()
-        return result == QMessageBox.AcceptRole
+        msg_box.exec_()
+        # Bug 4 fix: compare the clicked button object, not the return int
+        return msg_box.clickedButton() == yes_button
         
     def setup_ui(self):
         """Setup the UI components"""
@@ -485,41 +556,58 @@ class ChatCard(QDialog):
         self.input_box.clear()
         self.input_box.setFocus()
         
-        # Execute in background thread with auto_confirm=True
-        # (we handle confirmations via GUI dialogs above)
+        # Execute in background thread
+        # Confirmations from execution_engine are routed to the GUI via signal/event
         self.execution_thread = CommandExecutionThread(self.agent, command)
         self.execution_thread.output_received.connect(self.on_execution_output)
         self.execution_thread.execution_completed.connect(self.on_execution_complete)
         self.execution_thread.execution_failed.connect(self.on_execution_failed)
+        self.execution_thread.confirmation_requested.connect(self.on_confirmation_requested)
         self.execution_thread.start()
     
-    def on_execution_output(self, output: str):
-        """Display output from execution"""
-        for line in output.split('\n'):
-            if line.strip():
-                self.output_text.append(line)
+    def on_confirmation_requested(self, prompt: str):
+        """
+        Slot called in the main thread when execution_engine needs a y/n answer.
+        Shows the confirmation dialog, then unblocks the worker thread.
+        """
+        # Show the ✓/✗ dialog on the main thread
+        confirmed = self.show_confirmation_dialog(
+            "⚠️  Task Confirmation Required",
+            prompt if prompt else "This task requires your confirmation. Proceed?"
+        )
+        # Feed the answer back to the worker thread
+        thread = self.execution_thread
+        if thread:
+            thread._confirm_result = confirmed
+            thread._confirm_event.set()
+        
+        status = "✓ Confirmed" if confirmed else "✗ Declined"
+        self.log_activity(f"🔔 Confirmation dialog: {status}")
+        if not confirmed:
+            self.output_text.append("❌ Task cancelled by user\n")
+
+    def on_execution_output(self, line: str):
+        """Display a single output line from execution in real-time"""
+        self.output_text.append(line)
+        # Auto-scroll to bottom
+        scrollbar = self.output_text.verticalScrollBar()
+        scrollbar.setValue(scrollbar.maximum())
     
     def on_execution_complete(self, result: dict):
         """Handle command execution completion"""
         try:
-            # The detailed output has already been captured and displayed via stdout redirection
-            # Just add the final summary
             if result.get("status") == "error":
                 self.output_text.append(f"\n❌ Error: {result.get('message', 'Unknown error')}\n")
                 self.log_activity(f"❌ Execution failed: {result.get('message')}")
             else:
-                # Output has already been displayed during execution
-                # Just log completion
-                summary = result.get("summary", {})
-                self.output_text.append(f"\n✅ Command execution completed!")
-                self.output_text.append(f"Status: {summary.get('completed', 0)}/{summary.get('total_tasks', 0)} tasks completed\n")
-                self.log_activity(f"✅ Command executed successfully")
-                self.output_text.append(f"Tasks: {summary.get('completed', 0)}/{summary.get('total_tasks', 0)} completed")
-                
-                if summary.get('failed', 0) > 0:
-                    self.output_text.append(f"⚠️  {summary.get('failed', 0)} tasks failed")
-                
-                self.log_activity(f"✅ Command executed: {summary.get('completed', 0)}/{summary.get('total_tasks', 0)} tasks")
+                summary = result.get("summary", result.get("execution_result", {}))
+                completed = summary.get('completed', 0)
+                total = summary.get('total_tasks', 0)
+                failed = summary.get('failed', 0)
+                self.output_text.append(f"\n{'─'*60}")
+                self.output_text.append(f"✅ Done — {completed}/{total} tasks completed" +
+                                        (f"  ⚠️ {failed} failed" if failed else ""))
+                self.log_activity(f"✅ Done: {completed}/{total} tasks")
         except Exception as e:
             self.output_text.append(f"❌ Error processing result: {str(e)}")
             self.log_activity(f"❌ Error: {str(e)}")
