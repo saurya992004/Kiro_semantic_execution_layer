@@ -1,4 +1,5 @@
 import logging
+import os
 from tools.app_tools import open_app
 from tools.web_tools import search_web
 from tools.system_tools import (
@@ -372,28 +373,47 @@ def _handle_maintenance(action: str, params: dict):
     
     elif action == "scan_old_files":
         folder = params.get("folder", "test_cleanup/old_files")
-        days = params.get("days", 30)
+        days = params.get("days", 1)  # 1 day for demo
         result = _safe_execute(clean_old_files, folder, days)
         if "error" not in result:
             print(f"\n🗑️  OLD FILES SCAN")
-            print(f"Target: {result.get('target_folder')}")
-            print(f"Files older than {result.get('days_threshold', 0)} days: {result.get('file_count', 0)}")
+            print(f"Scanning: {result.get('target_folder')}")
+            threshold = result.get('days_threshold', 0)
+            count = result.get('file_count', 0)
+            print(f"Files older than {threshold} day(s): {count}")
             print(f"Total size: {result.get('total_size_mb', 0):.2f}MB")
             if result.get('files_to_delete'):
-                print("\nFiles to delete:")
+                print("\n📋 Files found:")
                 for file in result.get('files_to_delete', [])[:10]:
                     days_old = file.get('days_old', 0)
                     size = file.get('size_mb', 0)
-                    print(f"  {file.get('path')} ({days_old} days old, {size:.2f}MB)")
+                    modified = file.get('modified_date', 'unknown')
+                    print(f"  • {os.path.basename(file.get('path'))} ({days_old}d old | {size:.2f}MB | {modified})")
+                if count > 10:
+                    print(f"  ... and {count - 10} more files")
                 print("\n⚠️  Use 'confirm cleanup' to delete these files")
+            else:
+                print("✅ No old files found")
     
     elif action == "scan_cleanup":
         folder = params.get("folder", "test_cleanup")
         result = _safe_execute(scan_cleanup_files, folder)
         if "error" not in result:
-            print(f"\n🔍 CLEANUP SCAN: {result.get('target_folder')}")
-            print(f"Files found: {result.get('file_count', 0)}")
+            print(f"\n🔍 CLEANUP SCAN")
+            print(f"Scanning: {result.get('target_folder')}")
+            count = result.get('file_count', 0)
+            print(f"Files found: {count}")
             print(f"Total size: {result.get('total_size_mb', 0):.2f}MB")
+            if result.get('files_to_delete'):
+                print("\n📋 Cleanup candidates:")
+                for file in result.get('files_to_delete', [])[:15]:
+                    size = file.get('size_mb', 0)
+                    modified = file.get('modified_date', 'unknown')
+                    print(f"  • {os.path.basename(file.get('path'))} ({size:.2f}MB | {modified})")
+                if count > 15:
+                    print(f"  ... and {count - 15} more files")
+                print(f"\n💾 Total recoverable: {result.get('total_size_mb', 0):.2f}MB")
+                print("⚠️  Use 'confirm cleanup' to delete these files")
     
     else:
         print(f"❌ Unknown maintenance action: {action}")

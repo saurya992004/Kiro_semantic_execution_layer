@@ -1494,5 +1494,414 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-23T14:59:11.469928",
+    "plan_id": "e70c5ae2",
+    "user_input": "speed up my pc",
+    "goal": "improve computer performance",
+    "summary": {
+      "plan_id": "e70c5ae2",
+      "user_input": "speed up my pc",
+      "goal": "improve computer performance",
+      "total_tasks": 8,
+      "completed": 6,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "f19ca125-bd9",
+          "intent": "system_control",
+          "action": "clean_temp",
+          "parameters": {},
+          "description": "Remove temporary files to free up disk space",
+          "status": "skipped",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690667",
+          "started_at": null,
+          "completed_at": "2026-02-23T14:56:08.795255"
+        },
+        {
+          "id": "020bfff1-8d1",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:\\"
+          },
+          "description": "Analyze disk usage to identify large files and folders",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690709",
+          "started_at": "2026-02-23T14:56:08.795467",
+          "completed_at": "2026-02-23T14:56:28.310451"
+        },
+        {
+          "id": "99b5b268-bdf",
+          "intent": "maintenance",
+          "action": "scan_old_files",
+          "parameters": {
+            "folder": "C:\\",
+            "days": 30
+          },
+          "description": "Scan for old files that can be deleted",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690726",
+          "started_at": "2026-02-23T14:58:35.674373",
+          "completed_at": "2026-02-23T14:58:35.674414"
+        },
+        {
+          "id": "c9fa08d3-dd1",
+          "intent": "maintenance",
+          "action": "scan_cleanup",
+          "parameters": {
+            "folder": "C:\\"
+          },
+          "description": "Scan for files that can be cleaned up",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690736",
+          "started_at": "2026-02-23T14:58:58.129224",
+          "completed_at": "2026-02-23T14:58:58.129262"
+        },
+        {
+          "id": "8d74f9ac-3d7",
+          "intent": "system_control",
+          "action": "kill_process",
+          "parameters": {
+            "process_name": "unnecessary processes"
+          },
+          "description": "Kill unnecessary processes to free up system resources",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690780",
+          "started_at": null,
+          "completed_at": "2026-02-23T14:59:06.535455"
+        },
+        {
+          "id": "0f03af3b-286",
+          "intent": "diagnostics",
+          "action": "check_cpu",
+          "parameters": {},
+          "description": "Check CPU usage to identify performance bottlenecks",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690796",
+          "started_at": "2026-02-23T14:59:06.535653",
+          "completed_at": "2026-02-23T14:59:08.538280"
+        },
+        {
+          "id": "1ed767fa-ca3",
+          "intent": "diagnostics",
+          "action": "check_ram",
+          "parameters": {},
+          "description": "Check RAM usage to identify performance bottlenecks",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690808",
+          "started_at": "2026-02-23T14:59:08.538689",
+          "completed_at": "2026-02-23T14:59:08.539211"
+        },
+        {
+          "id": "36de075b-830",
+          "intent": "system_config",
+          "action": "",
+          "parameters": {},
+          "description": "Check system configuration to identify potential performance issues",
+          "status": "completed",
+          "priority": 4,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T14:55:30.690818",
+          "started_at": "2026-02-23T14:59:08.539570",
+          "completed_at": "2026-02-23T14:59:11.469330"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-23T15:09:37.556485",
+    "plan_id": "d4ccc8f3",
+    "user_input": "speed up my pc",
+    "goal": "improve computer performance",
+    "summary": {
+      "plan_id": "d4ccc8f3",
+      "user_input": "speed up my pc",
+      "goal": "improve computer performance",
+      "total_tasks": 8,
+      "completed": 4,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "2299ede6-6e4",
+          "intent": "diagnostics",
+          "action": "complete_system_health",
+          "parameters": {},
+          "description": "Run a complete system health check to identify potential issues",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911448",
+          "started_at": "2026-02-23T15:08:15.914872",
+          "completed_at": "2026-02-23T15:08:19.920917"
+        },
+        {
+          "id": "4bfc8a78-4f4",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:\\"
+          },
+          "description": "Analyze disk usage to identify large files and folders",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "2299ede6-6e4"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911473",
+          "started_at": "2026-02-23T15:08:19.921205",
+          "completed_at": "2026-02-23T15:08:33.801958"
+        },
+        {
+          "id": "5a8731ce-bab",
+          "intent": "disk_analysis",
+          "action": "find_large_folders",
+          "parameters": {
+            "path": "C:\\",
+            "threshold_gb": 1.0
+          },
+          "description": "Find large folders on the disk",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "4bfc8a78-4f4"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911487",
+          "started_at": "2026-02-23T15:08:33.802137",
+          "completed_at": "2026-02-23T15:08:47.128073"
+        },
+        {
+          "id": "b90d56f1-3d5",
+          "intent": "file_management",
+          "action": "remove_duplicates",
+          "parameters": {
+            "folder_name": "Downloads",
+            "confirm": true
+          },
+          "description": "Remove duplicate files in the Downloads folder",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "5a8731ce-bab"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911496",
+          "started_at": null,
+          "completed_at": "2026-02-23T15:08:57.273872"
+        },
+        {
+          "id": "89a4cd7a-d83",
+          "intent": "file_management",
+          "action": "find_large_files",
+          "parameters": {
+            "folder_name": "Documents",
+            "min_size_mb": 100
+          },
+          "description": "Find large files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [
+            "b90d56f1-3d5"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911507",
+          "started_at": "2026-02-23T15:08:57.274080",
+          "completed_at": "2026-02-23T15:09:00.236336"
+        },
+        {
+          "id": "a73da813-2b5",
+          "intent": "maintenance",
+          "action": "scan_cleanup",
+          "parameters": {
+            "folder": "Temp",
+            "days": 30
+          },
+          "description": "Scan and clean up temporary files older than 30 days",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "89a4cd7a-d83"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911516",
+          "started_at": null,
+          "completed_at": "2026-02-23T15:09:28.189974"
+        },
+        {
+          "id": "cd349cbb-96b",
+          "intent": "system_control",
+          "action": "clean_temp",
+          "parameters": {},
+          "description": "Clean temporary files and system cache",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "a73da813-2b5"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911524",
+          "started_at": null,
+          "completed_at": "2026-02-23T15:09:34.037277"
+        },
+        {
+          "id": "e6f4a792-bf7",
+          "intent": "system_control",
+          "action": "empty_recycle_bin",
+          "parameters": {},
+          "description": "Empty the recycle bin",
+          "status": "skipped",
+          "priority": 4,
+          "dependencies": [
+            "cd349cbb-96b"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-02-23T15:08:15.911532",
+          "started_at": null,
+          "completed_at": "2026-02-23T15:09:37.555928"
+        }
+      ]
+    }
   }
 ]

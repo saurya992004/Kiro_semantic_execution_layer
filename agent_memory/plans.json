@@ -1,76 +1,15 @@
 {
-  "531a4a53": {
-    "id": "531a4a53",
-    "user_input": "download coremen book of algorithms",
-    "goal": "download a book about algorithms",
+  "d4ccc8f3": {
+    "id": "d4ccc8f3",
+    "user_input": "speed up my pc",
+    "goal": "improve computer performance",
     "tasks": [
       {
-        "id": "6f1d21f5-ddc",
-        "intent": "web_search",
-        "action": "",
-        "parameters": {
-          "query": "download algorithms book"
-        },
-        "description": "Search for a book about algorithms online",
-        "status": "completed",
-        "priority": 2,
-        "dependencies": [],
-        "dry_run": false,
-        "requires_confirmation": false,
-        "result": {
-          "status": "executed",
-          "message": "Command executed successfully"
-        },
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T00:43:04.197656",
-        "started_at": "2026-02-23T00:43:04.199747",
-        "completed_at": "2026-02-23T00:43:04.276805"
-      },
-      {
-        "id": "f47ba36b-24c",
-        "intent": "installer",
-        "action": "download_resource",
-        "parameters": {
-          "query": "algorithms book pdf",
-          "resource_type": "ebook"
-        },
-        "description": "Download the algorithms book",
-        "status": "completed",
-        "priority": 2,
-        "dependencies": [
-          "6f1d21f5-ddc"
-        ],
-        "dry_run": false,
-        "requires_confirmation": true,
-        "result": {
-          "status": "executed",
-          "message": "Command executed successfully"
-        },
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T00:43:04.197677",
-        "started_at": "2026-02-23T00:43:19.753851",
-        "completed_at": "2026-02-23T00:43:20.982754"
-      }
-    ],
-    "created_at": "2026-02-23T00:43:03.072526"
-  },
-  "eeca5233": {
-    "id": "eeca5233",
-    "user_input": "download vlc",
-    "goal": "download VLC media player",
-    "tasks": [
-      {
-        "id": "91ce9121-e27",
-        "intent": "installer",
-        "action": "download_software",
-        "parameters": {
-          "query": "VLC media player"
-        },
-        "description": "Download VLC media player",
+        "id": "2299ede6-6e4",
+        "intent": "diagnostics",
+        "action": "complete_system_health",
+        "parameters": {},
+        "description": "Run a complete system health check to identify potential issues",
         "status": "pending",
         "priority": 2,
         "dependencies": [],
@@ -80,22 +19,70 @@
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-23T00:43:39.618505",
+        "created_at": "2026-02-23T15:08:15.911448",
         "started_at": null,
         "completed_at": null
       },
       {
-        "id": "5a6f689a-b63",
-        "intent": "installer",
-        "action": "execute_installer",
+        "id": "4bfc8a78-4f4",
+        "intent": "disk_analysis",
+        "action": "analyze_usage",
         "parameters": {
-          "installer_path": "Downloads/Installers/VLC media player.exe"
+          "path": "C:\\"
         },
-        "description": "Install VLC media player",
+        "description": "Analyze disk usage to identify large files and folders",
         "status": "pending",
-        "priority": 2,
+        "priority": 3,
         "dependencies": [
-          "91ce9121-e27"
+          "2299ede6-6e4"
+        ],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911473",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "5a8731ce-bab",
+        "intent": "disk_analysis",
+        "action": "find_large_folders",
+        "parameters": {
+          "path": "C:\\",
+          "threshold_gb": 1.0
+        },
+        "description": "Find large folders on the disk",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [
+          "4bfc8a78-4f4"
+        ],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911487",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "b90d56f1-3d5",
+        "intent": "file_management",
+        "action": "remove_duplicates",
+        "parameters": {
+          "folder_name": "Downloads",
+          "confirm": true
+        },
+        "description": "Remove duplicate files in the Downloads folder",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [
+          "5a8731ce-bab"
         ],
         "dry_run": false,
         "requires_confirmation": true,
@@ -103,11 +90,101 @@
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-23T00:43:39.618526",
+        "created_at": "2026-02-23T15:08:15.911496",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "89a4cd7a-d83",
+        "intent": "file_management",
+        "action": "find_large_files",
+        "parameters": {
+          "folder_name": "Documents",
+          "min_size_mb": 100
+        },
+        "description": "Find large files in the Documents folder",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [
+          "b90d56f1-3d5"
+        ],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911507",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "a73da813-2b5",
+        "intent": "maintenance",
+        "action": "scan_cleanup",
+        "parameters": {
+          "folder": "Temp",
+          "days": 30
+        },
+        "description": "Scan and clean up temporary files older than 30 days",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [
+          "89a4cd7a-d83"
+        ],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911516",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "cd349cbb-96b",
+        "intent": "system_control",
+        "action": "clean_temp",
+        "parameters": {},
+        "description": "Clean temporary files and system cache",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [
+          "a73da813-2b5"
+        ],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911524",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "e6f4a792-bf7",
+        "intent": "system_control",
+        "action": "empty_recycle_bin",
+        "parameters": {},
+        "description": "Empty the recycle bin",
+        "status": "pending",
+        "priority": 4,
+        "dependencies": [
+          "cd349cbb-96b"
+        ],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-23T15:08:15.911532",
         "started_at": null,
         "completed_at": null
       }
     ],
-    "created_at": "2026-02-23T00:43:38.495678"
+    "created_at": "2026-02-23T15:08:14.234502"
   }
 }

@@ -512,14 +512,14 @@ def clean_temp_files() -> dict:
     return scan_cleanup_files(temp_folder)
 
 
-def clean_old_files(folder: str, days_old: int = 30) -> dict:
+def clean_old_files(folder: str, days_old: int = 1) -> dict:
     """
     Scan for files older than N days (test folder only).
     Returns scan results, does NOT delete.
     
     Args:
         folder: Folder to scan (must be in test_cleanup)
-        days_old: Files older than this many days
+        days_old: Files older than this many days (default: 1 day for demo)
     
     Returns:
         dict: Scan results with old files
