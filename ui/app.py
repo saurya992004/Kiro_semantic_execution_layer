@@ -33,13 +33,14 @@ class JarvisGUIApp:
         
         # Initialize components
         self.agent = MasterAgent()
+        # Always try to init voice listener so the mic button is available.
+        # Failures are caught and surfaced in the card, not at startup.
         self.voice_listener = None
-        if enable_voice:
-            try:
-                self.voice_listener = VoiceListener()
-                logger.info("Voice listener initialized")
-            except Exception as e:
-                logger.warning(f"Could not initialize voice listener: {e}")
+        try:
+            self.voice_listener = VoiceListener()
+            logger.info("Voice listener initialized")
+        except Exception as e:
+            logger.warning(f"Could not initialize voice listener: {e}")
         
         # Create UI
         self.widget = FloatingBotWidget()

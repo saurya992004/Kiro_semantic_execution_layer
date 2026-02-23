@@ -368,7 +368,7 @@ class ChatCard(QDialog):
         self.voice_button.setMaximumWidth(50)
         self.voice_button.setToolTip("Click to start voice input")
         self.voice_button.clicked.connect(self.toggle_voice_input)
-        self.voice_button.setEnabled(self.voice_listener is not None)
+        self.voice_button.setEnabled(True)  # always enabled; errors shown in output
         self.voice_button.setStyleSheet("""
             QPushButton {
                 background-color: #44475a;
@@ -619,15 +619,28 @@ class ChatCard(QDialog):
     
     def toggle_voice_input(self):
         """Toggle voice input on/off"""
+        # Lazy-init voice listener if it wasn't initialized at startup
         if not self.voice_listener:
-            self.output_text.append("❌ Voice listener not available\n")
-            return
-        
+            try:
+                from voice.voice_listener import VoiceListener
+                self.voice_listener = VoiceListener()
+                self.output_text.append("🎤 Voice listener initialized\n")
+                self.log_activity("🎤 Voice listener initialized on demand")
+            except ImportError:
+                self.output_text.append(
+                    "❌ Voice not available — install: pip install sounddevice numpy scipy\n"
+                )
+                return
+            except Exception as e:
+                self.output_text.append(f"❌ Could not start voice listener: {e}\n")
+                return
+
         if self.is_listening:
             return  # Already listening
-        
+
         self.is_listening = True
         self.listening_label.setText("🔴 LISTENING...")
+        self.output_text.append("🎤 Listening... speak now, auto-stops on silence\n")
         self.voice_button.setStyleSheet("""
             QPushButton {
                 background-color: #ff6b6b;
@@ -638,9 +651,9 @@ class ChatCard(QDialog):
             }
         """)
         self.voice_button.setEnabled(False)
-        
+
         self.log_activity("🎤 Voice input started")
-        
+
         # Start voice listening in background thread
         self.voice_thread = VoiceListenerThread(self.voice_listener)
         self.voice_thread.text_received.connect(self.on_voice_text_received)

@@ -1,17 +1,51 @@
 {
-  "d4ccc8f3": {
-    "id": "d4ccc8f3",
-    "user_input": "speed up my pc",
-    "goal": "improve computer performance",
+  "d0cb11f1": {
+    "id": "d0cb11f1",
+    "user_input": "Open notepad",
+    "goal": "launch notepad",
     "tasks": [
       {
-        "id": "2299ede6-6e4",
-        "intent": "diagnostics",
-        "action": "complete_system_health",
-        "parameters": {},
-        "description": "Run a complete system health check to identify potential issues",
-        "status": "pending",
+        "id": "f730938b-664",
+        "intent": "open_app",
+        "action": "",
+        "parameters": {
+          "app_name": "notepad"
+        },
+        "description": "Launch Notepad application",
+        "status": "completed",
         "priority": 2,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": false,
+        "result": {
+          "status": "executed",
+          "message": "Command executed successfully"
+        },
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-02-24T02:16:45.607607",
+        "started_at": "2026-02-24T02:16:45.610081",
+        "completed_at": "2026-02-24T02:16:45.692241"
+      }
+    ],
+    "created_at": "2026-02-24T02:16:45.090503"
+  },
+  "da8285c0": {
+    "id": "da8285c0",
+    "user_input": "set brightness to 100",
+    "goal": "set screen brightness to 100",
+    "tasks": [
+      {
+        "id": "cb1fc03c-1e0",
+        "intent": "personalization",
+        "action": "set_brightness",
+        "parameters": {
+          "brightness": 100
+        },
+        "description": "Set screen brightness to 100",
+        "status": "pending",
+        "priority": 3,
         "dependencies": [],
         "dry_run": false,
         "requires_confirmation": false,
@@ -19,172 +53,11 @@
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911448",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "4bfc8a78-4f4",
-        "intent": "disk_analysis",
-        "action": "analyze_usage",
-        "parameters": {
-          "path": "C:\\"
-        },
-        "description": "Analyze disk usage to identify large files and folders",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "2299ede6-6e4"
-        ],
-        "dry_run": false,
-        "requires_confirmation": false,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911473",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "5a8731ce-bab",
-        "intent": "disk_analysis",
-        "action": "find_large_folders",
-        "parameters": {
-          "path": "C:\\",
-          "threshold_gb": 1.0
-        },
-        "description": "Find large folders on the disk",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "4bfc8a78-4f4"
-        ],
-        "dry_run": false,
-        "requires_confirmation": false,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911487",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "b90d56f1-3d5",
-        "intent": "file_management",
-        "action": "remove_duplicates",
-        "parameters": {
-          "folder_name": "Downloads",
-          "confirm": true
-        },
-        "description": "Remove duplicate files in the Downloads folder",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "5a8731ce-bab"
-        ],
-        "dry_run": false,
-        "requires_confirmation": true,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911496",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "89a4cd7a-d83",
-        "intent": "file_management",
-        "action": "find_large_files",
-        "parameters": {
-          "folder_name": "Documents",
-          "min_size_mb": 100
-        },
-        "description": "Find large files in the Documents folder",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "b90d56f1-3d5"
-        ],
-        "dry_run": false,
-        "requires_confirmation": false,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911507",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "a73da813-2b5",
-        "intent": "maintenance",
-        "action": "scan_cleanup",
-        "parameters": {
-          "folder": "Temp",
-          "days": 30
-        },
-        "description": "Scan and clean up temporary files older than 30 days",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "89a4cd7a-d83"
-        ],
-        "dry_run": false,
-        "requires_confirmation": true,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911516",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "cd349cbb-96b",
-        "intent": "system_control",
-        "action": "clean_temp",
-        "parameters": {},
-        "description": "Clean temporary files and system cache",
-        "status": "pending",
-        "priority": 3,
-        "dependencies": [
-          "a73da813-2b5"
-        ],
-        "dry_run": false,
-        "requires_confirmation": true,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911524",
-        "started_at": null,
-        "completed_at": null
-      },
-      {
-        "id": "e6f4a792-bf7",
-        "intent": "system_control",
-        "action": "empty_recycle_bin",
-        "parameters": {},
-        "description": "Empty the recycle bin",
-        "status": "pending",
-        "priority": 4,
-        "dependencies": [
-          "cd349cbb-96b"
-        ],
-        "dry_run": false,
-        "requires_confirmation": true,
-        "result": null,
-        "error": null,
-        "retry_count": 0,
-        "max_retries": 3,
-        "created_at": "2026-02-23T15:08:15.911532",
+        "created_at": "2026-02-24T02:17:12.419573",
         "started_at": null,
         "completed_at": null
       }
     ],
-    "created_at": "2026-02-23T15:08:14.234502"
+    "created_at": "2026-02-24T02:17:12.016252"
   }
 }
