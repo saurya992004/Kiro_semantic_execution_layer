@@ -91,7 +91,7 @@ def analyze_screen(
     """
     api_key = api_key or os.getenv("GEMINI_API_KEY1")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY1 not set in environment or passed as api_key")
+        raise ValueError("Permission denied")
 
     with open(image_path, "rb") as f:
         image_bytes = f.read()
