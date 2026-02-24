@@ -513,8 +513,8 @@ class ChatCard(QDialog):
             True if confirmation needed, False otherwise
         """
         destructive_keywords = [
-            'delete', 'remove', 'uninstall', 'kill', 
-            'empty', 'clean', 'clear'
+            'delete', 'remove', 'uninstall', 'kill',
+            'empty', 'format', 'wipe'
         ]
         
         command_lower = command.lower()
@@ -536,12 +536,38 @@ class ChatCard(QDialog):
             from PyQt5.QtWidgets import QApplication
             QApplication.instance().quit()
             return
-        
-        # Check if command needs confirmation
 
+        # ── Intercept help — show built-in command reference, skip LLM ──
+        HELP_WORDS = {"help", "?", "commands", "what can you do", "show commands"}
+        if command.strip().lower() in HELP_WORDS:
+            self._show_help_in_gui()
+            self.input_box.clear()
+            self.log_activity("📖 Help shown")
+            return
+
+        # ── Intercept GUI-internal clear commands — never send to the agent ──
+        cmd_lower = command.strip().lower()
+        if cmd_lower in {"clear history", "clear command history", "delete history",
+                         "reset history", "wipe history"}:
+            self.clear_history()
+            self.input_box.clear()
+            return
+        if cmd_lower in {"clear logs", "clear log", "clear activity", "clear logger",
+                         "reset logs", "wipe logs"}:
+            self.clear_logs()
+            self.input_box.clear()
+            return
+        if cmd_lower in {"clear output", "clear chat", "clear screen", "cls", "clear"}:
+            self.output_text.clear()
+            self.output_text.append("🧹 Output cleared.\n")
+            self.input_box.clear()
+            self.log_activity("🧹 Output cleared")
+            return
+
+        # Check if command needs confirmation
         if self.needs_confirmation(command):
             if not self.show_confirmation_dialog(
-                "⚠️  Destructive Operation", 
+                "⚠️  Destructive Operation",
                 f"This command may delete or remove files:\n\n\"{command}\"\n\nProceed?"
             ):
                 self.output_text.append("❌ Operation cancelled by user\n")
@@ -706,6 +732,55 @@ class ChatCard(QDialog):
         self.log_activity(f"❌ Voice error: {error}")
         self.on_voice_listening_stopped()
     
+    # ─────────────────────────────────────────────────────────────────
+    #  Built-in help renderer — no LLM involved
+    # ─────────────────────────────────────────────────────────────────
+    def _show_help_in_gui(self):
+        """Render the full JARVIS command reference in the output panel."""
+        try:
+            from tools.help_commands import HELP_COMMANDS
+        except ImportError:
+            self.output_text.append("❌ help_commands module not found.\n")
+            return
+
+        out = self.output_text  # shorthand
+
+        out.append("")
+        out.append("╔" + "═" * 62 + "╗")
+        out.append("║" + "  🤖  JARVIS — COMMAND REFERENCE".center(62) + "║")
+        out.append("╚" + "═" * 62 + "╝")
+
+        for category, details in HELP_COMMANDS.items():
+            out.append("")
+            out.append(f"📍 {category}")
+            out.append("─" * 64)
+
+            all_cmds = []
+            all_cmds += details.get("commands", [])
+            all_cmds += details.get("web_commands", [])
+            all_cmds += details.get("health_commands", [])
+
+            for cmd in all_cmds:
+                out.append(f"  • {cmd['command']:<38}  {cmd['description']}")
+                out.append(f"      └─ e.g.: {cmd['example']}")
+
+        out.append("")
+        out.append("═" * 64)
+        out.append("💡 Tips:")
+        out.append("  • Use natural language — JARVIS understands variations")
+        out.append("  • Parameters are shown in [brackets]")
+        out.append("  • Type 'exit' to close JARVIS")
+        out.append("  • Type 'help' anytime to see this list again")
+        out.append("═" * 64)
+        out.append("")
+
+        # Switch focus to chat tab so the user sees the output
+        self.tabs.setCurrentIndex(0)
+
+        # Auto-scroll to bottom
+        sb = out.verticalScrollBar()
+        sb.setValue(sb.maximum())
+
     def log_activity(self, message: str):
         """Log activity to logger tab"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -719,18 +794,30 @@ class ChatCard(QDialog):
         self.logger_text.setTextCursor(cursor)
     
     def update_history_display(self):
-        """Update history tab display"""
-        history_text = ""
-        for i, cmd in enumerate(self.command_history[:20], 1):  # Show last 20
-            history_text += f"{i}. {cmd}\n"
-        self.history_text.setText(history_text)
+        """Update history tab with numbered commands and stats header."""
+        total = len(self.command_history)
+        header = (
+            f"{'═'*50}\n"
+            f"  📜 Session Commands — {total} total\n"
+            f"{'═'*50}\n"
+        )
+        rows = ""
+        for i, cmd in enumerate(self.command_history[:50], 1):  # Show last 50
+            rows += f"  {i:>2}. {cmd}\n"
+        if not rows:
+            rows = "  (no commands yet)\n"
+        self.history_text.setText(header + rows)
     
     def load_history(self):
-        """Load command history from agent memory"""
+        """Load command history from agent memory (graceful fallback)."""
         try:
-            history = self.agent.get_execution_history(limit=10)
-            for entry in history:
-                self.command_history.append(entry.get('user_input', ''))
+            loader = getattr(self.agent, 'get_execution_history', None)
+            if callable(loader):
+                history = loader(limit=10)
+                for entry in history:
+                    cmd = entry.get('user_input', '') or entry.get('command', '')
+                    if cmd:
+                        self.command_history.append(cmd)
             self.update_history_display()
             self.log_activity("📜 History loaded")
         except Exception as e:
