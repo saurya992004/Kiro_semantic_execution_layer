@@ -125,10 +125,10 @@ VALID_INTENTS = {
     },
     "installer": {
         "actions": [
-            "download_wallpaper", "download_software", "download_resource",
+            "install_software", "download_wallpaper", "download_software", "download_resource",
             "execute_installer", "cache_info", "clear_cache"
         ],
-        "description": "Download and install resources from the internet"
+        "description": "Download and install resources from the internet (uses winget for software)"
     }
 }
 
@@ -243,17 +243,29 @@ def route_intent(command: dict):
 def _handle_system_control(action: str, params: dict):
     """Handle system control operations."""
     if action == "sleep":
-        print("😴 Putting system to sleep...")
+        print("😴 About to put system to sleep...")
+        confirm = input("⚠️  Are you sure you want to sleep the PC? (y/n): ").strip().lower()
+        if confirm not in ("y", "yes"):
+            print("❌ Sleep cancelled.")
+            return
         _safe_execute(sleep_pc)
     
     elif action == "lock":
-        print("🔒 Locking system...")
+        print("🔒 About to lock the system...")
+        confirm = input("⚠️  Are you sure you want to lock the PC? (y/n): ").strip().lower()
+        if confirm not in ("y", "yes"):
+            print("❌ Lock cancelled.")
+            return
         _safe_execute(lock_pc)
     
     elif action == "kill_process":
         process_name = params.get("process_name", "").strip()
         if not process_name:
             print("❌ Process name is required")
+            return
+        confirm = input(f"⚠️  Kill process '{process_name}'? This may lose unsaved work. (y/n): ").strip().lower()
+        if confirm not in ("y", "yes"):
+            print("❌ Kill process cancelled.")
             return
         print(f"🔪 Killing process: {process_name}")
         _safe_execute(kill_process, process_name)
@@ -263,11 +275,16 @@ def _handle_system_control(action: str, params: dict):
         _safe_execute(clean_temp)
     
     elif action == "empty_recycle_bin":
+        confirm = input("⚠️  Empty the Recycle Bin? This cannot be undone. (y/n): ").strip().lower()
+        if confirm not in ("y", "yes"):
+            print("❌ Empty recycle bin cancelled.")
+            return
         print("🗑️  Emptying recycle bin...")
         _safe_execute(empty_recycle_bin)
     
     else:
         print(f"❌ Unknown system control action: {action}")
+
 
 
 def _handle_diagnostics(action: str, params: dict):
@@ -1015,26 +1032,26 @@ def _handle_installer(action: str, params: dict):
         else:
             print(f"❌ {result['message']}")
     
-    elif action == "download_software":
-        query = params.get("query", "").strip()
-        if not query:
-            print("❌ Software query is required")
+    elif action in ("install_software", "download_software"):
+        # install_software = primary name; download_software = legacy alias
+        app_name = (params.get("app_name") or params.get("query") or "").strip()
+        if not app_name:
+            print("❌ App name is required (e.g. 'Discord', 'VLC')")
             return
-        
+
         folder = params.get("folder")
-        result = agent.install_software(query, folder)
-        
-        if result["status"] == "success":
+        result = agent.install_software(app_name, folder)
+
+        if result.get("status") == "success":
             print(f"✅ {result['message']}")
             if result.get("from_cache"):
                 print(f"   📦 (from cache)")
-            print(f"\n   {result.get('next_step', '')}")
-            
-            # Offer to execute if installer is ready
-            if result.get("can_execute"):
-                print(f"\n🤖 Would you like me to install this now? (y/n): ", end="")
+            if result.get("next_step"):
+                print(f"\n   {result['next_step']}")
+            # Offer to execute if a local installer was downloaded (fallback path)
+            if result.get("can_execute") and result.get("installer_path"):
+                print(f"\n🤖 Would you like me to run the installer now? (y/n): ", end="")
                 response = input().strip().lower()
-                
                 if response in ['y', 'yes']:
                     exec_result = agent.execute_installer(result["installer_path"])
                     print(f"\n{exec_result['message']}")
