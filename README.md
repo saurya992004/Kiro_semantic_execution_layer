@@ -1,10 +1,10 @@
-# 🤖 JARVIS — Intelligent OS Automation Agent
+# 🤖 Kiro — Intelligent OS Automation Agent
 
 > **Control your entire desktop intelligently, safely, and naturally.**
 
-JARVIS is an advanced AI-powered operating system automation framework designed to understand natural language commands and execute complex system tasks with intelligent planning, safety validation, and automatic recovery mechanisms.
+Kiro is an advanced AI-powered operating system automation framework designed to understand natural language commands and execute complex system tasks with intelligent planning, safety validation, and automatic recovery mechanisms.
 
-Built as a modular, extensible agent system, JARVIS combines the power of large language models with local system integration to provide truly autonomous desktop assistance.
+Built as a modular, extensible agent system, Kiro combines the power of large language models with local system integration to provide truly autonomous desktop assistance.
 
 ---
 
@@ -195,8 +195,8 @@ Intent-based command routing:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/jarvis.git
-   cd jarvis
+   git clone https://github.com/yourusername/Kiro.git
+   cd Kiro
    ```
 
 2. **Create a Python virtual environment**
@@ -218,7 +218,7 @@ Intent-based command routing:
    GROQ_API_KEY=your_groq_api_key
    ```
 
-5. **Run JARVIS**
+5. **Run Kiro**
    ```bash
    python main.py
    ```
@@ -270,7 +270,7 @@ history           - View recent executions
 stats             - Display execution statistics
 status            - Agent system status
 clear history     - Reset execution memory
-exit              - Shutdown JARVIS
+exit              - Shutdown Kiro
 ```
 
 ---
@@ -294,7 +294,7 @@ Manage system-wide settings:
 
 ## 🛡️ Safety & Security
 
-JARVIS implements multiple layers of protection:
+Kiro implements multiple layers of protection:
 
 ### **Pre-Execution Validation**
 - Intent risk assessment
@@ -323,7 +323,7 @@ JARVIS implements multiple layers of protection:
 ## 📊 Project Structure
 
 ```
-jarvis/
+Kiro/
 ├── main.py                      # Entry point
 ├── requirements.txt             # Dependencies
 ├── README.md                    # This file
@@ -400,7 +400,7 @@ jarvis/
 
 ## 📈 Performance Metrics
 
-Monitor JARVIS performance:
+Monitor Kiro performance:
 
 ```python
 # Execution statistics
