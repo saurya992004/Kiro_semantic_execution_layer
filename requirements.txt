@@ -11,3 +11,4 @@ requests
 sounddevice
 numpy
 scipy
+PyQt5
