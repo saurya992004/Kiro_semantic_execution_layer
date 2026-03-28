@@ -1,0 +1,347 @@
+{
+  "timestamp_iso": "2026-03-28T01:39:00",
+  "screen_summary": "The screen displays a Telegram Desktop application, showing a chat conversation with 'Shivi Chaudhary' in the main panel, a list of other chats on the left, and 'Shivi Chaudhary's profile details on the right.",
+  "window_title_or_app": "Shivi Chaudhary - Telegram Desktop",
+  "detected_buttons": [
+    {
+      "label": "Minimize",
+      "context": "Window controls",
+      "action_hint": "Minimizes the application window"
+    },
+    {
+      "label": "Maximize",
+      "context": "Window controls",
+      "action_hint": "Maximizes or restores the application window"
+    },
+    {
+      "label": "Close",
+      "context": "Window controls",
+      "action_hint": "Closes the application window"
+    },
+    {
+      "label": "Message",
+      "context": "Contact profile panel",
+      "action_hint": "Initiates a new message to the contact"
+    },
+    {
+      "label": "Mute",
+      "context": "Contact profile panel",
+      "action_hint": "Mutes notifications for the chat"
+    },
+    {
+      "label": "Gift",
+      "context": "Contact profile panel",
+      "action_hint": "Sends a gift to the contact"
+    },
+    {
+      "label": "ADD TO CONTACTS",
+      "context": "Contact profile panel",
+      "action_hint": "Adds the contact to the user's contacts"
+    },
+    {
+      "label": "Block user",
+      "context": "Contact profile panel",
+      "action_hint": "Blocks the contact"
+    },
+    {
+      "label": "X",
+      "context": "Birthday reminder banner",
+      "action_hint": "Closes the birthday reminder"
+    },
+    {
+      "label": "Emoji icon",
+      "context": "Chat input field",
+      "action_hint": "Opens emoji selection"
+    },
+    {
+      "label": "Attach file icon",
+      "context": "Chat input field",
+      "action_hint": "Attaches a file to the message"
+    },
+    {
+      "label": "Send/Microphone icon",
+      "context": "Chat input field",
+      "action_hint": "Sends the message or starts voice recording"
+    },
+    {
+      "label": "Search",
+      "context": "Windows Taskbar",
+      "action_hint": "Opens Windows search"
+    }
+  ],
+  "detected_options": [
+    {
+      "label": "Hamburger menu",
+      "type": "menu",
+      "context": "Top left of chat list"
+    },
+    {
+      "label": "Search",
+      "type": "other",
+      "context": "Top left search bar"
+    },
+    {
+      "label": "Archived chats",
+      "type": "link",
+      "context": "Left chat list"
+    },
+    {
+      "label": "Shivi Chaudhary",
+      "type": "tab",
+      "context": "Selected chat in left list"
+    },
+    {
+      "label": "Mehh!!",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Mist",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Sonam Bewafa hai",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Rasmalai",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Amazon Biggest Sale",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Amazon Biggest Sale Ever",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Cric_Insider365",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Sarkari sewa",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "Bewafa duniya",
+      "type": "tab",
+      "context": "Chat in left list"
+    },
+    {
+      "label": "1 post",
+      "type": "link",
+      "context": "Contact profile panel, shared media"
+    },
+    {
+      "label": "1 file",
+      "type": "link",
+      "context": "Contact profile panel, shared media"
+    },
+    {
+      "label": "1 shared link",
+      "type": "link",
+      "context": "Contact profile panel, shared media"
+    },
+    {
+      "label": "1 group in common",
+      "type": "link",
+      "context": "Contact profile panel, shared media"
+    },
+    {
+      "label": "psst... click me!",
+      "type": "other",
+      "context": "Chat bubble"
+    }
+  ],
+  "visible_text_regions": [
+    {
+      "text": "Add your birthday!",
+      "role": "heading"
+    },
+    {
+      "text": "Let your contacts know when you're celebrating.",
+      "role": "body"
+    },
+    {
+      "text": "Archived chats",
+      "role": "heading"
+    },
+    {
+      "text": "Nekofied [EN] Anime | Gaming Chat. English G...",
+      "role": "body"
+    },
+    {
+      "text": "Shivi Chaudhary",
+      "role": "heading"
+    },
+    {
+      "text": "online",
+      "role": "body"
+    },
+    {
+      "text": "Hiii",
+      "role": "body"
+    },
+    {
+      "text": "Mehh!!",
+      "role": "body"
+    },
+    {
+      "text": "Mist",
+      "role": "body"
+    },
+    {
+      "text": "Come wp",
+      "role": "body"
+    },
+    {
+      "text": "Sonam Bewafa hai",
+      "role": "body"
+    },
+    {
+      "text": "Here Is Your Stuff:",
+      "role": "body"
+    },
+    {
+      "text": "Rasmalai",
+      "role": "body"
+    },
+    {
+      "text": "Amazon Biggest Sale",
+      "role": "body"
+    },
+    {
+      "text": "Sticker",
+      "role": "label"
+    },
+    {
+      "text": "Amazon Biggest Sale Ever",
+      "role": "body"
+    },
+    {
+      "text": "Cric_Insider365",
+      "role": "body"
+    },
+    {
+      "text": "THE BIGGEST CARNIVAL OF WORLD CRICKET BEGI...",
+      "role": "body"
+    },
+    {
+      "text": "Sarkari sewa",
+      "role": "body"
+    },
+    {
+      "text": "Anyone interested in buying an active Telegram ch...",
+      "role": "body"
+    },
+    {
+      "text": "Bewafa duniya",
+      "role": "body"
+    },
+    {
+      "text": "Hidd@n c@m",
+      "role": "body"
+    },
+    {
+      "text": "Here is your link:",
+      "role": "body"
+    },
+    {
+      "text": "Tumne kaha pyar krte ho uss time",
+      "role": "body"
+    },
+    {
+      "text": "obviously karta hu ,varna itni ignorance kabhi ni jhelta mai",
+      "role": "body"
+    },
+    {
+      "text": "mai dheere dheere aur sure ho jaunga",
+      "role": "body"
+    },
+    {
+      "text": "mujhe priority ni milegi toh kya karunga akele",
+      "role": "body"
+    },
+    {
+      "text": "reply?",
+      "role": "body"
+    },
+    {
+      "text": "lol",
+      "role": "body"
+    },
+    {
+      "text": "Ganna reply ?",
+      "role": "body"
+    },
+    {
+      "text": "Arre mess se khaana lene bula rahe aake likhti",
+      "role": "body"
+    },
+    {
+      "text": "ok jaldi jao",
+      "role": "body"
+    },
+    {
+      "text": "khake aao",
+      "role": "body"
+    },
+    {
+      "text": "kaafi khana khaya",
+      "role": "body"
+    },
+    {
+      "text": "March 28",
+      "role": "label"
+    },
+    {
+      "text": "lol on aayi reply bhi ni kiya",
+      "role": "body"
+    },
+    {
+      "text": "sorry but aese ni chal payega yr",
+      "role": "body"
+    },
+    {
+      "text": "rehne d",
+      "role": "body"
+    },
+    {
+      "text": "(16 x 2 = 8) jaat hare krishna",
+      "role": "body"
+    },
+    {
+      "text": "Bio",
+      "role": "label"
+    },
+    {
+      "text": "21°C",
+      "role": "other"
+    },
+    {
+      "text": "Mostly clear",
+      "role": "other"
+    },
+    {
+      "text": "ENG IN",
+      "role": "other"
+    },
+    {
+      "text": "28-03-2026",
+      "role": "other"
+    }
+  ],
+  "possible_errors_or_alerts": [],
+  "accessibility_hints": "The screen is dominated by three main panels: a left navigation/chat list, a central chat conversation area with an input field, and a right contact profile details panel. A birthday reminder banner is present at the top left. The application's window controls are in the top right.",
+  "screenshot_path": "C:\\Users\\saury\\Desktop\\kiro\\JARVIS\\vision_output\\screenshots\\screen_20260327_200910.png",
+  "screenshot_filename": "screen_20260327_200910.png",
+  "analyzed_at_iso": "2026-03-27T20:09:28Z"
+}

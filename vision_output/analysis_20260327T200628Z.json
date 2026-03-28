@@ -1,0 +1,103 @@
+{
+  "timestamp_iso": "2026-03-28T01:36:00+00:00",
+  "screen_summary": "The screen displays the KiroOS web application, specifically the 'Ghost Mode' section, which shows a control toggle and a log of detected code problems in Visual Studio Code, primarily 'rint' being undefined.",
+  "window_title_or_app": "KiroOS AI Operating System Layer (localhost:8000)",
+  "detected_buttons": [
+    {
+      "label": "Scan Screen Now",
+      "context": "Ghost Mode Control section",
+      "action_hint": "Scans the current screen for issues"
+    }
+  ],
+  "detected_options": [
+    {
+      "label": "Dashboard",
+      "type": "tab",
+      "context": "main navigation"
+    },
+    {
+      "label": "Agent Pipeline",
+      "type": "tab",
+      "context": "main navigation"
+    },
+    {
+      "label": "Ghost Mode",
+      "type": "tab",
+      "context": "main navigation"
+    },
+    {
+      "label": "Ghost Mode Control (toggle)",
+      "type": "checkbox",
+      "context": "control panel",
+      "action_hint": "Toggles Kiro's proactive monitoring"
+    }
+  ],
+  "visible_text_regions": [
+    {
+      "text": "KiroOS AI Operating System Layer",
+      "role": "heading"
+    },
+    {
+      "text": "Connected",
+      "role": "label"
+    },
+    {
+      "text": "Ghost: ON",
+      "role": "label"
+    },
+    {
+      "text": "Ghost Mode Control",
+      "role": "heading"
+    },
+    {
+      "text": "Kiro silently watches your screen and proactively helps when it detects issues, errors, or things you should know about.",
+      "role": "body"
+    },
+    {
+      "text": "Ghost Activity Log",
+      "role": "heading"
+    },
+    {
+      "text": "Everything Kiro sees while Ghost Mode is active.",
+      "role": "body"
+    },
+    {
+      "text": "Detected: python_test.py 1 of 1 problem | Detected: \"rint\" is not defined Pylance(reportUndefinedVariable) | NameError: name 'rint' is not defined. Did you mean: 'print'?",
+      "role": "body"
+    },
+    {
+      "text": "The screen displays Visual Studio Code with a Python file 'python_test.py' open. The code contains a 'NameError' due to 'rint' being undefined (likely a typo for 'print'), which is highlighted in the editor and detailed in the terminal output. A file explorer, a 'Claude Code' chat assistant, and various VS Code UI elements are also visible.",
+      "role": "body"
+    },
+    {
+      "text": "Active: python_test.py - Visual Studio Code",
+      "role": "body"
+    },
+    {
+      "text": "App: python_test.py - Visual Studio Code",
+      "role": "body"
+    },
+    {
+      "text": "python_test.py 1 of 1 problem",
+      "role": "body"
+    },
+    {
+      "text": "\"rint\" is not defined Pylance(reportUndefinedVariable)",
+      "role": "body"
+    },
+    {
+      "text": "NameError: name 'rint' is not defined. Did you mean: 'print'?",
+      "role": "body"
+    }
+  ],
+  "possible_errors_or_alerts": [
+    {
+      "text": "Detected: python_test.py 1 of 1 problem | Detected: \"rint\" is not defined Pylance(reportUndefinedVariable) | NameError: name 'rint' is not defined. Did you mean: 'print'?",
+      "severity": "info"
+    }
+  ],
+  "accessibility_hints": "The 'Ghost Mode Control' toggle is a key interactive element. The 'Scan Screen Now' button initiates a scan. The activity log provides read-only details of detected issues.",
+  "screenshot_path": "C:\\Users\\saury\\Desktop\\kiro\\JARVIS\\vision_output\\screenshots\\screen_20260327_200628.png",
+  "screenshot_filename": "screen_20260327_200628.png",
+  "analyzed_at_iso": "2026-03-27T20:06:41Z"
+}

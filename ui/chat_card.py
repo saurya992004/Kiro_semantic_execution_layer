@@ -156,24 +156,117 @@ class CommandExecutionThread(QThread):
         old_stdout = sys.stdout
         old_input = builtins.input
 
-        # Walk the stdout chain to find the real console stdout.
-        # sys.stdout may be a StdoutRedirector (GUI wrapper) — calling its
-        # write() from a background thread would crash Qt. We must only use
-        # the underlying real file object for terminal echo.
         console_stdout = old_stdout
         while hasattr(console_stdout, 'original_stdout'):
             console_stdout = console_stdout.original_stdout
 
-        # RealTimeWriter emits signals (thread-safe) for GUI and echoes to
-        # the real console stdout only (no GUI calls from this thread).
         writer = RealTimeWriter(self.output_received, console_stdout,
                                 line_tracker=self._last_output_lines)
         sys.stdout = writer
         builtins.input = self._gui_input
+        
         try:
-            result = self.agent.process_command(self.command, auto_confirm=False)
-            writer.flush()  # flush any trailing partial line
-            self.execution_completed.emit(result)
+            import requests
+            cmd_lower = self.command.lower()
+            
+            # Helper to pulse the dashboard
+            def pulse_dashboard(action, agent, success=True):
+                try:
+                    url = f"http://localhost:8000/api/dashboard/{action}"
+                    payload = {"agent": agent, "command": self.command} if action == "animate" else {"agent": agent, "success": success}
+                    requests.post(url, json=payload, timeout=2)
+                except: pass
+            
+            # Smart routing to match the dashboard's instantaneous API calls
+            if "speed up" in cmd_lower or "speedup" in cmd_lower or "optimize" in cmd_lower:
+                pulse_dashboard("animate", "speedup")
+                writer.write("⚡ Sending speedup request to Kiro Server...\n")
+                res = requests.post("http://localhost:8000/api/speedup", timeout=60)
+                pulse_dashboard("complete", "speedup", res.ok)
+                data = res.json()
+                if data.get("success"):
+                    imp = data["result"].get("improvements", {})
+                    writer.write(f"✅ PC Optimized successfully!\nFreed: {imp.get('temp_freed_mb', 0)}MB | Processes: {imp.get('processes_optimized', 0)}\n")
+                    self.execution_completed.emit({"status": "success", "summary": {"completed": 1, "total_tasks": 1}})
+                else:
+                    self.execution_failed.emit(data.get("error", "Speedup failed on server"))
+            
+            elif "clean temp" in cmd_lower or "temp files" in cmd_lower:
+                pulse_dashboard("animate", "system")
+                writer.write("🧹 Cleaning temp files via Kiro Server...\n")
+                res = requests.post("http://localhost:8000/api/system/clean-temp", timeout=60)
+                pulse_dashboard("complete", "system", res.ok)
+                data = res.json()
+                if data.get("success"):
+                    writer.write("✅ Temp files cleaned successfully!\n")
+                    self.execution_completed.emit({"status": "success", "summary": {"completed": 1, "total_tasks": 1}})
+                else:
+                    self.execution_failed.emit(data.get("error", "Clean failed on server"))
+                    
+            elif "health" in cmd_lower or "system status" in cmd_lower:
+                pulse_dashboard("animate", "diagnostics")
+                writer.write("🏥 Fetching system health from Kiro Server...\n")
+                res = requests.get("http://localhost:8000/api/system-health", timeout=60)
+                pulse_dashboard("complete", "diagnostics", res.ok)
+                data = res.json()
+                if data.get("success"):
+                    cpu = data["cpu"]["cpu_percent"]
+                    ram = data["ram"]["percent"]
+                    disk = data["disk"]["percent"]
+                    writer.write(f"✅ System Health:\nCPU: {cpu}%\nRAM: {ram}%\nDisk: {disk}%\n")
+                    self.execution_completed.emit({"status": "success", "summary": {"completed": 1, "total_tasks": 1}})
+                else:
+                    self.execution_failed.emit("Failed to get health from server")
+                    
+            elif self.command.startswith("AUTONOMOUS_FIX_ERROR:"):
+                # Autonomous troubleshooting directly attached to ghost mode
+                pulse_dashboard("animate", "troubleshooter")
+                error_text = self.command.replace("AUTONOMOUS_FIX_ERROR:", "").strip()
+                writer.write(f"🧠 Diagnostic Engine analyzing error: '{error_text}'\n")
+                
+                # Import necessary modules from the Troubleshooter package
+                from troubleshooter.vision_analyzer import VisionAnalyzer
+                from troubleshooter.solution_parser import parse_solution
+                from troubleshooter.auto_fix_engine import execute_fixes
+                
+                analyzer = VisionAnalyzer()
+                result_text = analyzer.plan_fix_from_text(error_text)
+                
+                if not result_text:
+                    self.execution_failed.emit("LLM failed to generate a fix plan.")
+                else:
+                    solution_data = parse_solution(result_text)
+                    if not solution_data:
+                        self.execution_failed.emit("Failed to parse fix plan.")
+                    else:
+                        writer.write(f"💡 AI Suggests: {solution_data.get('explanation', '')}\n")
+                        cmds = solution_data.get('commands', [])
+                        if cmds:
+                            writer.write(f"⚙️ Action items: {len(cmds)} automated commands required.\n")
+                            # We already got explicit user consent when they clicked 'Yes'
+                            execute_fixes(cmds)
+                            pulse_dashboard("complete", "troubleshooter", True)
+                            writer.write("✅ Execution complete.\n")
+                            self.execution_completed.emit({"status": "success", "summary": {"completed": len(cmds), "total_tasks": len(cmds)}})
+                        else:
+                            writer.write("No automated commands recommended.\n")
+                            pulse_dashboard("complete", "troubleshooter", True)
+                            self.execution_completed.emit({"status": "success", "summary": {"completed": 1, "total_tasks": 1}})
+                    
+            else:
+                # Fallback to local execution for real-time stdout streaming, but animate the dashboard!
+                pulse_dashboard("animate", "master")
+                writer.write("⏳ Processing command locally to maintain real-time speed...\n")
+                
+                # Execute in the bot's own process to keep stdout streaming visible
+                result = self.agent.process_command(self.command, auto_confirm=False)
+                
+                pulse_dashboard("complete", "master", result.get("status") != "error")
+                self.execution_completed.emit(result)
+                    
+            writer.flush()
+        except requests.exceptions.ConnectionError:
+            self.execution_failed.emit("Failed to connect to Kiro Server. Is it running on localhost:8000?")
         except Exception as e:
             self.execution_failed.emit(str(e))
         finally:
@@ -364,6 +457,7 @@ class ChatCard(QDialog):
         
         # Voice button
         self.voice_button = QPushButton("🎤")
+        self.voice_button.setAutoDefault(False)
         self.voice_button.setFont(QFont("Arial", 14))
         self.voice_button.setMaximumWidth(50)
         self.voice_button.setToolTip("Click to start voice input")
@@ -388,6 +482,7 @@ class ChatCard(QDialog):
         
         # Send button
         self.send_button = QPushButton("Send")
+        self.send_button.setAutoDefault(False)
         self.send_button.setMaximumWidth(100)
         self.send_button.clicked.connect(self.send_command)
         self.send_button.setStyleSheet("""
@@ -410,11 +505,25 @@ class ChatCard(QDialog):
         self.listening_label = QLabel("")
         self.listening_label.setStyleSheet("color: #ff6b6b; font-weight: bold;")
         
+        # Inline Ghost Mode Confirmation Buttons
+        self.ghost_confirm_widget = QWidget()
+        ghost_confirm_layout = QHBoxLayout()
+        self.ghost_yes_btn = QPushButton("✅ Yes, Auto-Fix It")
+        self.ghost_yes_btn.setStyleSheet("background-color: #00d4ff; color: black; font-weight: bold; padding: 6px; border-radius: 4px;")
+        self.ghost_no_btn = QPushButton("❌ No, Ignore")
+        self.ghost_no_btn.setStyleSheet("background-color: #ff6b6b; color: white; font-weight: bold; padding: 6px; border-radius: 4px;")
+        
+        ghost_confirm_layout.addWidget(self.ghost_yes_btn)
+        ghost_confirm_layout.addWidget(self.ghost_no_btn)
+        self.ghost_confirm_widget.setLayout(ghost_confirm_layout)
+        self.ghost_confirm_widget.hide()
+        
         input_layout.addWidget(self.input_box, 1)
         input_layout.addWidget(self.voice_button)
         input_layout.addWidget(self.send_button)
         
         layout.addWidget(input_label)
+        layout.addWidget(self.ghost_confirm_widget)
         layout.addLayout(input_layout)
         layout.addWidget(self.listening_label)
         
@@ -535,6 +644,8 @@ class ChatCard(QDialog):
             self.input_box.clear()
             from PyQt5.QtWidgets import QApplication
             QApplication.instance().quit()
+            import os
+            os._exit(0)
             return
 
         # ── Intercept help — show built-in command reference, skip LLM ──
@@ -652,6 +763,38 @@ class ChatCard(QDialog):
         """Handle command execution failure"""
         self.output_text.append(f"\n❌ Execution Failed: {error}\n")
         self.log_activity(f"❌ Execution error: {error}")
+        
+    def append_ai_message(self, text: str):
+        self.output_text.append(f"\n🤖 KIRO: {text}\n")
+        scrollbar = self.output_text.verticalScrollBar()
+        scrollbar.setValue(scrollbar.maximum())
+        
+    def show_yes_no_options(self, error_data: dict):
+        self.current_error_data = error_data
+        
+        # Disconnect any old connections to prevent double-firing
+        try:
+            self.ghost_yes_btn.clicked.disconnect()
+            self.ghost_no_btn.clicked.disconnect()
+        except TypeError:
+            pass
+            
+        self.ghost_yes_btn.clicked.connect(self.execute_autonomous_fix)
+        self.ghost_no_btn.clicked.connect(self.cancel_autonomous_fix)
+        self.ghost_confirm_widget.show()
+        
+    def execute_autonomous_fix(self):
+        self.ghost_confirm_widget.hide()
+        # Use the detailed error text (includes all error messages + visible error regions)
+        error_text = self.current_error_data.get('error_detail', '') or self.current_error_data.get('error', '')
+        self.append_ai_message("Initiating Ghost Protocol Execution...")
+        cmd = f"AUTONOMOUS_FIX_ERROR: {error_text}"
+        self.input_box.setText(cmd)
+        self.send_command()
+        
+    def cancel_autonomous_fix(self):
+        self.ghost_confirm_widget.hide()
+        self.append_ai_message("Ignored. Standing by.")
     
     def toggle_voice_input(self):
         """Toggle voice input on/off"""

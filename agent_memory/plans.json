@@ -1,49 +1,57 @@
 {
-  "59d847c0": {
-    "id": "59d847c0",
-    "user_input": "install discord",
-    "goal": "install Discord application",
+  "d224d173": {
+    "id": "d224d173",
+    "user_input": "speeed up my pc",
+    "goal": "increase computer speed",
     "tasks": [
       {
-        "id": "267bbdbd-61b",
-        "intent": "installer",
-        "action": "install_software",
-        "parameters": {
-          "app_name": "Discord"
-        },
-        "description": "Installs the Discord application",
-        "status": "completed",
+        "id": "6265edf6-011",
+        "intent": "system_control",
+        "action": "clean_temp",
+        "parameters": {},
+        "description": "Clean temporary files to increase computer speed",
+        "status": "pending",
         "priority": 2,
         "dependencies": [],
         "dry_run": false,
         "requires_confirmation": true,
-        "result": {
-          "status": "executed",
-          "message": "Command executed successfully"
-        },
+        "result": null,
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-24T03:09:38.141662",
-        "started_at": "2026-02-24T03:09:39.935854",
-        "completed_at": "2026-02-24T03:10:02.360049"
-      }
-    ],
-    "created_at": "2026-02-24T03:09:37.360992"
-  },
-  "12555d7d": {
-    "id": "12555d7d",
-    "user_input": "exit",
-    "goal": "exit the current application or system",
-    "tasks": [
+        "created_at": "2026-03-28T16:18:10.936787",
+        "started_at": null,
+        "completed_at": null
+      },
       {
-        "id": "f4cebb5b-e24",
+        "id": "f0af55ae-c57",
         "intent": "system_control",
-        "action": "lock",
+        "action": "empty_recycle_bin",
         "parameters": {},
-        "description": "Lock the system before exiting",
+        "description": "Empty the recycle bin to free up disk space",
         "status": "pending",
-        "priority": 2,
+        "priority": 3,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-03-28T16:18:10.936787",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "7a436d2b-b36",
+        "intent": "disk_analysis",
+        "action": "analyze_usage",
+        "parameters": {
+          "path": "C:\\"
+        },
+        "description": "Analyze disk usage to identify potential bottlenecks",
+        "status": "pending",
+        "priority": 3,
         "dependencies": [],
         "dry_run": false,
         "requires_confirmation": false,
@@ -51,32 +59,73 @@
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-24T03:10:29.162701",
+        "created_at": "2026-03-28T16:18:10.936787",
         "started_at": null,
         "completed_at": null
       },
       {
-        "id": "21324650-187",
-        "intent": "system_control",
-        "action": "sleep",
-        "parameters": {},
-        "description": "Put the system to sleep",
+        "id": "ba788ada-3ba",
+        "intent": "disk_analysis",
+        "action": "find_large_folders",
+        "parameters": {
+          "path": "C:\\",
+          "threshold_gb": 1.0
+        },
+        "description": "Find large folders that may be slowing down the computer",
         "status": "pending",
-        "priority": 2,
-        "dependencies": [
-          "f4cebb5b-e24"
-        ],
+        "priority": 3,
+        "dependencies": [],
         "dry_run": false,
         "requires_confirmation": false,
         "result": null,
         "error": null,
         "retry_count": 0,
         "max_retries": 3,
-        "created_at": "2026-02-24T03:10:29.162726",
+        "created_at": "2026-03-28T16:18:10.936787",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "b63a16c5-841",
+        "intent": "maintenance",
+        "action": "scan_temp",
+        "parameters": {},
+        "description": "Scan temporary files and folders for cleanup",
+        "status": "pending",
+        "priority": 3,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-03-28T16:18:10.936787",
+        "started_at": null,
+        "completed_at": null
+      },
+      {
+        "id": "5b0a3115-662",
+        "intent": "system_control",
+        "action": "kill_process",
+        "parameters": {
+          "process_name": "resource_intensive_processes"
+        },
+        "description": "Kill resource-intensive processes to increase computer speed",
+        "status": "pending",
+        "priority": 2,
+        "dependencies": [],
+        "dry_run": false,
+        "requires_confirmation": true,
+        "result": null,
+        "error": null,
+        "retry_count": 0,
+        "max_retries": 3,
+        "created_at": "2026-03-28T16:18:10.936787",
         "started_at": null,
         "completed_at": null
       }
     ],
-    "created_at": "2026-02-24T03:10:28.635720"
+    "created_at": "2026-03-28T16:18:09.335171"
   }
 }

@@ -5,6 +5,8 @@ Central orchestrator that coordinates task planning, execution, and memory manag
 """
 
 import logging
+import threading
+import requests
 from typing import Dict, Any, Optional
 from agent.task import TaskPlan
 from agent.task_planner import TaskPlanner
@@ -48,6 +50,19 @@ class MasterAgent:
         self.goal_extraction_prompt = self._load_goal_extraction_prompt()
         
         logger.info("Master Agent initialized")
+        
+    def _send_telemetry(self, target_node: str, action: str, agent_id: str = "master") -> None:
+        """Send real-time execution telemetry to the dashboard."""
+        def _post():
+            try:
+                requests.post(
+                    "http://localhost:8000/api/dashboard/animate",
+                    json={"agent": agent_id, "command": action, "target": target_node},
+                    timeout=1.0
+                )
+            except Exception:
+                pass
+        threading.Thread(target=_post, daemon=True).start()
     
     def _load_system_prompt(self) -> str:
         """Load or create system prompt."""
@@ -87,6 +102,7 @@ Respond with ONLY the JSON, no explanations.
             Execution result dictionary
         """
         logger.info(f"Processing command: {user_input}")
+        self._send_telemetry("f_main", f"Received command: {user_input[:30]}", "master")
         
         # Add to conversation chain
         self.memory.add_to_context_chain(user_input, role="user")
@@ -110,8 +126,11 @@ Respond with ONLY the JSON, no explanations.
         if requires_safety_check:
             print(f"⚠️  This operation involves system changes")
         
+        self._send_telemetry("planner", f"Goal extracted: {goal[:20]}", "parser")
+        
         # Step 2: Create task plan
         plan = self.planner.plan_goal(user_input, goal)
+        self._send_telemetry("f_app", f"Plan built: {len(plan.tasks)} tasks", "planner")
         
         # Check if using fallback
         is_fallback = any("Fallback" in task.description for task in plan.tasks)
@@ -129,8 +148,10 @@ Respond with ONLY the JSON, no explanations.
         
         # Save plan to memory
         self.memory.save_plan(plan)
+        self._send_telemetry("memory", "Plan persisted to vector DB", "database")
         
         # Step 3: Execute plan
+        self._send_telemetry("sys_proc", "Executing agent chain", "master")
         execution_result = self.executor.execute_plan(plan, auto_confirm=auto_confirm)
         
         # Step 4: Save execution to memory
@@ -141,6 +162,8 @@ Respond with ONLY the JSON, no explanations.
             f"Executed plan with {execution_result['completed']} completed, {execution_result['failed']} failed",
             role="assistant"
         )
+        
+        self._send_telemetry("logger", f"Finished tasks: {execution_result['completed']}", "master")
         
         # Generate report
         report = self.executor.get_execution_report(plan)

@@ -174,21 +174,25 @@ class FloatingBotWidget(QWidget):
         set_animation_state(s)    — accepts BotAnimationState enum or str
     """
 
-    # ── signal used by app.py to open the chat card ──
+    # ── signals used by app.py ──
     clicked = pyqtSignal()
+    fix_error_requested = pyqtSignal(dict)
 
     MESSAGES = {
-        STATE_IDLE:      ["psst… click me!", "I'm right here ✨", "boo! just kidding 👀", "floating through space…"],
+        STATE_IDLE:      ["psst... click me!", "I'm right here ✨", "boo! just kidding 👀", "floating through space..."],
         STATE_HAPPY:     ["yay!!  (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧", "this makes me so happy!", "wheeeee~"],
-        STATE_THINKING:  ["hmm… 🤔", "let me think…", "calculating…"],
+        STATE_THINKING:  ["hmm... 🤔", "let me think...", "calculating..."],
         STATE_LISTENING: ["I'm all ears!", "tell me everything~", "...yes?"],
-        STATE_SPEAKING:  ["blah blah blah ✨", "I have so much to say!", "did you know…"],
-        STATE_SLEEPING:  ["zzZZz…", "shh… napping", "wake me up gently~"],
+        STATE_SPEAKING:  ["blah blah blah ✨", "I have so much to say!", "did you know..."],
+        STATE_SLEEPING:  ["zzZZz...", "shh... napping", "wake me up gently~"],
     }
 
     def __init__(self, on_click_callback=None, parent=None):
         super().__init__(parent)
         self.on_click_callback = on_click_callback
+        
+        self.is_alerting_error = False
+        self.current_error_data = None
 
         # window chrome
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
@@ -730,15 +734,31 @@ class FloatingBotWidget(QWidget):
     def mouseDoubleClickEvent(self, event):
         self._on_clicked()
 
+    def alert_error(self, error_text: str, error_data: dict):
+        """Triggered externally when an error is detected on screen."""
+        self.is_alerting_error = True
+        self.current_error_data = error_data
+        self.set_state(STATE_THINKING)
+        self._show_bubble(f"⚠️ I see an error: {error_text[:20]}... Click me to fix it!")
+        self._burst_particles(30)
+        self._squish(1.3, 0.7)
+
     def _on_clicked(self):
         """Handle a confirmed click — plays reaction then opens the chat card."""
         self.set_state(STATE_HAPPY)
-        self._show_bubble()
         self._burst_particles(22)
         self.wobble_v = 0.20
 
-        # ── open the chat card (same as the old widget) ──
-        self.clicked.emit()                       # → app.py show_chat_card()
+        if self.is_alerting_error and self.current_error_data:
+            self._show_bubble("On it! 🛠️")
+            self.fix_error_requested.emit(self.current_error_data)
+            self.is_alerting_error = False
+            self.current_error_data = None
+        else:
+            self._show_bubble()
+            # ── open the chat card (same as the old widget) ──
+            self.clicked.emit()                       # → app.py show_chat_card()
+            
         if self.on_click_callback:
             self.on_click_callback()
 

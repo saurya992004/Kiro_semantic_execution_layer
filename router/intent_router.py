@@ -1,6 +1,7 @@
 import logging
 import os
 from tools.app_tools import open_app
+from tools.speedup_tools import speedup_pc, find_bloatware_processes
 from tools.web_tools import search_web
 from tools.system_tools import (
     sleep_pc,
@@ -129,6 +130,10 @@ VALID_INTENTS = {
             "execute_installer", "cache_info", "clear_cache"
         ],
         "description": "Download and install resources from the internet (uses winget for software)"
+    },
+    "speedup": {
+        "actions": ["optimize", "scan_bloatware"],
+        "description": "Speed up PC by optimizing processes, cleaning temp files, and flushing memory"
     }
 }
 
@@ -232,12 +237,45 @@ def route_intent(command: dict):
         elif intent == "installer":
             _handle_installer(action, params)
         
+        elif intent == "speedup":
+            _handle_speedup(action, params)
+        
         else:
             print(f"❌ Intent '{intent}' handler not implemented")
     
     except Exception as e:
         print(f"❌ Unhandled error: {str(e)}")
         logger.error(f"Route intent error: {str(e)}", exc_info=True)
+
+
+def _handle_speedup(action: str, params: dict):
+    """Handle PC speedup operations."""
+    if action == "scan_bloatware":
+        print("🔍 Scanning for non-essential processes...")
+        bloatware = _safe_execute(find_bloatware_processes)
+        if bloatware and not isinstance(bloatware, dict):
+            print(f"\n📋 Found {len(bloatware)} non-essential processes:")
+            for p in bloatware[:15]:
+                print(f"  • {p['name']} — {p['memory_mb']}MB RAM")
+        else:
+            print("✅ No bloatware detected!")
+    else:
+        # Default: full speedup
+        print("🚀 Optimizing your PC...")
+        result = _safe_execute(speedup_pc)
+        if result and not isinstance(result, dict) or (isinstance(result, dict) and 'error' not in result):
+            before = result.get('before', {})
+            after = result.get('after', {})
+            imp = result.get('improvements', {})
+            print(f"\n⚡ PC SPEEDUP RESULTS:")
+            print(f"  CPU: {before.get('cpu_percent',0)}% → {after.get('cpu_percent',0)}%")
+            print(f"  RAM: {before.get('ram_percent',0)}% → {after.get('ram_percent',0)}%")
+            print(f"  Temp Freed: {imp.get('temp_freed_mb',0)} MB")
+            print(f"  Processes Optimized: {imp.get('processes_optimized',0)}")
+            print(f"  Memory Flushed: {imp.get('memory_flushed',0)} processes")
+            print("\n✅ PC optimization complete!")
+        else:
+            print("❌ Speedup failed")
 
 
 def _handle_system_control(action: str, params: dict):

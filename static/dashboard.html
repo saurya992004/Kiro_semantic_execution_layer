@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiro OS - Intelligent Workspace</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Physics Graph Visualization Library (Vis.js) -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <!-- Chart.js for original metrics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <!-- ═══ NOTIFICATION TOAST CONTAINER ═══ -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ═══ HEADER ═══ -->
+    <header id="header">
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Kiro<span class="logo-accent">OS</span></span>
+            </div>
+            <span class="tagline">AI Operating System Layer</span>
+        </div>
+        <div class="header-right">
+            <div class="status-pill" id="serverStatus">
+                <span class="status-dot"></span>
+                <span>Connected</span>
+            </div>
+            <div class="status-pill ghost-pill" id="ghostStatusPill">
+                <span class="ghost-icon">👁️</span>
+                <span id="ghostStatusText">Ghost: OFF</span>
+            </div>
+            <span class="clock" id="clock"></span>
+        </div>
+    </header>
+
+    <!-- ═══ TAB NAVIGATION ═══ -->
+    <nav class="tab-bar">
+        <button class="tab active" data-tab="dashboard" onclick="switchTab('dashboard')">
+            <span>📊</span> Dashboard
+        </button>
+        <button class="tab" data-tab="agents" onclick="switchTab('agents')">
+            <span>🤖</span> Agent Pipeline
+        </button>
+        <button class="tab" data-tab="ghost" onclick="switchTab('ghost')">
+            <span>👁️</span> Ghost Mode
+        </button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TAB 1: MAIN DASHBOARD
+         ═══════════════════════════════════════════════════════════ -->
+    <main id="tab-dashboard" class="tab-content active">
+        <div id="mainGrid">
+            <!-- ── SYSTEM HEALTH ── -->
+            <section class="card card-health" id="healthPanel">
+                <div class="card-header">
+                    <h2>📊 System Health</h2>
+                    <span class="badge" id="healthBadge">Healthy</span>
+                </div>
+                <div class="gauges-row">
+                    <div class="gauge-container">
+                        <canvas id="cpuGauge" width="130" height="130"></canvas>
+                        <div class="gauge-label">CPU</div>
+                        <div class="gauge-value" id="cpuValue">0%</div>
+                    </div>
+                    <div class="gauge-container">
+                        <canvas id="ramGauge" width="130" height="130"></canvas>
+                        <div class="gauge-label">RAM</div>
+                        <div class="gauge-value" id="ramValue">0%</div>
+                    </div>
+                    <div class="gauge-container">
+                        <canvas id="diskGauge" width="130" height="130"></canvas>
+                        <div class="gauge-label">Disk</div>
+                        <div class="gauge-value" id="diskValue">0%</div>
+                    </div>
+                </div>
+                <div class="health-details" id="healthDetails">
+                    <div class="health-detail"><span>RAM Used:</span><span id="ramUsed">-</span></div>
+                    <div class="health-detail"><span>Disk Free:</span><span id="diskFree">-</span></div>
+                    <div class="health-detail"><span>CPU Cores:</span><span id="cpuCores">-</span></div>
+                </div>
+            </section>
+
+            <!-- ── COMMAND CENTER ── -->
+            <section class="card card-command" id="commandPanel">
+                <div class="card-header">
+                    <h2>⌨️ Command Center</h2>
+                </div>
+                <div class="command-input-row">
+                    <input type="text" id="commandInput" placeholder="Ask Kiro anything... &quot;speed up my pc&quot;" autocomplete="off">
+                    <button id="commandSend" class="btn btn-primary" onclick="sendCommand()">
+                        <span>Send</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                    </button>
+                </div>
+                <div class="command-output" id="commandOutput">
+                    <div class="output-line system-line">🧠 Kiro OS ready. Type a command or use the action buttons below.</div>
+                </div>
+                <div class="quick-commands">
+                    <button class="chip" onclick="sendQuickCommand('speed up my pc')">🚀 Speed Up PC</button>
+                    <button class="chip" onclick="sendQuickCommand('check my system health')">🏥 Health Check</button>
+                    <button class="chip" onclick="sendQuickCommand('clean temp files')">🧹 Clean Temp</button>
+                    <button class="chip" onclick="sendQuickCommand('organize my downloads')">📂 Organize</button>
+                    <button class="chip" onclick="sendQuickCommand('show large files in Downloads')">📁 Large Files</button>
+                </div>
+            </section>
+
+            <!-- ── PC SPEEDUP ── -->
+            <section class="card card-speedup" id="speedupPanel">
+                <div class="card-header">
+                    <h2>🚀 PC Speedup</h2>
+                </div>
+                <p class="card-desc">Safely optimize: lower bloatware priority, clean temp files, flush idle memory.</p>
+                <button class="btn btn-speedup" id="speedupBtn" onclick="runSpeedup()">
+                    <span>⚡</span> Optimize Now
+                </button>
+                <div class="speedup-result" id="speedupResult"></div>
+            </section>
+
+            <!-- ── FILE MANAGER ── -->
+            <section class="card card-files" id="filesPanel">
+                <div class="card-header">
+                    <h2>📁 File Manager</h2>
+                </div>
+                <div class="file-actions">
+                    <button class="btn btn-file" onclick="fileAction('organize')"><span>📂</span> Organize</button>
+                    <button class="btn btn-file" onclick="fileAction('scan_large')"><span>📊</span> Large Files</button>
+                    <button class="btn btn-file" onclick="fileAction('duplicates')"><span>🔍</span> Duplicates</button>
+                    <button class="btn btn-file" onclick="fileAction('report')"><span>📋</span> Report</button>
+                </div>
+                <div class="file-result" id="fileResult"></div>
+            </section>
+
+            <!-- ── PERSONALIZATION ── -->
+            <section class="card card-personal" id="personalPanel">
+                <div class="card-header">
+                    <h2>🎨 Personalization</h2>
+                </div>
+                <div class="preset-grid">
+                    <button class="preset-btn" onclick="applyPreset('dark')"><span>🌙</span> Dark</button>
+                    <button class="preset-btn" onclick="applyPreset('light')"><span>☀️</span> Light</button>
+                    <button class="preset-btn" onclick="applyPreset('gaming')"><span>🎮</span> Gaming</button>
+                    <button class="preset-btn" onclick="applyPreset('minimal')"><span>✨</span> Minimal</button>
+                </div>
+                <button class="btn btn-outline" onclick="personalize('toggle_dark_mode')">🌓 Toggle Dark Mode</button>
+            </section>
+
+            <!-- ── ACTIVITY FEED ── -->
+            <section class="card card-feed" id="feedPanel">
+                <div class="card-header">
+                    <h2>📡 Live Activity</h2>
+                    <span class="live-dot"></span>
+                </div>
+                <div class="feed-list" id="feedList">
+                    <div class="feed-item">
+                        <span class="feed-time">Now</span>
+                        <span class="feed-msg">🧠 Kiro OS initialized</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── QUICK ACTIONS ── -->
+            <section class="card card-actions" id="actionsPanel">
+                <div class="card-header">
+                    <h2>⚙️ Quick Actions</h2>
+                </div>
+                <div class="action-grid">
+                    <button class="action-btn" onclick="systemAction('clean-temp')">🧹 Clean Temp</button>
+                    <button class="action-btn" onclick="systemAction('empty-recycle-bin')">🗑️ Empty Bin</button>
+                    <button class="action-btn" onclick="triggerTroubleshoot()">🔧 Troubleshoot</button>
+                    <button class="action-btn" onclick="showBloatware()">📋 Bloatware</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TAB 2: AGENT PIPELINE (n8n-style)
+         ═══════════════════════════════════════════════════════════ -->
+    <main id="tab-agents" class="tab-content">
+        <div class="pipeline-section" style="padding: 1.5rem 2rem 0;">
+            <div class="pipeline-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+                <div>
+                    <h2 style="font-size: 1.4rem; display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                        <span style="font-size: 1.3rem;">☄️</span> Neural Engine Dynamics
+                    </h2>
+                    <p class="pipeline-subtitle" style="font-size: 0.85rem; opacity: 0.7;">Watch Kiro's real-time knowledge-graph physics simulation map the inference routing</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 50px; padding: 2px;">
+                    <button class="btn btn-outline" onclick="if(network) { network.fit({ animation: { duration: 800, easingFunction: 'easeInOutQuad' } }); }" style="border: none; background: transparent; padding: 0.4rem 1rem; margin: 0; color: var(--text-secondary); font-size: 0.8rem; border-radius: 50px;">
+                        <span style="color: #ec4899; font-size: 0.9rem; margin-right: 4px;">🎯</span> Recenter
+                    </button>
+                    <button class="btn btn-outline" onclick="replayLastSimulation()" style="border: none; background: transparent; padding: 0.4rem 1rem; margin: 0; color: var(--text-secondary); font-size: 0.8rem; border-radius: 50px;">
+                        <span style="color: #3b82f6; font-size: 0.9rem; margin-right: 4px;">🔄</span> Replay Physics
+                    </button>
+                </div>
+            </div>
+
+            <div class="neural-engine-wrapper" style="position: relative; margin-bottom: 20px;">
+                <div class="card agent-chat-room" id="mynetwork" style="height: 520px; padding: 0;">
+                    <!-- Vis.js canvas rendered here -->
+                </div>
+                <canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; border-radius: 12px;"></canvas>
+                <!-- Live Stats Bar -->
+                <div class="neural-stats-bar" id="neuralStatsBar">
+                    <div class="neural-stat">
+                        <span class="neural-stat-dot active-dot"></span>
+                        <span class="neural-stat-label">Active Agents</span>
+                        <span class="neural-stat-value" id="statActiveAgents">0</span>
+                    </div>
+                    <div class="neural-stat">
+                        <span class="neural-stat-dot msg-dot"></span>
+                        <span class="neural-stat-label">Messages/min</span>
+                        <span class="neural-stat-value" id="statMsgRate">0</span>
+                    </div>
+                    <div class="neural-stat">
+                        <span class="neural-stat-dot conflict-dot"></span>
+                        <span class="neural-stat-label">Conflicts</span>
+                        <span class="neural-stat-value" id="statConflicts">0</span>
+                    </div>
+                    <div class="neural-stat">
+                        <span class="neural-stat-dot energy-dot"></span>
+                        <span class="neural-stat-label">Inference Load</span>
+                        <span class="neural-stat-value" id="statInferenceLoad">0%</span>
+                    </div>
+                    <div class="neural-stat-separator"></div>
+                    <button class="neural-perf-toggle" id="perfToggle" onclick="togglePerformanceMode()" title="Toggle particle effects">
+                        <span id="perfToggleIcon">✨</span> Effects
+                    </button>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <!-- Chat Panel -->
+                <div class="card live-chat-panel" id="agentLiveChat">
+                    <div class="card-header" style="margin-bottom: 10px;">
+                        <h2>💬 Live Agent Comms</h2>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div style="text-align: center; opacity: 0.3; font-size: 0.85rem; margin-top: 3rem; font-family: var(--font-mono);">Waiting for master command sequence to begin...</div>
+                    </div>
+                </div>
+
+                <!-- Agent Registry Panel -->
+                <div class="card" style="height: 380px; display: flex; flex-direction: column; padding: 1.5rem; position: relative;">
+                    <div class="card-header" style="margin-bottom: 10px;">
+                        <h2>🤖 Active Agent Registry</h2>
+                    </div>
+                    <div class="agent-list-scroll">
+                        <div class="agent-item" id="agent-card-master" onclick="showAgentDetail('master')"><span class="agent-item-icon">👑</span><span class="agent-item-title">Master Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-planner" onclick="showAgentDetail('planner')"><span class="agent-item-icon">🗺️</span><span class="agent-item-title">Planner Agent</span><span class="agent-item-badge thinking">Thinking</span></div>
+                        <div class="agent-item" id="agent-card-parser" onclick="showAgentDetail('parser')"><span class="agent-item-icon">🧩</span><span class="agent-item-title">Parser Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item processing-glow" id="agent-card-memory" onclick="showAgentDetail('memory')"><span class="agent-item-icon">🧠</span><span class="agent-item-title">Memory Agent</span><span class="agent-item-badge processing">Processing</span></div>
+                        <div class="agent-item processing-glow" id="agent-card-database" onclick="showAgentDetail('database')"><span class="agent-item-icon">🗄️</span><span class="agent-item-title">Database Agent</span><span class="agent-item-badge processing">Processing</span></div>
+                        <div class="agent-item processing-glow" id="agent-card-logger" onclick="showAgentDetail('logger')"><span class="agent-item-icon">📜</span><span class="agent-item-title">Logger Agent</span><span class="agent-item-badge processing">Processing</span></div>
+                        <div class="agent-item processing-glow" id="agent-card-killswitch" onclick="activateKillSwitch()"><span class="agent-item-icon">🔴</span><span class="agent-item-title">Kill Switch Node</span><span class="agent-item-badge processing" style="background: rgba(220,38,38,0.2) !important; color: #f87171 !important;">Processing</span></div>
+                        <div class="agent-item processing-glow" id="agent-card-file" onclick="showAgentDetail('file')"><span class="agent-item-icon">📁</span><span class="agent-item-title">File Agent</span><span class="agent-item-badge processing">Processing</span></div>
+                        <div class="agent-item" id="agent-card-diagnostic" onclick="showAgentDetail('diagnostic')"><span class="agent-item-icon">📊</span><span class="agent-item-title">Diagnostic Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-systemcontrol" onclick="showAgentDetail('systemcontrol')"><span class="agent-item-icon">⚙️</span><span class="agent-item-title">System Control Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-vision" onclick="showAgentDetail('vision')"><span class="agent-item-icon">👁️</span><span class="agent-item-title">Vision Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-installer" onclick="showAgentDetail('installer')"><span class="agent-item-icon">📦</span><span class="agent-item-title">Installer Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-troubleshooter" onclick="showAgentDetail('troubleshooter')"><span class="agent-item-icon">🔧</span><span class="agent-item-title">Troubleshooter Agent</span><span class="agent-item-badge active">Active</span></div>
+                        <div class="agent-item" id="agent-card-personalisation" onclick="showAgentDetail('personalisation')"><span class="agent-item-icon">🎨</span><span class="agent-item-title">Personalisation Agent</span><span class="agent-item-badge active">Active</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TAB 3: GHOST MODE
+         ═══════════════════════════════════════════════════════════ -->
+    <main id="tab-ghost" class="tab-content">
+        <div class="ghost-page">
+            <div class="ghost-controls-card card">
+                <div class="card-header">
+                    <h2>👁️ Ghost Mode Control</h2>
+                    <label class="toggle-switch toggle-big">
+                        <input type="checkbox" id="ghostToggle" onchange="toggleGhostMode()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <p class="card-desc">Kiro silently watches your screen and proactively helps when it detects issues, errors, or things you should know about.</p>
+                <button class="btn btn-ghost" id="ghostScanBtn" onclick="triggerGhostScan()">
+                    <span class="scan-icon">🔍</span> Scan Screen Now
+                </button>
+                <div class="ghost-latest-result" id="ghostLatestResult">
+                    <div class="ghost-placeholder">
+                        <span class="ghost-eye">👁️</span>
+                        <p>Enable Ghost Mode or click Scan to start watching.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ghost Activity Log -->
+            <div class="ghost-activity-card card">
+                <div class="card-header">
+                    <h2>📜 Ghost Activity Log</h2>
+                    <span class="live-dot"></span>
+                </div>
+                <p class="card-desc">Everything Kiro sees while Ghost Mode is active.</p>
+                <div class="ghost-log" id="ghostActivityLog">
+                    <div class="ghost-log-empty">
+                        <span>🌙</span>
+                        <p>Ghost Mode activity will appear here once activated...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ MODAL ═══ -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle">Result</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

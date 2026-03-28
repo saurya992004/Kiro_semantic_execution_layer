@@ -588,5 +588,1629 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-03-16T17:19:10.664582",
+    "plan_id": "8e72aa1f",
+    "user_input": "what things can you do ?",
+    "goal": "list AI capabilities",
+    "summary": {
+      "plan_id": "8e72aa1f",
+      "user_input": "what things can you do ?",
+      "goal": "list AI capabilities",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "dfac579e-0d7",
+          "intent": "help",
+          "action": "",
+          "parameters": {},
+          "description": "Show comprehensive list of all available commands",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-16T17:19:10.534591",
+          "started_at": "2026-03-16T17:19:10.539584",
+          "completed_at": "2026-03-16T17:19:10.653582"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-25T11:11:24.391522",
+    "plan_id": "6774e746",
+    "user_input": "change wallpaper of my pc",
+    "goal": "change desktop wallpaper",
+    "summary": {
+      "plan_id": "6774e746",
+      "user_input": "change wallpaper of my pc",
+      "goal": "change desktop wallpaper",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "f51d2c85-bd7",
+          "intent": "installer",
+          "action": "download_wallpaper",
+          "parameters": {
+            "query": "new desktop wallpaper",
+            "auto_set": true
+          },
+          "description": "Downloads a new wallpaper and sets it as the desktop background",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:11:21.531836",
+          "started_at": "2026-03-25T11:11:21.549981",
+          "completed_at": "2026-03-25T11:11:24.390275"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-25T11:12:20.842994",
+    "plan_id": "8c047d95",
+    "user_input": "change wallpaper of my desktop to a marvel movie wallpaper",
+    "goal": "change desktop wallpaper to Marvel movie theme",
+    "summary": {
+      "plan_id": "8c047d95",
+      "user_input": "change wallpaper of my desktop to a marvel movie wallpaper",
+      "goal": "change desktop wallpaper to Marvel movie theme",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "73c66c44-651",
+          "intent": "installer",
+          "action": "download_wallpaper",
+          "parameters": {
+            "query": "Marvel movie theme",
+            "auto_set": true
+          },
+          "description": "Downloads a Marvel movie theme wallpaper and sets it as the desktop background",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:12:14.807376",
+          "started_at": "2026-03-25T11:12:14.816799",
+          "completed_at": "2026-03-25T11:12:20.837005"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-25T11:14:58.747789",
+    "plan_id": "bcd44a5a",
+    "user_input": "change wallpaper of my desktop to marvel movie wallpaper",
+    "goal": "change desktop wallpaper to Marvel movie theme",
+    "summary": {
+      "plan_id": "bcd44a5a",
+      "user_input": "change wallpaper of my desktop to marvel movie wallpaper",
+      "goal": "change desktop wallpaper to Marvel movie theme",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "e27828dc-cb5",
+          "intent": "installer",
+          "action": "download_wallpaper",
+          "parameters": {
+            "query": "Marvel movie theme",
+            "auto_set": true
+          },
+          "description": "Download Marvel movie theme wallpaper and set it as desktop background",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:14:56.001643",
+          "started_at": "2026-03-25T11:14:56.018634",
+          "completed_at": "2026-03-25T11:14:58.744773"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-25T11:16:06.488506",
+    "plan_id": "e553577a",
+    "user_input": "change wallpaper of my desktop to dog wallapaper",
+    "goal": "change desktop wallpaper to dog image",
+    "summary": {
+      "plan_id": "e553577a",
+      "user_input": "change wallpaper of my desktop to dog wallapaper",
+      "goal": "change desktop wallpaper to dog image",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "75871a95-712",
+          "intent": "installer",
+          "action": "download_wallpaper",
+          "parameters": {
+            "query": "dog image",
+            "auto_set": true
+          },
+          "description": "Downloads a dog image wallpaper and sets it as the desktop background",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:16:04.299094",
+          "started_at": "2026-03-25T11:16:04.305061",
+          "completed_at": "2026-03-25T11:16:06.486508"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-25T11:17:13.602400",
+    "plan_id": "b2a9537e",
+    "user_input": "status",
+    "goal": "check system status",
+    "summary": {
+      "plan_id": "b2a9537e",
+      "user_input": "status",
+      "goal": "check system status",
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "35f1d9e9-76e",
+          "intent": "diagnostics",
+          "action": "full_health_check",
+          "parameters": {},
+          "description": "Check overall system health and status",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:17:05.941666",
+          "started_at": "2026-03-25T11:17:05.944674",
+          "completed_at": "2026-03-25T11:17:09.967517"
+        },
+        {
+          "id": "d81c643c-63b",
+          "intent": "system_config",
+          "action": "",
+          "parameters": {},
+          "description": "Display comprehensive system configuration",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-25T11:17:05.941666",
+          "started_at": "2026-03-25T11:17:09.970690",
+          "completed_at": "2026-03-25T11:17:13.591527"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T13:39:45.093408",
+    "plan_id": "0723aa25",
+    "user_input": "change the wallpaper of my pc to dog wallpaper",
+    "goal": "change desktop wallpaper to dog image",
+    "summary": {
+      "plan_id": "0723aa25",
+      "user_input": "change the wallpaper of my pc to dog wallpaper",
+      "goal": "change desktop wallpaper to dog image",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "6e79ec02-c62",
+          "intent": "installer",
+          "action": "download_wallpaper",
+          "parameters": {
+            "query": "dog image",
+            "auto_set": true
+          },
+          "description": "Download a dog image wallpaper and set it as desktop background",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:39:42.797394",
+          "started_at": "2026-03-27T13:39:42.821361",
+          "completed_at": "2026-03-27T13:39:45.086761"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T13:40:04.170449",
+    "plan_id": "f54952c7",
+    "user_input": "tell me about yourself",
+    "goal": "learn about the AI assistant",
+    "summary": {
+      "plan_id": "f54952c7",
+      "user_input": "tell me about yourself",
+      "goal": "learn about the AI assistant",
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "d4c84b06-ddd",
+          "intent": "web_search",
+          "action": "",
+          "parameters": {
+            "query": "AI assistant information"
+          },
+          "description": "Search the web for information about AI assistants",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:40:03.796381",
+          "started_at": "2026-03-27T13:40:03.805203",
+          "completed_at": "2026-03-27T13:40:03.985403"
+        },
+        {
+          "id": "50061755-261",
+          "intent": "help",
+          "action": "",
+          "parameters": {},
+          "description": "Display available commands and features of the AI assistant",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:40:03.796381",
+          "started_at": "2026-03-27T13:40:03.986950",
+          "completed_at": "2026-03-27T13:40:04.168149"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T13:40:22.153231",
+    "plan_id": "f9fb5b84",
+    "user_input": "what are you features ?",
+    "goal": "know AI features",
+    "summary": {
+      "plan_id": "f9fb5b84",
+      "user_input": "what are you features ?",
+      "goal": "know AI features",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "a0185a29-798",
+          "intent": "help",
+          "action": "",
+          "parameters": {},
+          "description": "Display comprehensive list of all available commands",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:40:22.015850",
+          "started_at": "2026-03-27T13:40:22.021285",
+          "completed_at": "2026-03-27T13:40:22.132270"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T13:41:17.837073",
+    "plan_id": "2637fe8c",
+    "user_input": "undo my wallpaper changing task",
+    "goal": "revert wallpaper change",
+    "summary": {
+      "plan_id": "2637fe8c",
+      "user_input": "undo my wallpaper changing task",
+      "goal": "revert wallpaper change",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "4586a461-64a",
+          "intent": "personalization",
+          "action": "load_profile",
+          "parameters": {
+            "name": "previous_wallpaper"
+          },
+          "description": "Load the previous wallpaper profile to revert changes",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:41:14.550973",
+          "started_at": "2026-03-27T13:41:17.833056",
+          "completed_at": "2026-03-27T13:41:17.835072"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T13:41:39.863085",
+    "plan_id": "490b8cbd",
+    "user_input": "undo my wallpaper task",
+    "goal": "revert wallpaper change",
+    "summary": {
+      "plan_id": "490b8cbd",
+      "user_input": "undo my wallpaper task",
+      "goal": "revert wallpaper change",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "dce95d99-32d",
+          "intent": "personalization",
+          "action": "load_profile",
+          "parameters": {
+            "name": "previous_wallpaper"
+          },
+          "description": "Load the previous wallpaper profile to revert the change",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T13:41:37.593037",
+          "started_at": "2026-03-27T13:41:39.859286",
+          "completed_at": "2026-03-27T13:41:39.861071"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T22:26:39.334189",
+    "plan_id": "1a462c79",
+    "user_input": "speed up my pc",
+    "goal": "improve computer performance",
+    "summary": {
+      "plan_id": "1a462c79",
+      "user_input": "speed up my pc",
+      "goal": "improve computer performance",
+      "total_tasks": 9,
+      "completed": 4,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "33d2c51e-06b",
+          "intent": "system_control",
+          "action": "clean_temp",
+          "parameters": {},
+          "description": "Clean temporary files to free up disk space",
+          "status": "skipped",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": null,
+          "completed_at": "2026-03-27T22:26:13.983437"
+        },
+        {
+          "id": "d14979b3-428",
+          "intent": "system_control",
+          "action": "empty_recycle_bin",
+          "parameters": {},
+          "description": "Empty the recycle bin to free up disk space",
+          "status": "skipped",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": null,
+          "completed_at": "2026-03-27T22:26:27.003007"
+        },
+        {
+          "id": "37525189-67b",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:"
+          },
+          "description": "Analyze disk usage to identify large files and folders",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": "2026-03-27T22:26:27.003547",
+          "completed_at": "2026-03-27T22:26:28.622623"
+        },
+        {
+          "id": "811baa44-c4e",
+          "intent": "disk_analysis",
+          "action": "find_large_folders",
+          "parameters": {
+            "path": "C:",
+            "threshold_gb": 1.0
+          },
+          "description": "Find large folders to consider cleaning up",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": null,
+          "completed_at": "2026-03-27T22:26:31.497652"
+        },
+        {
+          "id": "3b1898b1-c9e",
+          "intent": "maintenance",
+          "action": "scan_temp",
+          "parameters": {},
+          "description": "Scan temporary files for potential cleanup",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": null,
+          "completed_at": "2026-03-27T22:26:32.311050"
+        },
+        {
+          "id": "45f615f8-6c6",
+          "intent": "maintenance",
+          "action": "clean_temp_files",
+          "parameters": {},
+          "description": "Clean up temporary files",
+          "status": "skipped",
+          "priority": 3,
+          "dependencies": [
+            "33d2c51e-06b",
+            "3b1898b1-c9e"
+          ],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": null,
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": null,
+          "completed_at": "2026-03-27T22:26:33.281319"
+        },
+        {
+          "id": "d821bdc3-05f",
+          "intent": "diagnostics",
+          "action": "check_cpu",
+          "parameters": {},
+          "description": "Check CPU usage to identify potential bottlenecks",
+          "status": "completed",
+          "priority": 4,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": "2026-03-27T22:26:33.282331",
+          "completed_at": "2026-03-27T22:26:35.289167"
+        },
+        {
+          "id": "42ce0cb2-050",
+          "intent": "diagnostics",
+          "action": "check_ram",
+          "parameters": {},
+          "description": "Check RAM usage to identify potential bottlenecks",
+          "status": "completed",
+          "priority": 4,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": "2026-03-27T22:26:35.289167",
+          "completed_at": "2026-03-27T22:26:35.290683"
+        },
+        {
+          "id": "391ca88e-54c",
+          "intent": "diagnostics",
+          "action": "full_health_check",
+          "parameters": {},
+          "description": "Run a full system health check",
+          "status": "completed",
+          "priority": 4,
+          "dependencies": [
+            "d821bdc3-05f",
+            "42ce0cb2-050"
+          ],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:25:53.060743",
+          "started_at": "2026-03-27T22:26:35.291691",
+          "completed_at": "2026-03-27T22:26:39.328104"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T22:49:57.495131",
+    "plan_id": "bbf8960b",
+    "user_input": "check duplicates in documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "bbf8960b",
+      "user_input": "check duplicates in documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "ba9e94ba-160",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T22:49:44.281603",
+          "started_at": "2026-03-27T22:49:44.285140",
+          "completed_at": "2026-03-27T22:49:57.441964"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:07:45.046181",
+    "plan_id": "db0b49d3",
+    "user_input": "check for duplicates in documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "db0b49d3",
+      "user_input": "check for duplicates in documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "b275c0aa-d80",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:07:40.992951",
+          "started_at": "2026-03-27T23:07:40.998618",
+          "completed_at": "2026-03-27T23:07:45.029491"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:08:37.699347",
+    "plan_id": "d8aea922",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "d8aea922",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "e10318e7-43e",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:08:33.591263",
+          "started_at": "2026-03-27T23:08:33.619552",
+          "completed_at": "2026-03-27T23:08:37.694343"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:17:47.851105",
+    "plan_id": "530375f1",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "530375f1",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "c679b780-945",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:17:44.099979",
+          "started_at": "2026-03-27T23:17:44.125199",
+          "completed_at": "2026-03-27T23:17:47.847090"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:32:10.375728",
+    "plan_id": "656e222b",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "656e222b",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "aef80c73-101",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:31:57.692169",
+          "started_at": "2026-03-27T23:31:57.715707",
+          "completed_at": "2026-03-27T23:32:10.369697"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:39:52.235246",
+    "plan_id": "40e0b46c",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "40e0b46c",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "8a7a7551-2a3",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:39:45.989529",
+          "started_at": "2026-03-27T23:39:46.034680",
+          "completed_at": "2026-03-27T23:39:52.194725"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:48:25.534293",
+    "plan_id": "26a5b67b",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "26a5b67b",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "5fe8662f-8f7",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:48:19.638187",
+          "started_at": "2026-03-27T23:48:19.669237",
+          "completed_at": "2026-03-27T23:48:25.499657"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-27T23:54:27.027821",
+    "plan_id": "90fae65c",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "90fae65c",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "824f76f2-2aa",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-27T23:54:22.655077",
+          "started_at": "2026-03-27T23:54:22.678762",
+          "completed_at": "2026-03-27T23:54:26.992230"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T00:52:49.120111",
+    "plan_id": "86066975",
+    "user_input": "check duplicates in my documents folde",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "86066975",
+      "user_input": "check duplicates in my documents folde",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "b8c04086-085",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the documents folder without deleting them",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T00:52:12.081859",
+          "started_at": "2026-03-28T00:52:12.176482",
+          "completed_at": "2026-03-28T00:52:49.063167"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T09:10:59.017207",
+    "plan_id": "1a6277f0",
+    "user_input": "check duplicates in my documents folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "1a6277f0",
+      "user_input": "check duplicates in my documents folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "a25b5d3b-7d0",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T09:10:34.000320",
+          "started_at": "2026-03-28T09:10:34.041097",
+          "completed_at": "2026-03-28T09:10:58.973681"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T11:25:22.640309",
+    "plan_id": "175d1deb",
+    "user_input": "download vlc and install",
+    "goal": "download and install VLC",
+    "summary": {
+      "plan_id": "175d1deb",
+      "user_input": "download vlc and install",
+      "goal": "download and install VLC",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "36e71b32-367",
+          "intent": "installer",
+          "action": "install_software",
+          "parameters": {
+            "app_name": "VLC"
+          },
+          "description": "Downloads and installs VLC media player",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T11:24:54.192118",
+          "started_at": "2026-03-28T11:24:57.777514",
+          "completed_at": "2026-03-28T11:25:22.639293"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T11:27:57.474183",
+    "plan_id": "06ab8b0c",
+    "user_input": "download vlc",
+    "goal": "download VLC media player",
+    "summary": {
+      "plan_id": "06ab8b0c",
+      "user_input": "download vlc",
+      "goal": "download VLC media player",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "c862a9f2-b6c",
+          "intent": "installer",
+          "action": "install_software",
+          "parameters": {
+            "app_name": "VLC"
+          },
+          "description": "Download and install VLC media player",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": true,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T11:27:30.815405",
+          "started_at": "2026-03-28T11:27:33.868915",
+          "completed_at": "2026-03-28T11:27:57.466617"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T11:28:40.370203",
+    "plan_id": "7c0a3a12",
+    "user_input": "set brightness to 100",
+    "goal": "adjust screen brightness to 100",
+    "summary": {
+      "plan_id": "7c0a3a12",
+      "user_input": "set brightness to 100",
+      "goal": "adjust screen brightness to 100",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "2a99f97b-a2e",
+          "intent": "personalization",
+          "action": "set_brightness",
+          "parameters": {
+            "brightness": "100"
+          },
+          "description": "Adjust screen brightness to 100",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T11:28:34.637086",
+          "started_at": "2026-03-28T11:28:34.652648",
+          "completed_at": "2026-03-28T11:28:40.366196"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T12:16:52.042399",
+    "plan_id": "65838d30",
+    "user_input": "check duplicates in  my documnets folder",
+    "goal": "find duplicate files in documents folder",
+    "summary": {
+      "plan_id": "65838d30",
+      "user_input": "check duplicates in  my documnets folder",
+      "goal": "find duplicate files in documents folder",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "8678ad93-3fa",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Documents",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Documents folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T12:16:46.779135",
+          "started_at": "2026-03-28T12:16:46.866333",
+          "completed_at": "2026-03-28T12:16:51.976473"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T13:08:33.606907",
+    "plan_id": "26fbb371",
+    "user_input": "Find duplicate files in Downloads and diagnose my pc",
+    "goal": "find duplicate files and diagnose pc",
+    "summary": {
+      "plan_id": "26fbb371",
+      "user_input": "Find duplicate files in Downloads and diagnose my pc",
+      "goal": "find duplicate files and diagnose pc",
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "60ab28a0-1c1",
+          "intent": "file_management",
+          "action": "find_duplicates",
+          "parameters": {
+            "folder_name": "Downloads",
+            "confirm": false
+          },
+          "description": "Find duplicate files in the Downloads folder",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T12:42:40.378876",
+          "started_at": "2026-03-28T12:42:40.393226",
+          "completed_at": "2026-03-28T13:08:29.560017"
+        },
+        {
+          "id": "476d6c6e-e4a",
+          "intent": "diagnostics",
+          "action": "full_health_check",
+          "parameters": {},
+          "description": "Run a full health check on the PC",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T12:42:40.378876",
+          "started_at": "2026-03-28T13:08:29.561932",
+          "completed_at": "2026-03-28T13:08:33.600792"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T13:56:04.723544",
+    "plan_id": "00bcca68",
+    "user_input": "analyze disk usage",
+    "goal": "check disk usage",
+    "summary": {
+      "plan_id": "00bcca68",
+      "user_input": "analyze disk usage",
+      "goal": "check disk usage",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "a0954477-787",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:\\",
+            "threshold_gb": 1.0
+          },
+          "description": "Analyze disk usage to check for available space and storage distribution",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T13:53:02.722674",
+          "started_at": "2026-03-28T13:53:02.794228",
+          "completed_at": "2026-03-28T13:56:04.722488"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T13:57:10.718890",
+    "plan_id": "55b38857",
+    "user_input": "analyze disk usage",
+    "goal": "check disk usage",
+    "summary": {
+      "plan_id": "55b38857",
+      "user_input": "analyze disk usage",
+      "goal": "check disk usage",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "439520a7-3a8",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:"
+          },
+          "description": "Analyze disk usage to check available and used space",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T13:57:10.125395",
+          "started_at": "2026-03-28T13:57:10.132082",
+          "completed_at": "2026-03-28T13:57:10.716891"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T13:59:18.610786",
+    "plan_id": "d6474331",
+    "user_input": "analyze disk usage",
+    "goal": "view disk usage",
+    "summary": {
+      "plan_id": "d6474331",
+      "user_input": "analyze disk usage",
+      "goal": "view disk usage",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "08320ca6-822",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:\\"
+          },
+          "description": "Analyzing disk usage for the C:\\ drive",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T13:58:31.793105",
+          "started_at": "2026-03-28T13:58:31.802722",
+          "completed_at": "2026-03-28T13:59:18.606772"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T14:01:46.114834",
+    "plan_id": "96a7457c",
+    "user_input": "analyze disk usage",
+    "goal": "check disk space usage",
+    "summary": {
+      "plan_id": "96a7457c",
+      "user_input": "analyze disk usage",
+      "goal": "check disk space usage",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "3553b8d9-1b3",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:"
+          },
+          "description": "Analyze disk space usage on the C: drive",
+          "status": "completed",
+          "priority": 3,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T14:01:44.554561",
+          "started_at": "2026-03-28T14:01:44.660280",
+          "completed_at": "2026-03-28T14:01:46.113047"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-28T14:03:54.329183",
+    "plan_id": "b0589fad",
+    "user_input": "analyze disk usage",
+    "goal": "check disk usage",
+    "summary": {
+      "plan_id": "b0589fad",
+      "user_input": "analyze disk usage",
+      "goal": "check disk usage",
+      "total_tasks": 1,
+      "completed": 1,
+      "failed": 0,
+      "pending": 0,
+      "is_complete": true,
+      "has_failures": false,
+      "tasks": [
+        {
+          "id": "b53d4593-37b",
+          "intent": "disk_analysis",
+          "action": "analyze_usage",
+          "parameters": {
+            "path": "C:\\"
+          },
+          "description": "Analyze disk usage for the C:\\ drive",
+          "status": "completed",
+          "priority": 2,
+          "dependencies": [],
+          "dry_run": false,
+          "requires_confirmation": false,
+          "result": {
+            "status": "executed",
+            "message": "Command executed successfully"
+          },
+          "error": null,
+          "retry_count": 0,
+          "max_retries": 3,
+          "created_at": "2026-03-28T14:02:32.430313",
+          "started_at": "2026-03-28T14:02:32.447316",
+          "completed_at": "2026-03-28T14:03:54.327178"
+        }
+      ]
+    }
   }
 ]
